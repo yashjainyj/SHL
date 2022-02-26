@@ -1,0 +1,195 @@
+
+.main {
+  position: absolute;
+  // top:150px;
+  top: 55px;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+}
+.action_button {
+  padding-top: 10px;
+  // padding-left: 10px;
+}
+.action_button button {
+  // margin-left: 10px;
+}
+.upload_box {
+  font-size: 14px;
+  padding: 0;
+  background: rgb(85, 85, 85);
+  border-radius: 50px;
+  box-shadow: 5px 5px 10px black;
+  // width: 350px;
+}
+.row {
+  margin-right: 0;
+}
+::-webkit-file-upload-button {
+  color: white;
+  background: #206a5d;
+  padding: 5px;
+  border: none;
+  border-radius: 50px;
+  box-shadow: 1px 0 1px 1px #6b4559;
+  outline: none;
+}
+::-webkit-file-upload-button:hover {
+  background: #438a5e;
+}
+// .background {
+//   background: linear-gradient(to left, #8942a8, #ba382f);
+//   // width: 100%;
+//   height: 100vh;
+// }
+// .box_area {
+//   position: absolute;
+//   top: 0;
+//   left: 0;
+//   width: 100%;
+//   height: 100%;
+//   // z-index: -1;
+//   overflow: hidden;
+// }
+// .box_area li {
+//   position: absolute;
+//   display: block;
+//   list-style: none;
+//   width: 25px;
+//   height: 25px;
+//   background: rgba(225, 225, 225, 0.2);
+//   animation: animate1 20s linear infinite;
+//   bottom: -150px;
+// }
+// .box_area li:nth-child(1) {
+//   left: 86%;
+//   width: 80px;
+//   height: 80px;
+//   animation-delay: 0s;
+// }
+// .box_area li:nth-child(2) {
+//   left: 12%;
+//   width: 30px;
+//   height: 30px;
+//   animation-delay: 1.5s;
+//   animation-duration: 10s;
+// }
+// .box_area li:nth-child(3) {
+//   left: 70%;
+//   width: 100px;
+//   height: 100px;
+//   animation-delay: 5.5s;
+//   // animation-duration: 10s;
+// }
+// .box_area li:nth-child(4) {
+//   left: 42%;
+//   width: 150;
+//   height: 150px;
+//   animation-delay: 0s;
+//   animation-duration: 15s;
+// }
+// .box_area li:nth-child(5) {
+//   left: 65%;
+//   width: 40px;
+//   height: 40px;
+//   animation-delay: 0s;
+//   // animation-duration: 10s;
+// }
+// .box_area li:nth-child(6) {
+//   left: 15%;
+//   width: 110px;
+//   height: 110px;
+//   animation-delay: 3.5s;
+//   // animation-duration: 10s;
+// }
+// @keyframes animate1 {
+//   0% {
+//     transform: translateY(0) rotate(0deg);
+//     opacity: 1;
+//   }
+//   100% {
+//     transform: translateY(-800px) rotate(360deg);
+//     opacity: 0;
+//   }
+// }
+::ng-deep .p-datatable .p-datatable-tbody > tr {
+  // background: rgba(0, 0, 0, 0.8);
+}
+  @media only screen and (max-width: 500px) {
+    .upload_box {
+      margin: 12px 0px;
+    }
+  }
+
+::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: rgb(192, 192, 192);
+  opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: rgb(192, 192, 192);
+}
+
+::-ms-input-placeholder {
+  /* Microsoft Edge */
+  color: rgb(192, 192, 192);
+}
+
+::ng-deep .p-datatable .p-datatable-tbody > tr{
+  color: white !important;
+  }
+  ::ng-deep .p-datatable .p-datatable-tbody > tr {
+    background: rgba(0, 0, 0, 0.5) !important;
+    color: white!important;
+  }
+  ::ng-deep .p-datatable .p-datatable-header{
+    background: rgba(0, 0, 0, 0.5)!important;
+    color: white!important;
+  
+  }
+  ::ng-deep .p-datatable .p-datatable-thead > tr > th{
+    background: rgba(0, 0, 0, 0.5)!important;
+    color: white!important;
+  
+  }
+  ::ng-deep .p-paginator{
+    background: rgba(0, 0, 0, 0.5)!important;
+    color: white!important;
+  
+  
+  }
+  // span{color: white !important;}
+  ::ng-deep .p-paginator .p-paginator-current {
+    color: white!important;
+  }
+  ::ng-deep .p-paginator .p-paginator-first{ color:white !important}
+  ::ng-deep .p-paginator .p-paginator-prev{ color:white !important}
+  ::ng-deep .p-paginator .p-paginator-next{ color:white !important}
+  ::ng-deep .p-paginator .p-paginator-last{ color:white !important}
+  ::ng-deep .p-datatable .p-sortable-column .p-sortable-column-icon{color:white !important}
+  ::ng-deep .p-button.p-button-text.p-button-plain{color:white !important}
+  ::ng-deep .p-inputtext {
+    font-family: "Nunito", sans-serif;
+    margin-right: 8px;
+    box-shadow: none;
+    width: 100%;
+    transition: all 0.2s ease-in-out;
+    appearance: none;
+    -webkit-appearance: none;
+    border: 1px solid black ;
+    outline: 0;
+    font-size: 16px;
+    border-radius: 10px;
+    // padding: 16px;
+    font-family: "Nunito", sans-serif;
+    color: black;
+    // background-color: rgba(255, 255, 255) !important  ;
+    text-shadow: none !important;
+  }
+ ::ng-deep .p-paginator .p-dropdown .p-dropdown-label{color:black}
+ ::ng-deep .p-tabview .p-tabview-panels{
+   background: transparent;
+   color: white;
+ }

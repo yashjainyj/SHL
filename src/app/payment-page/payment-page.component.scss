@@ -1,0 +1,215 @@
+.container {
+  margin-top: 10px;
+  
+}
+.card1{
+    color: white;
+    background: rgba(0, 0, 0, 0.2);
+    margin-top: 5px;
+    margin: 5px;
+    transition: 1s ease-in-out;
+    transform: scale(1);
+    cursor: pointer;
+}
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: rgb(192, 192, 192)!important;
+  opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: rgb(192, 192, 192) !important;
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+  color: rgb(192, 192, 192) !important;
+}
+
+.card {
+  color: white;
+  background: rgba(0, 0, 0, 0.2);
+  margin-top: 5px;
+  margin: 5px;
+  transition: 1s ease-in-out;
+  transform: scale(1);
+  cursor: pointer;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(2px);
+}
+.card:hover {
+  background: rgba(0, 0, 0, 0.4);
+  transform: scale(1.02);
+  transition: 1s ease-in-out;
+}
+.card-header{
+    background: rgba(201, 255, 252, 0.4);
+    color: black;
+}
+.card-body {
+  padding: 0;
+}
+.card-title {
+  padding: 0 5px;
+  margin: 5px 10px;
+}
+.card-subtitle {
+  padding: 0 5px;
+  margin: 5px 10px;
+}
+.main{
+    
+    padding: 0;
+}
+@media only screen and (max-width: 500px) {
+    .card-title {
+       font-size: 14px;
+      }
+      .card-subtitle {
+       font-size: 12px;
+      }
+  }
+  img {
+    border-radius: 50%;
+    border: 4px solid #c0e8fa;
+    box-sizing: border-box;
+    margin-right: 4%;
+    background: white;
+    width: 5rem;
+    height: 5rem;
+    z-index: 5;
+    transition: 1s ease-in-out;
+  }
+ img:hover {
+    transform: scale(245%);
+    z-index: 5;
+  }
+ 
+  .bg{
+    background:  url(../../assets/libraryImage/logoblur.png) no-repeat center;
+    background-repeat: no-repeat;
+    backdrop-filter: blur(5px);
+    opacity: 1;
+    display: inline-block;
+    position: relative;
+}
+  .invoice{
+    height:148.5mm;
+    width:210mm;
+    overflow: auto  ;
+    background: rgba(255, 255, 255, 0.6);
+    // display: inline-block;
+    // position: relative;
+   
+// position: absolute;
+    // z-index: -1;  
+}
+.invoice::after{
+    content: "";
+    // background:  url(../../assets/libraryImage/logo.png) no-repeat center;
+    // background-repeat: no-repeat;
+    // backdrop-filter: blur(5px);
+    // opacity: 0.2;
+    // top: 0;
+    // left: 0;
+    // bottom: 0;
+    // right: 0;
+    // position: absolute;
+    // z-index: -1;  
+}
+// 2480 X 3508 pixels
+.invoice tr td a{
+    text-decoration: none;
+    color: #0d1656;
+}
+.invoice table{
+    width: 100%;
+}
+.invoice .table{
+    border:1px solid black;
+    margin:0;
+  }
+.invoice .table th{
+    border:1px solid black;
+}
+.invoice .table td{
+    border:1px solid black;
+    font-weight: 800;
+}
+.invoice tr{
+    text-align: center;
+    border:1px solid black;
+
+}
+.invoice .table-borderless td{
+    border:0px solid transparent;
+}
+.invoice .table-borderless tr,
+.invoice .table-borderless{
+    border:0px solid transparent;
+}
+
+.invoice tr th{
+    text-align: center;
+    // font-size: x-large;
+    padding: 8px 10px;
+}
+.invoice tr td{
+ padding: 8px 10px;   text-align: center;
+}
+.invoice tr td h2{
+    margin: 0;
+    background: black;
+    color: white;
+    letter-spacing: 3px;
+}
+::ng-deep .p-datatable .p-datatable-tbody > tr{
+  color: white !important;
+  }
+  ::ng-deep .p-datatable .p-datatable-tbody > tr {
+    background: rgba(0, 0, 0, 0.5) !important;
+    color: white!important;
+  }
+  ::ng-deep .p-datatable .p-datatable-header{
+    background: rgba(0, 0, 0, 0.5)!important;
+    color: white!important;
+  
+  }
+  ::ng-deep .p-datatable .p-datatable-thead > tr > th{
+    background: rgba(0, 0, 0, 0.5)!important;
+    color: white!important;
+  
+  }
+  ::ng-deep .p-paginator{
+    background: rgba(0, 0, 0, 0.5)!important;
+    color: white!important;
+  
+  
+  }
+  span{color: white !important;}
+  ::ng-deep .p-paginator .p-paginator-current {
+    color: white!important;
+  }
+  ::ng-deep .p-paginator .p-paginator-first{ color:white !important}
+  ::ng-deep .p-paginator .p-paginator-prev{ color:white !important}
+  ::ng-deep .p-paginator .p-paginator-next{ color:white !important}
+  ::ng-deep .p-paginator .p-paginator-last{ color:white !important}
+  ::ng-deep .p-datatable .p-sortable-column .p-sortable-column-icon{color:white !important}
+  ::ng-deep .p-button.p-button-text.p-button-plain{color:white !important}
+  ::ng-deep .p-inputtext {
+    font-family: "Nunito", sans-serif;
+    margin-right: 8px;
+    box-shadow: none;
+    width: 100%;
+    transition: all 0.2s ease-in-out;
+    appearance: none;
+    -webkit-appearance: none;
+    border: 0;
+    outline: 0;
+    font-size: 16px;
+    border-radius: 0;
+    // padding: 16px;
+    font-family: "Nunito", sans-serif;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.2)  ;
+    text-shadow: none !important;
+  }
+ ::ng-deep .p-paginator .p-dropdown .p-dropdown-label{color:black}

@@ -1,0 +1,23 @@
+::ng-deep .p-panel .p-panel-header {
+    background: rgba(0,0,0,0.5);
+    color: white;
+}
+::ng-deep .p-panel .p-panel-content{
+    background: rgba(0,0,0,0.5);
+    color: white;
+}
+img{
+    border-radius: 50%;
+    border: 4px solid #c0e8fa;
+    box-sizing: border-box;
+    margin-right: 4%;
+    background: white;
+    width: 5rem;
+    height: 5rem;
+    z-index: 5;
+    transition: 1s ease-in-out;
+  }
+  img:hover {
+    transform: scale(245%);
+    z-index: 5;
+  }

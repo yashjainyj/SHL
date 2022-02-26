@@ -1,0 +1,428 @@
+<p-toast position="top-right" [breakpoints]="{'920px': {width: '100%', right: '0', left: '0'}}"></p-toast>
+<!-- <p-galleria style="z-index: 1000;" [(value)]="images" [(visible)]="displaygallery" [responsiveOptions]="responsiveOptions" [containerStyle]="{'max-width': '850px'}" [numVisible]="7"
+[circular]="true"   [autoPlay]="true" [transitionInterval]="2000" [fullScreen]="true" [showItemNavigators]="true" [showThumbnails]="false" [baseZIndex]="100000"> 
+<ng-template pTemplate="item" let-item>
+    <img [src]="item.previewImageSrc" style="width: 100%; display: block;"/>
+</ng-template>
+<ng-template pTemplate="thumbnail" let-item>
+    <div class="p-grid p-nogutter p-justify-center">
+        <img [src]="item.thumbnailImageSrc" style="display: block;"/>
+    </div>
+</ng-template>
+</p-galleria> -->
+<p-sidebar styleClass="p-sidebar-sm" position="left" [(visible)]="displaySideBar">
+  <div [routerLink]="['/login']" *ngIf="(userDetails| json) == '{}'" routerLinkActive="router-link-active"  class="card__content1" >
+    <div class="card-body">
+      Login/Signup
+    </div>
+  </div>
+  <div  *ngIf="(userDetails| json) != '{}'" class="card__content1" >
+    <div class="card-body">
+       <div class="d-flex justify-content-between">
+        <b>  {{userDetails.name}} </b>
+        <i class='bx bx-log-out'  (click)='logout()' id="logout" ></i>
+       </div>
+    </div>
+  </div>
+  <div  (click)="click('home')" class="card__content1">
+    <div class="card-body">
+      Home
+    </div>
+  </div>
+  <div  (click)="click('gallery')" class="card__content1">
+    <div class="card-body">
+      Gallery
+    </div>
+  </div>
+  <div (click)="click('bookSeat')" class="card__content1">
+    <div class="card-body">
+      Book Seat
+    </div>
+  </div>
+  <div (click)="click('about')" class="card__content1">
+    <div   class="card-body">
+      About Us
+    </div>
+  </div>
+  <div  (click)="click('contact')" class="card__content1">
+    <div class="card-body">
+      Contact Us
+    </div>
+  </div>
+</p-sidebar>
+<header class="header-area"  >
+  <div class="row" style="padding: 0;">
+    <div class="col-1">
+      <button class="btn" style="color: white;padding: 8px 20px;" (click)="displaySideBar = true"> <i style="font-size: 18px;" class="fa fa-bars"></i></button>
+
+    </div>
+    <div class="col-11">
+      <ul class="nav  justify-content-left">
+        <li class="nav-item">
+           <a href="mailto:studyhomelibrary24@gmail.com">
+            <i class="pi pi-envelope"></i>
+            studyhomelibrary24@gmail.com
+           </a>
+        </li>
+        <li class="nav-item">
+            <a href="tel:+916263653486">
+                <i class="pi pi-phone"></i>
+                +916263653486,</a>
+                <a href="tel:+917314263983">
+                 +917314263983</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+</header>
+
+<div *ngIf="!hidemain">
+  <main>
+    <div >
+        <section #home class="site-banner">
+            <div  class="container-fluid"   >
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-12 d-flex first justify-content-left ">
+                    <div class="title">
+                      <img src="../../assets/libraryImage/logo (1).png" width="140px" height="110px" alt="">
+                        <h3 class="greet">Welcome To</h3>
+                        <h2 class="name" >Study Home Library & Co-Working</h2>
+                        <span class="title_text" >The only thing that you absolutely have to know,is the atmosphere of our library.</span>
+                        <span class="title_text" style="margin-top: 20px;" >
+                            At Study Home you must find a peaceful environment,<br> It's help 
+                            you to focus on your study 
+                            and your goals. We aim to help you minimize distraction and maximize motivation.
+                            </span>
+                     
+                    </div>
+                  
+                    </div>
+                    
+                    <div style="margin-top: 30px;" class="col-lg-6 col-sm-10 col-md-6 " >
+                       
+                      <form  [formGroup]="ContactUSDetails" >
+                        <div  class="card__content ">
+                          <div class="card-body">
+                            <h5 class="d-flex justify-content-center  card-title" style="color: powderblue;">DROP YOUR EMAIL HERE</h5>
+                            <p style="color: sandybrown;" class="d-flex justify-content-center card-text">Truth Never Lost Ground by Enquiry</p> 
+                            <div class="data">
+                              <div class="col-12 mb-3 input-effect">
+                                <input class=" form-control effect-16" required type="text" [class]="ContactUSDetails.controls['name'].invalid && (ContactUSDetails.controls['name'].touched || ContactUSDetails.controls['name'].dirty)?'is-invalid':'' " formControlName="name"   placeholder="Enter Name">
+                                  <span class="focus-border"></span>
+                              </div>
+                              <div class="col-12 mb-3 input-effect">
+                                <input class=" form-control effect-16" required type="email" [class]="ContactUSDetails.controls['email'].invalid && (ContactUSDetails.controls['email'].touched || ContactUSDetails.controls['email'].dirty)?'is-invalid':'' " formControlName="email"placeholder="Enter Email">
+                                  <span class="focus-border"></span>
+                              </div>
+                             
+                              <div class="col-12 input-effect">
+                                <div class="input-group mb-3">
+                                  <span class="input-group-text" id="basic-addon1">+91</span>
+                                  <input class="form-control effect-16"  aria-describedby="basic-addon1" required type="number" onkeydown="return event.keyCode!==69" onkeypress="if(this.value.length==10)return false" formControlName="phone" [class]="ContactUSDetails.controls['phone'].invalid && (ContactUSDetails.controls['phone'].touched || ContactUSDetails.controls['phone'].dirty)?'is-invalid':'' " minlength="10" placeholder="Phone Number">
+  
+                                </div>
+                            
+                              </div>
+                              <div class="col-12 mb-3 input-effect">
+                                <input class="form-control effect-16" required type="text" formControlName="message" [class]="ContactUSDetails.controls['message'].invalid && (ContactUSDetails.controls['message'].touched || ContactUSDetails.controls['message'].dirty)?'is-invalid':'' " placeholder="Enter Message">
+                                  <span class="focus-border"></span>
+                              </div>
+                             
+                              <div class="d-flex justify-content-center col-12">
+                              <button style="color: black;background-color: sandybrown;" (click)="contactUsSubmit()" [disabled]="!ContactUSDetails.valid" type="submit" class=" btn">Submit</button>
+          
+                              </div>                    
+                          
+                            </div>
+                           
+                          
+                          </div>
+                      </div>
+                      </form>
+                    </div>
+                </div>
+            </div>
+           
+        </section>
+        <div #about class="about" *ngIf="!hideAboutus">
+    
+    
+          <div class="container2">
+            <div class="row">
+              <div class="col-lg-12  col-md-12 col-sm-12 col-12 d-flex justify-content-center">
+                <h1>
+                  Welcome To Your Study Space
+                </h1>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                
+                  <p-timeline [value]="aboutUs" align="alternate" class="ptimeline" styleClass="customized-timeline">
+                      <ng-template pTemplate="marker" let-event>
+                          <span class="custom-marker p-shadow-2" [style.backgroundColor]="event.color">
+                              <i [ngClass]="event.icon"></i>
+                          </span>
+                      </ng-template>
+                      <ng-template pTemplate="content" let-event>
+                        <div [style.backgroundColor]="event.color" class="card__content ">
+                          <div class="card-body">
+                            <h1>{{event.status}}</h1>
+                            <h6>{{event.text}}</h6>  
+                          </div>
+                      </div>
+                      </ng-template>
+                
+                    <ng-template pTemplate="opposite" let-event>
+                      <div  class="card__content " >
+                        <div class="card-body">
+                          <!-- <h1>{{event.status}}</h1> -->
+                          <!-- <h6>{{event.text}}</h6>   -->
+                        </div>
+                    </div>  
+                      <!-- {{event.status}} -->
+                    </ng-template>
+                  </p-timeline>
+              
+                  <div class="smallsize">
+                    <div *ngFor="let event of aboutUs" [style.backgroundColor]="event.color" class="card__content ">
+                      <div class="card-body">
+                        <i [ngClass]="event.icon"></i>
+                          <h1>{{event.status}}</h1>
+                          <h6>{{event.text}}</h6>                    
+                      </div>
+                  </div>
+                  </div>
+              </div>
+            </div>
+          </div>
+      </div>
+      
+        <section  class="features">
+           <div class="container">
+            <div class="row">
+                 <div class="col-12 heading">
+                    Facilities
+                </div>
+                <div *ngFor="let item of facilitiesList" class="col-md-4 col-lg-3 col-sm-4">
+                    <div class="card">
+                      <i class="{{item.icon}}"></i>
+                      <div class="card-body">
+                        <p class="card-text">{{item.name}}</p>
+                      </div>
+                    </div>
+                </div>
+            </div>
+           </div>
+        </section>
+        
+    </div>
+    </main>
+      
+    <div #contactus >
+    <div class="container" >
+          <div class="row">
+            <div class="d-flex justify-content-center col-md-12">
+              <h1>Enquiry</h1>
+              
+            </div>
+            <div class="d-flex justify-content-center col-md-12">
+              <div  class="contact ">
+     
+                <a href="https://www.google.com/maps/place/Study+Home+Library,+160%2F4+Opp.+Ahuja+TVS+Showroom,+Near+Vishnupuri+I+Bus+Stop,+Near,+Bhawarkua+Main+Rd,+Indore,+Madhya+Pradesh+452001/@22.6889931,75.8639042,17z/data=!4m2!3m1!1s0x3962fd49cf757889:0xd3274a81602464c0" target="_blank" style="cursor: pointer;">
+                  <div class="card">
+                    <i class="pi pi-map-marker"></i>
+                   <div class="card-body">
+                     <p class="card-text"> {{Address}}</p>
+                   </div>
+                 </div>
+               </a>
+               </div>
+            </div>
+          </div>
+          <div class="row ">
+              <div class="col-lg-6 col-md-6 col-sm-6 col-12" >
+               <div class="contact ">
+                <a href="mailto:studyhomelibrary24@gmail.com">
+                  <div class="card">
+                   <i class="pi pi-envelope"></i>
+                   <div class="card-body">
+                     <p class="card-text">studyhomelibrary24@gmail.com</p>
+                   </div>
+                 </div>
+               </a>
+               </div>
+              </div>
+              <div class="col-lg-6 col-md-6 col-sm-6 col-12" >
+                <div class="contact ">
+                  <div class="card">
+                    <i class="pi pi-phone"></i>
+                    <div class="card-body">
+                     <a href="tel:+916263653486">
+                    
+                       +916263653486 </a>,
+                      <a href="tel:+917314263983">
+                       +917314263983</a>
+                    </div>
+                  </div>
+                 </div>
+              </div>
+            
+          </div>
+    </div>
+    <div class="row formContact d-flex justify-content-center ">
+            <div  class="textContact col-lg-6 col-md-6 col-sm-12 col-12">
+              <h3>How Can We Help?</h3>
+              <h3 style="color: sandybrown;">Want to get in Touch? </h3>
+              <h3>Have any Question?</h3>
+              <h3 style="color: sandybrown;">Getting in touch is Easy</h3>
+              <h3>We'd love to hear from you.</h3>
+              <h3 style="color: sandybrown;"> Here's how you can reach us</h3>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+              <form  [formGroup]="ContactUSDetails" >
+                <div  class="card__content ">
+                  <div class="card-body">
+                    <h5 class="d-flex justify-content-center  card-title" style="color: powderblue;">DROP YOUR EMAIL HERE</h5>
+                    <p style="color: sandybrown;" class="d-flex justify-content-center card-text">Truth Never Lost Ground by Enquiry</p> 
+                    <div class="data">
+                      <div class="col-12 mb-3 input-effect">
+                        <input class=" form-control effect-16" required type="text" [class]="ContactUSDetails.controls['name'].invalid && (ContactUSDetails.controls['name'].touched || ContactUSDetails.controls['name'].dirty)?'is-invalid':'' " formControlName="name"   placeholder="Enter Name">
+                          <span class="focus-border"></span>
+                      </div>
+                      <div class="col-12 mb-3 input-effect">
+                        <input class=" form-control effect-16" required type="email" [class]="ContactUSDetails.controls['email'].invalid && (ContactUSDetails.controls['email'].touched || ContactUSDetails.controls['email'].dirty)?'is-invalid':'' " formControlName="email"placeholder="Enter Email">
+                          <span class="focus-border"></span>
+                      </div>
+                     
+                      <div class="col-12 input-effect">
+                        <div class="input-group mb-3">
+                          <span class="input-group-text" id="basic-addon1">+91</span>
+                          <input class="form-control effect-16"  aria-describedby="basic-addon1" required type="number" onkeydown="return event.keyCode!==69" onkeypress="if(this.value.length==10)return false" formControlName="phone" [class]="ContactUSDetails.controls['phone'].invalid && (ContactUSDetails.controls['phone'].touched || ContactUSDetails.controls['phone'].dirty)?'is-invalid':'' " minlength="10" placeholder="Phone Number">
+
+                        </div>
+                        <!-- <input class="effect-16" required type="number" onkeydown="return event.keyCode!==69" onkeypress="if(this.value.length==10)return false" formControlName="phone" [class]="ContactUSDetails.controls['phone'].invalid && (ContactUSDetails.controls['phone'].touched || ContactUSDetails.controls['phone'].dirty)?'is-invalid':'' " minlength="10" placeholder="Enter Phone Number"> -->
+                          <!-- <span class="focus-border"></span> -->
+                      </div>
+                      <div class="col-12 mb-3 input-effect">
+                        <input class="form-control effect-16" required type="text" formControlName="message" [class]="ContactUSDetails.controls['message'].invalid && (ContactUSDetails.controls['message'].touched || ContactUSDetails.controls['message'].dirty)?'is-invalid':'' " placeholder="Enter Message">
+                          <span class="focus-border"></span>
+                      </div>
+                     
+                      <div class="d-flex justify-content-center col-12">
+                      <button style="color: black;background-color: sandybrown;" (click)="contactUsSubmit()" [disabled]="!ContactUSDetails.valid" type="submit" class=" btn">Submit</button>
+  
+                      </div>                    
+                  
+                    </div>
+                   
+                  
+                  </div>
+              </div>
+              </form>
+            </div>
+          </div>
+    </div>
+    
+
+ 
+</div>
+<section class="map1">
+  <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3681.0550882469206!2d75.8639042!3d22.6889931!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3962fd49cf757889%3A0xd3274a81602464c0!2sStudy%20Home%20Library!5e0!3m2!1sen!2sin!4v1633458981267!5m2!1sen!2sin" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+</section>
+
+
+
+<div *ngIf="hidemain">
+    <div class="container">
+      <div style="display: flex;justify-content: center;align-items: center;">
+        <h2>{{title}}</h2>
+      </div>
+      <div class="tc">
+        <span *ngFor="let item of TC index as i">
+          {{i+1}}). {{item.name|titlecase}} <br><hr> 
+        </span>
+      </div>
+    </div>
+</div>
+
+
+<section>
+  
+      <footer class="footer-area" id="contact">
+    <div class="container">
+        <div class="row" >
+            
+            <div class="social col-lg-4 col-md-4 col-sm-6 col-12"  >
+              <a href="#"><img src="../../assets/libraryImage/logo (1).png" width="140px" height="110px" alt="logo"></a>
+                <h5 class="text-uppercase" style="color: powderblue;">Follow me</h5>
+                <a style="margin: 10px;" target="_blank" href="https://www.facebook.com/studyhomelibrary/"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-facebook" viewBox="0 0 16 16">
+                  <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/>
+                </svg></a>
+                <!-- <a href="https://github.com/yashjainyj"><i class="fab fa-github"></i></a> -->
+                <a target="_blank" href="https://instagram.com/study_home_library?utm_medium=copy_link"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-instagram" viewBox="0 0 16 16">
+                  <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.911 3.911 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233 0-2.136.008-2.388.046-3.231.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045v.002zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92zm-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217zm0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334z"/>
+                </svg></a>
+                <!-- <a href="https://www.linkedin.com/in/yash-jain-28b759134/"><i class="fab fa-linkedin"></i></a> -->
+                <!-- <a href="https://twitter.com/yashjainyj1"><i class="fab fa-twitter"></i></a> -->
+     
+
+            </div>
+            <div class="social col-lg-4 col-md-4 col-sm-6 col-12"  >
+              <h5 class="text-uppercase" style="color: powderblue;">    Contact Info</h5>
+              <ul>
+                <li>
+                  <a href="mailto:studyhomelibrary24@gmail.com">
+                   <i class="pi pi-envelope"></i>
+                   studyhomelibrary24@gmail.com
+                  </a>
+               </li>
+               <li>
+                <a href="tel:+917314263983">
+                  <i class="pi pi-phone"></i>
+                  +917314263983</a>
+               </li>
+               <li>
+                   <a href="tel:+916263653486">
+                       <i class="pi pi-phone"></i>
+                       +916263653486</a> 
+               </li>
+               
+                <li>
+                 <a  class="d-flex " href="https://www.google.com/maps/place/Study+Home+Library,+160%2F4+Opp.+Ahuja+TVS+Showroom,+Near+Vishnupuri+I+Bus+Stop,+Near,+Bhawarkua+Main+Rd,+Indore,+Madhya+Pradesh+452001/@22.6889931,75.8639042,17z/data=!4m2!3m1!1s0x3962fd49cf757889:0xd3274a81602464c0" target="_blank" style="cursor: pointer;">
+                    <i class="pi pi-map-marker"></i>
+                    <span style="margin-top: 10px;">{{Address}}</span>                 
+                 </a>
+                 </li>
+              </ul>
+              
+            </div>
+            <div class="social col-lg-4 col-md-4 col-sm-6 col-12"  >
+              <h5 class="text-uppercase" style="color: powderblue;">Legal</h5>
+               <ul>
+                 <li (click)="legalClick('T&C')">
+                  <a style="cursor: pointer;">
+                    
+                    Terms & Conditions
+                   </a>
+                 </li>
+                 <li (click)='legalClick("paymentpolicy")'>
+                  <a style="cursor: pointer;">
+                    
+                    Payment Policies
+                   </a>
+                 </li>
+                 <!-- <li>
+                  <a style="cursor: pointer;">
+                    
+                    FAQ
+                   </a>
+                 </li> -->
+               </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+
+ </section>

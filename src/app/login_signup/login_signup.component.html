@@ -1,0 +1,126 @@
+<div *ngIf="loading1"  class="d-flex  justify-content-center">
+  <div class="spinner-border" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+</div>
+<div  #body  class="body">
+  
+  <div class="container">
+    <div class="bg">
+      <div class="box signin">
+          <h2>Already Have an Account ? </h2>
+          <button (click)="signInForm()" class="signinBtn">Sign In </button>
+      </div>
+      <div  class="box signup">
+        <h2 *ngIf="show">Don't Have an Account ? </h2>
+        <button *ngIf="show" (click)="signUpFormshow()" class="signupBtn">Sign Up </button>
+ 
+    </div>
+    
+    </div>
+    <div #formbox class="formbox">
+      <div class="form signinForm">
+  
+         <span style="color: red;" *ngIf="userNotFound">User Not Found Please SignUp</span>
+          <form  [formGroup]="loginDetail">                 
+            <h3>SignIn </h3>
+            <input   required  class="form-control " formControlName="email" [class]="loginDetail.controls['email'].invalid && (loginDetail.controls['email'].touched || loginDetail.controls['email'].dirty)?'is-invalid':'' " pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"   type="text" id="loginDetail.email" placeholder="Email">
+            <small  *ngIf="loginDetail.controls['email'].invalid && (loginDetail.controls['email'].touched || loginDetail.controls['email'].dirty)"  class="p-error">Email is Required or Invalid</small>
+            
+            <input   class="form-control" formControlName="password"  [class]="loginDetail.controls['password'].invalid && (loginDetail.controls['password'].touched || loginDetail.controls['password'].dirty)?'is-invalid':'' "  (input)="change()" required minlength="6"   type="password" id="loginDetail.password" placeholder="Password">
+            <span style="color:gray" *ngIf="togglePassword">{{password}}</span>
+            <small *ngIf="loginDetail.controls['password'].invalid && (loginDetail.controls['password'].touched || loginDetail.controls['password'].dirty)"  class="p-error">Password is Required or Length must be 6 </small>
+
+            <div class="d-flex justify-content-left">
+            <input style="width: 30px;" type="checkbox" class="form-check" (click)="showPass()" [ngModelOptions]="{standalone: true}"[(ngModel)]="togglePassword" value=" Show Password" placeholder=" Show Password" name="toggle" >
+             <p>  Show Password</p>
+          </div>
+            <button #loginButton type="submit" (click)="onSubmit()" [disabled]="loginDetail.invalid " value="Login">
+              Login  <span *ngIf="loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+              </button>
+             <button  class="forgotPass btn"  (click)="ForgotPasswordshow(loginDetail.controls['email'])" value="Forgot Password">Forgot Password</button>
+          </form>
+      </div>
+      <div class="form signupForm">
+  
+        <form [formGroup]="signupForm">       
+          <h3>SignUp </h3>
+          <input   required  class="form-control " formControlName="name" [class]="signupForm.controls['name'].invalid && (signupForm.controls['name'].touched || signupForm.controls['name'].dirty)?'is-invalid':'' "    type="text"  placeholder="Enter Name">
+          <small  *ngIf="signupForm.controls['name'].invalid && (signupForm.controls['name'].touched || signupForm.controls['name'].dirty)"  class="p-error">Name is Required or Invalid</small>
+          
+          <input   required  class="form-control " formControlName="email" [class]="signupForm.controls['email'].invalid && (signupForm.controls['email'].touched || signupForm.controls['email'].dirty)?'is-invalid':'' " pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"   type="text"  placeholder="Email">
+            <small  *ngIf="signupForm.controls['email'].invalid && (signupForm.controls['email'].touched || signupForm.controls['email'].dirty)"  class="p-error">Email is Required or Invalid</small>
+            
+            <input   class="form-control" formControlName="password"  [class]="signupForm.controls['password'].invalid && (signupForm.controls['password'].touched || signupForm.controls['password'].dirty)?'is-invalid':'' "  (input)="change()" required minlength="6"   type="password"  placeholder="Password">
+            <span style="color:gray" *ngIf="togglePassword">{{password1}}</span>
+            <small *ngIf="signupForm.controls['password'].invalid && (signupForm.controls['password'].touched || signupForm.controls['password'].dirty)"  class="p-error">Password is Required or Length must be 6 </small>
+
+            <div class="d-flex justify-content-left">
+              <input style="width: 30px;" type="checkbox" class="form-check" (click)="showPass()"  value=" Show Password" [ngModelOptions]="{standalone: true}"[(ngModel)]="togglePassword" placeholder=" Show Password" name="toggle" id="">
+               <p>  Show Password</p>
+            </div>
+            <input   required  class="form-control " formControlName="dob" [class]="signupForm.controls['dob'].invalid && (signupForm.controls['dob'].touched || signupForm.controls['dob'].dirty)?'is-invalid':'' "    type="date"  placeholder="Enter dob">
+            <small  *ngIf="signupForm.controls['dob'].invalid && (signupForm.controls['dob'].touched || signupForm.controls['dob'].dirty)"  class="p-error">DOB is Required or Invalid</small>
+          
+          
+            <input   class="form-control" onkeydown="return event.keyCode!==69" onkeypress="if(this.value.length==10)return false"formControlName="phone"  [class]="signupForm.controls['phone'].invalid && (signupForm.controls['phone'].touched || signupForm.controls['phone'].dirty)?'is-invalid':'' "  (input)="change()" required minlength="10"   type="number"  placeholder="Enter Phone Number">
+            <small *ngIf="signupForm.controls['phone'].invalid && (signupForm.controls['phone'].touched || signupForm.controls['phone'].dirty)"  class="p-error">Phone No. is Required or Length must be 10</small>
+
+          <button (click)="onSignUpSubmit()" [disabled]="signupForm.invalid" type="submit" value="Register">Register<span *ngIf="loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span></button>
+        </form>
+    </div>
+    </div>
+  </div>
+</div>
+<ng-template #content let-modal>
+  <div style="padding: 20px;" class="modal-header">
+    <h4  class="modal-title" id="modal-basic-title">Forgot Password</h4>
+    <button type="button"  aria-label="Close" (click)="closeModal()">
+      <span aria-hidden="true">X</span>
+    </button>
+  </div>
+  <div class="modal-body">
+   
+    <div #forgot class="forgot">
+      <!-- <form (ngSubmit)="ForgotPassword(forgot1)" #forgot1="ngForm">         
+        <input style="width: 80%;"  #contact="ngModel" minlength="10" maxlength="10" required [(ngModel)]="forgotPass.contactNo"   name="forgotPass.contactNo" type="text" contact="contact" id="forgotPass.contactNo" placeholder="ContactNo">
+        <button type="button" (click)="sendOtp('forgot')" class="sendotp">OTP</button>
+     
+       
+        <div *ngIf="contact.touched">
+          <p style="color: rgb(179, 14, 14);" *ngIf="contact.errors?.required">Contact No. is a required</p>
+          <p style="color: rgb(179, 14, 14);" *ngIf="contact.errors?.minlength">Length must be a 10</p>
+        </div>
+  
+        <div #otp1 class="otp1">
+          <input required #i1  #input1="ngModel" [(ngModel)]="otp21.one" name="otp21.one" type="text" id="otp21.one" maxlength="1" (keyup)="(i1.value.length == 1) ? i2.focus() : ''">
+          <input required #i2 [(ngModel)]="otp21.two" name="otp21.two" #input2="ngModel" type="text"  id="otp21.two" maxlength="1" (keyup)="(i2.value.length == 1) ? i3.focus() : ''">
+          <input required #i3  [(ngModel)]="otp21.three" name="otp21.three" #input3="ngModel" type="text" id="otp21.three" maxlength="1" (keyup)="(i3.value.length == 1) ? i4.focus() : ''">
+          <input required #i4 [(ngModel)]="otp21.four" name="otp21.four" #input4="ngModel" type="text" id="otp21.four" maxlength="1" (keyup)="(i4.value.length == 1) ? i5.focus() : ''">
+          <input required #i5 [(ngModel)]="otp21.five" name="otp21.five" #input5="ngModel" type="text" id="otp21.five" maxlength="1" (keyup)="(i5.value.length == 1) ? i6.focus() : ''">
+          <input required  #i6 [(ngModel)]="otp21.six" name="otp21.six" #input6="ngModel" type="text" id="otp21.six" maxlength="1">
+        </div>
+  
+        <div *ngIf="input1.touched || input2.touched || input3.touched|| input4.touched|| input5.touched|| input6.touched ">
+          <p style="color: rgb(179, 14, 14);" *ngIf="input1.errors?.required || input2.errors?.required || input3.errors?.required|| input4.errors?.required ||input5.errors?.required||input6.errors?.required">OTP is Required</p>
+        </div>
+
+        <input  #password="ngModel" minlength="6" required [(ngModel)]="forgotPass.password"   name="forgotPass.password" type="password"  id="forgotPass.password" placeholder="New Password">
+        
+        <div *ngIf="password.touched">
+          <p style="color: red;" *ngIf="password.errors?.required">password is a required</p>
+          <p style="color: red;" *ngIf="password.errors?.minlength">Length must be a 6</p>
+        </div>
+        <button [disabled]="forgot1.invalid" type="submit" value="Forgot Password">Forgot Password<span *ngIf="loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span></button>
+
+
+      </form> -->
+    </div>
+  </div>
+
+
+</ng-template>
+<div [hidden]="!hide" >
+  <ng-container *ngTemplateOutlet="content"></ng-container>
+</div>
+<p-toast position="top-right" [breakpoints]="{'920px': {width: '100%', right: '0', left: '0'}}"></p-toast>

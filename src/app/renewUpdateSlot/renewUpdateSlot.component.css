@@ -1,0 +1,8 @@
+::ng-deep .p-panel .p-panel-header {
+    background: rgba(0,0,0,0.5);
+    color: white;
+}
+::ng-deep .p-panel .p-panel-content{
+    background: rgba(0,0,0,0.5);
+    color: white;
+}

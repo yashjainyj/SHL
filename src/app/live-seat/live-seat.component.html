@@ -1,0 +1,272 @@
+<nav class="navbar navbar-expand navbar-dark bg-dark">
+  <ul class="nav navbar-nav">
+    <li class="nav-item active">
+      <button (click)="onBackPress()" class="btn menuBtn">Go Back</button>
+    </li>
+    <!-- <li class="nav-item">
+          <a class="nav-link" href="#">Nav 2</a>
+      </li> -->
+  </ul>
+</nav>
+<div class="row main">
+  <div class="col-12">
+    <!-- <button (click)="onBackPress()"  class="btn m-1 btn-dark"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-house-fill" viewBox="0 0 16 16">
+      <path fill-rule="evenodd" d="m8 3.293 6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293l6-6zm5-.793V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z"/>
+      <path fill-rule="evenodd" d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z"/>
+    </svg>   Go Back   </button> -->
+  
+    
+    <div style="margin-top: -20px;" class="container-fluid">
+      <div class="center row">
+        <div class="col-12">
+        <h3> Live Seat  </h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+         <div>
+          <button type="button" class="btn m-1 btn-success">
+            Total Booked seat: <span style="color: black;" class="badge badge-light">{{count}}</span>
+            <span class="sr-only">unread messages</span>
+          </button>
+          <button type="button" class="btn m-1 btn-info">
+            Total vacant seat: <span style="color: black;" class="badge badge-light">{{seat.length -  count}}</span>
+            <span class="sr-only">unread messages</span>
+          </button>
+         </div>
+        </div>
+        <div class="col-12">
+              <ol  class="seats" >
+                <li *ngFor="let item of seat; index as i" class="seat">
+                  <input (click)="item.isbooked=false" type="checkbox" [(ngModel)]="item.isbooked" id="{{item.seat_number}}" />
+                  <label  (click)="selectedSeat(i)"   for="{{item.seat_number}}">{{item.seat_number}}</label>
+                </li>
+              </ol>
+        </div>
+      </div> 
+    </div>
+    <p-dialog header="Details" [style]="{width: '30vw'}" [breakpoints]="{'960px': '75vw', '640px': '100vw'}"  [(visible)]="displayDetails">
+      <article class="cssui-usercard">
+        <div class="cssui-usercard__body">
+          <header class="cssui-usercard__header">
+            <img
+              src="../../assets/libraryImage/logo.png"
+              class="cssui-usercard__avatar"
+              alt="Avatar"
+            />
+            <div class="cssui-usercard__header-info">
+              <h3 class="cssui-usercard__name">
+                <span class="cssui-usercard__name-label">{{
+                  selecteditem?.name
+                }}</span>
+              </h3>
+              <span class="cssui-usercard__post"
+                >Reg No: {{ selecteditem?.regNo }}</span
+              >
+            </div>
+          </header>
+          <div class="cssui-usercard__content">
+            <div class="cssui-slider">
+              <div class="cssui-slider__slides">
+                <p-carousel [circular]="true" [value]="sliderArray">
+                  <ng-template let-item pTemplate="item">
+                    <div
+                      style="
+                        text-align: center;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                      "
+                    >
+                      <h4
+                        style="
+                          background-color: #11101d;
+                          color: sandybrown;
+                        "
+                      >
+                        {{ item }}
+                      </h4>
+                      <div class="row mt-4">
+                        <div
+                          *ngIf="item == 'Slots Detials'"
+                          class="col-6"
+                        >
+                          <h5><strong>Start Date</strong></h5>
+                          <h6 *ngIf="selecteditem?.slots">
+                            {{
+                              selecteditem?.slots[0]?.startDate
+                                | date: "dd/MM/yyyy"
+                            }}
+                          </h6>
+                        </div>
+                        <div
+                          *ngIf="item == 'Slots Detials'"
+                          class="col-6"
+                        >
+                          <h5><strong>End Date</strong></h5>
+                          <h6 *ngIf="selecteditem?.slots">
+                            {{
+                              selecteditem?.slots[0]?.endDate
+                                | date: "dd/MM/yyyy"
+                            }}
+                          </h6>
+                        </div>
+                        <div
+                          *ngIf="item == 'Payment Details'"
+                          class="col-6"
+                        >
+                          <h5><strong>Amount</strong></h5>
+                          <h6 *ngIf="selecteditem?.slots">{{ selecteditem?.slots[0]?.amount }}</h6>
+                        </div>
+                        <div
+                          *ngIf="item == 'Payment Details'"
+                          class="col-6"
+                        >
+                          <h5><strong>Paid Amount</strong></h5>
+                          <h6 *ngIf="selecteditem?.slots">{{ selecteditem?.slots[0]?.paidAmount }}</h6>
+                        </div>
+                        <div
+                          *ngIf="item == 'Personal Details'"
+                          class="col-6"
+                        >
+                          <h5><strong>Email</strong></h5>
+                          <h6>{{ selecteditem?.email }}</h6>
+                        </div>
+                        <div
+                          *ngIf="item == 'Personal Details'"
+                          class="col-6"
+                        >
+                          <h5><strong>Phone</strong></h5>
+                          <h6>{{ selecteditem?.phone }}</h6>
+                        </div>
+                      </div>
+                      <div class="row mt-4">
+                        <div
+                          *ngIf="item == 'Slots Detials'"
+                          class="col-12"
+                        >
+                          <h5><strong>Timing</strong></h5>
+                          <h6 *ngIf="selecteditem?.slots">{{ selecteditem?.slots[0]?.slotTiming }}</h6>
+                        </div>
+                        <div
+                          *ngIf="item == 'Payment Details'"
+                          class="col-6"
+                        >
+                          <h5><strong>Due Amount</strong></h5>
+                          <h6 *ngIf="selecteditem?.slots">{{ selecteditem?.slots[0]?.dueAmount }}</h6>
+                        </div>
+                        <div
+                          *ngIf="item == 'Payment Details'"
+                          class="col-6"
+                        >
+                          <h5><strong>Discount</strong></h5>
+                          <h6 *ngIf="selecteditem?.slots">{{ selecteditem?.slots[0]?.discount }}</h6>
+                        </div>
+                        <div
+                          *ngIf="item == 'Personal Details'"
+                          class="col-6"
+                        >
+                          <h5><strong>DOB</strong></h5>
+                          <h6>{{ selecteditem?.dob | date: "dd/MM/yyyy" }}</h6>
+                        </div>
+                        <div
+                          *ngIf="item == 'Personal Details'"
+                          class="col-6"
+                        >
+                          <h5><strong>Address</strong></h5>
+                          <h6>{{ selecteditem?.address }}</h6>
+                        </div>
+                      </div>
+                      <div class="row mt-4">
+                        <div
+                          *ngIf="item == 'Slots Detials'"
+                          class="col-6"
+                        >
+                          <h5><strong>See All Slots</strong></h5>
+                          <button (click)='selectUser(selecteditem?.slots,selecteditem?._id)' class="btn menuBtn">Click Here</button>
+                        </div>
+                        <!-- <div *ngIf="item=='Slots Detials'" class="col-6">
+                          <h5> <strong>End Date</strong> </h5>
+                          <h6>05/01/2022</h6>
+                        </div> -->
+                        <div
+                          *ngIf="item == 'Payment Details'"
+                          class="col-6"
+                        >
+                          <h5><strong>Invoice No</strong></h5>
+                          <h6 *ngIf="selecteditem?.slots">{{ selecteditem?.slots[0]?.invoiceNo }}</h6>
+                        </div>
+                        <div
+                          *ngIf="item == 'Payment Details'"
+                          class="col-6"
+                        >
+                          <h5><strong>All Invoice</strong></h5>
+                          <button (click)='selectUser(selecteditem?.slots,selecteditem?._id)' class="btn menuBtn">Click Here</button>
+                        </div>
+                        <div
+                          *ngIf="item == 'Personal Details'"
+                          class="col-6"
+                        >
+                          <h5><strong>Course</strong></h5>
+                          <h6 *ngIf="selecteditem?.course">
+                            {{ selecteditem?.course }}
+                          </h6>
+                          <h6 *ngIf="!selecteditem?.course">-</h6>
+                        </div>
+                        <div
+                          *ngIf="item == 'Personal Details'"
+                          class="col-6"
+                        >
+                          <h5><strong>Aadhar No.</strong></h5>
+                          <h6 *ngIf="selecteditem?.aadharNo">
+                            {{ selecteditem?.aadharNo }}
+                          </h6>
+                          <h6 *ngIf="!selecteditem?.aadharNo">-</h6>
+                        </div>
+                      </div>
+                    </div>
+                  </ng-template>
+                </p-carousel>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+      </article>
+  </p-dialog>
+  </div>
+</div>
+<p-dialog [transitionOptions]="'0ms'"  header="Details" [(visible)]="detailsVisibile" [modal]="true" [style]="{width: '100vw',height:'100vh'}" [maximizable]="false"
+    [draggable]="false" [resizable]="false">
+    <p-table [value]="selectedSlots" responsiveLayout="stack" >
+      <ng-template pTemplate="header">
+          <tr>
+            <th>Invoice No.</th>
+            <th>Invoice Date</th>
+              <th>Start Date</th>
+              <th>End Date</th>
+              <th>Slot Timing</th>
+              <th>Amount</th>
+              <th>Paid Amount</th>
+              <th>Due Amount</th>
+              <th>Discount</th>
+          </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-product>
+          <tr>
+              <td><span class="p-column-title"><b> Invoice No.</b></span> <a style="text-decoration: underline;color: blue;" [routerLink]="['/invoiceDetail',selectedUserId,product._id]" routerLinkActive="router-link-active" >{{product.invoiceNo}}</a>  </td>
+              <td><span class="p-column-title"><b> Invoice Date</b></span>{{product.invoiceDate |date:"dd/MM/yyyy"}}</td>
+              <td><span class="p-column-title"><b> start Date</b></span>{{product.startDate| date: "dd/MM/yyyy"}}</td>
+              <td><span class="p-column-title"><b> End Date</b></span>{{product.endDate| date: "dd/MM/yyyy"}}</td>
+              <td><span class="p-column-title"><b> Timing</b></span>{{product.slotTiming}}</td>
+              <td><span class="p-column-title"><b> Amount</b></span>{{product.amount}}</td>
+              <td><span class="p-column-title"><b> Paid Amount</b></span>{{product.paidAmount}}</td>
+              <td><span class="p-column-title"><b> Due Amount</b></span>{{product.dueAmount}}</td>
+              <td><span class="p-column-title"><b> Discount</b></span>{{product.discount}}</td>
+          </tr>
+      </ng-template>
+  </p-table>
+        <!-- <ng-template pTemplate="footer">
+            <p-button icon="pi pi-check" (click)="detailsVisibile=false" label="Close" styleClass="p-button-text"></p-button>
+        </ng-template> -->
+</p-dialog>

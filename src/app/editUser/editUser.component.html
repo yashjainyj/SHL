@@ -1,0 +1,265 @@
+<nav class="navbar navbar-expand navbar-dark bg-dark">
+  <ul class="nav navbar-nav">
+    <li class="nav-item active">
+      <button (click)="onBackPress()" class="btn menuBtn">Go Back</button>
+    </li>
+    <!-- <li class="nav-item">
+          <a class="nav-link" href="#">Nav 2</a>
+      </li> -->
+  </ul>
+</nav>
+<div class="content container-fluid mt-4">
+  <div class="row">
+    <div class="col-12">
+      <p-panel header="Personal Details">
+        <form [formGroup]="editUser">
+          <div class="row">
+            <div class="col-lg-4 col-md-6 col-sm-12 col-12">
+              <span for="name" class="form__lable">Profile Pic</span>
+   
+              <label> 
+                <input   type="file"  (change)="handleFileInput($event)" name="profile" placeholder="">
+              
+              </label>    
+              <img *ngIf="!image"
+              src="../../assets/libraryImage/logo.png"
+              class="cssui-usercard__avatar"
+              alt="Avatar"
+            />  
+              <img *ngIf="image!='' && image"
+           
+              src="{{url}}{{image}}"
+              class="cssui-usercard__avatar"
+              alt="Avatar"
+            />        
+          </div>
+            <div class="col-lg-4 col-md-6 col-sm-12 col-12 mt-3">
+              <span>Full Name <span style="color: red">(*)</span></span>
+              <input
+                required
+                class="form-control"
+                formControlName="name"
+                [class]="
+                  editUser.controls['name'].invalid &&
+                  (editUser.controls['name'].touched ||
+                    editUser.controls['name'].dirty)
+                    ? 'is-invalid'
+                    : ''
+                "
+                type="text"
+                id="editUser.name"
+                placeholder="Full Name (*)"
+              />
+              <small
+                *ngIf="
+                  editUser.controls['name'].invalid &&
+                  (editUser.controls['name'].touched ||
+                    editUser.controls['name'].dirty)
+                "
+                class="p-error"
+                ><strong>Name is Required !</strong></small
+              >
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-12 col-12 mt-3">
+              <span>Father Name </span>
+              <input
+                class="form-control"
+                formControlName="fatherName"
+                [class]="
+                  editUser.controls['fatherName'].invalid &&
+                  (editUser.controls['fatherName'].touched ||
+                    editUser.controls['fatherName'].dirty)
+                    ? 'is-invalid'
+                    : ''
+                "
+                type="text"
+                id="editUser.fatherName"
+                placeholder="Father Name"
+              />
+              <small
+                *ngIf="
+                  editUser.controls['fatherName'].invalid &&
+                  (editUser.controls['fatherName'].touched ||
+                    editUser.controls['fatherName'].dirty)
+                "
+                class="p-error"
+                ><strong>Father Name is Required !</strong></small
+              >
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-12 col-12 mt-3">
+              <span>Email <span style="color: red">(*)</span></span>
+              <input
+                required
+                class="form-control"
+                formControlName="email"
+                [class]="
+                  editUser.controls['email'].invalid &&
+                  (editUser.controls['email'].touched ||
+                    editUser.controls['email'].dirty)
+                    ? 'is-invalid'
+                    : ''
+                "
+                onkeydown="return false"
+                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                type="text"
+                id="editUser.email"
+                placeholder="Email (*)"
+              />
+              <small
+                *ngIf="
+                  editUser.controls['email'].invalid &&
+                  (editUser.controls['email'].touched ||
+                    editUser.controls['email'].dirty)
+                "
+                class="p-error"
+                ><strong><b>Email is Required or Invalid !</b></strong></small
+              >
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-12 col-12 mt-3">
+              <span>Address</span>
+
+              <input
+                class="form-control"
+                formControlName="address"
+                type="text"
+                id="editUser.address"
+                placeholder="Address"
+              />
+              <small
+                *ngIf="
+                  editUser.controls['address'].invalid &&
+                  (editUser.controls['address'].touched ||
+                    editUser.controls['address'].dirty)
+                "
+                class="p-error"
+                ><strong>Address is Required !</strong></small
+              >
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-12 col-12 mt-3">
+              <span>Phone Number <span style="color: red">(*)</span></span>
+
+              <input
+                class="form-control"
+                onkeydown="return event.keyCode!==69"
+                onkeypress="if(this.value.length==10)return false"
+                formControlName="phone"
+                [class]="
+                  editUser.controls['phone'].invalid &&
+                  (editUser.controls['phone'].touched ||
+                    editUser.controls['phone'].dirty)
+                    ? 'is-invalid'
+                    : ''
+                "
+                required
+                minlength="10"
+                type="number"
+                placeholder="Enter Phone Number (*)"
+              />
+              <small
+                *ngIf="
+                  editUser.controls['phone'].invalid &&
+                  (editUser.controls['phone'].touched ||
+                    editUser.controls['phone'].dirty)
+                "
+                class="p-error"
+                ><strong
+                  >Phone No. is Required or Length must be 10</strong
+                ></small
+              >
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-12 col-12 mt-3">
+              <span>Aadhar Number </span>
+
+              <input
+                class="form-control"
+                onkeydown="return event.keyCode!==69"
+                onkeypress="if(this.value.length==12)return false"
+                formControlName="aadharNo"
+                [class]="
+                  editUser.controls['aadharNo'].invalid &&
+                  (editUser.controls['aadharNo'].touched ||
+                    editUser.controls['aadharNo'].dirty)
+                    ? 'is-invalid'
+                    : ''
+                "
+                minlength="10"
+                type="number"
+                placeholder="Enter Aadhar Number"
+              />
+              <small
+                *ngIf="
+                  editUser.controls['aadharNo'].invalid &&
+                  (editUser.controls['aadharNo'].touched ||
+                    editUser.controls['aadharNo'].dirty)
+                "
+                class="p-error"
+                ><strong
+                  >Aadhar No. is Required or Length must be 12</strong
+                ></small
+              >
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-12 col-12 mt-3">
+              <span>DOB <span style="color: red">(*)</span></span>
+
+              <input
+                class="form-control"
+                formControlName="dob"
+                [class]="
+                  editUser.controls['dob'].invalid &&
+                  (editUser.controls['dob'].touched ||
+                    editUser.controls['dob'].dirty)
+                    ? 'is-invalid'
+                    : ''
+                "
+                required
+                type="date"
+                placeholder="(*)"
+              />
+
+              <small
+                *ngIf="
+                  editUser.controls['dob'].invalid &&
+                  (editUser.controls['dob'].touched ||
+                    editUser.controls['dob'].dirty)
+                "
+                class="p-error"
+                ><strong>DOB Required !</strong></small
+              >
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-12 col-12 mt-3">
+              <span>Course</span>
+
+              <input
+                class="form-control"
+                formControlName="course"
+                type="text"
+                id="editUser.course"
+                placeholder="Course"
+              />
+              <small
+                *ngIf="
+                  editUser.controls['course'].invalid &&
+                  (editUser.controls['course'].touched ||
+                    editUser.controls['course'].dirty)
+                "
+                class="p-error"
+                ><strong>Course is Required !</strong></small
+              >
+            </div>
+            <button
+              (click)="onSubmit()"
+              [disabled]="editUser.invalid"
+              class="btn menuBtn mt-3"
+            >
+              Save
+            </button>
+          </div>
+        </form>
+      </p-panel>
+    </div>
+  </div>
+</div>
+<p-toast
+  position="top-right"
+  [breakpoints]="{ '920px': { width: '100%', right: '0', left: '0' } }"
+></p-toast>

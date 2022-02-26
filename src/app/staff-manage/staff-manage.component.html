@@ -1,0 +1,339 @@
+<p-toast></p-toast>
+<section *ngIf="loading" id="loader">
+  <div class="content_loader">
+    <h2>SHL</h2>
+    <h2>SHL</h2>
+  </div>
+</section>
+<nav class="navbar navbar-expand navbar-dark bg-dark">
+  <ul class="nav navbar-nav">
+    <li class="nav-item active">
+      <button (click)="onBackPress()" class="btn menuBtn">Go Back</button>
+    </li>
+    <!-- <li class="nav-item">
+          <a class="nav-link" href="#">Nav 2</a>
+      </li> -->
+  </ul>
+</nav>
+<div class="">
+    <p-table #dt  responsiveLayout="scroll"  [value]="products" [rows]="10" [paginator]="true" [globalFilterFields]="['name','Salary','email','mobile']"
+       [rowHover]="true" dataKey="id"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
+        <ng-template pTemplate="caption">
+            <div class="p-d-flex p-ai-center p-jc-between">
+                <h5 class="p-m-0">Manage Staff</h5>
+
+                <span class="p-input-icon-left">
+                    <i  class="pi pi-search"></i>
+                    <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')" placeholder="Search..." />
+
+                </span>
+            </div>
+
+        </ng-template>
+                    
+                    
+        <ng-template pTemplate="header">
+            <tr>
+               
+                <th pSortableColumn="name">Name <p-sortIcon field="name"></p-sortIcon></th>
+                <th>Image</th>
+                <th pSortableColumn="salary">Salary <p-sortIcon field="salary"></p-sortIcon></th>
+                <th pSortableColumn="email">Email <p-sortIcon field="email"></p-sortIcon></th>
+                <th pSortableColumn="mobile">Mob. No. <p-sortIcon field="mobile"></p-sortIcon></th>
+                <th pSortableColumn="dob">DOB <p-sortIcon field="dob"></p-sortIcon></th>
+                <!-- <th pSortableColumn="inventoryStatus">Status <p-sortIcon field="inventoryStatus"></p-sortIcon></th> -->
+            
+                <th><button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success p-mr-2" (click)="openNew()"></button></th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-product>
+            <tr>
+             
+                <td>{{product.name}}</td>
+                <td>
+                  <!-- <img (load)="dosomething()" [src]="product.picurl" [alt]="product.name" width="100" class="p-shadow-4"  /> -->
+                  <img *ngIf="loading1" width="100" src="../../assets/loading.gif" alt="loading" />
+                  <img [hidden]="loading1" width="100" [alt]="product.name" (load)="dosomething()" src="{{url}}{{ product.image }}" class="p-shadow-4" />
+                </td>
+                <td>{{product.salary | currency:'INR'}}</td>
+                <td>{{product.email}}</td>
+                <td>{{product.phone}}</td>
+                <td>{{product.dob|date:'dd/MM/YYYY'}}</td>
+                <!-- <td><span [class]="'product-badge status-' + (product.inventoryStatus ? product.inventoryStatus.toLowerCase() : '')">{{product.inventoryStatus}}</span></td> -->
+                <td>
+                    <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="editProduct(product)"></button>
+                    <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteProduct(product)"></button>
+                </td>
+            </tr>
+        </ng-template>
+        <!-- <ng-template pTemplate="summary">
+            <div class="p-d-flex p-ai-center p-jc-between">
+                In total there are {{products ? products.length : 0 }} products.
+            </div>
+        </ng-template> -->
+    </p-table>
+</div>
+
+<p-dialog [(visible)]="productDialog" [breakpoints]="{'960px': '75vw', '640px': '100vw'}" [style]="{width: '80vw',background:'#fff'}"header="Staff Details" [modal]="true" styleClass="p-fluid">
+    <ng-template pTemplate="content">
+
+      <form [formGroup]="staffDetail">
+        <div class="row">
+          <div class="col-lg-4 col-md-6 col-sm-12 col-12">
+            <span for="name" class="form__lable">Profile Pic</span>
+ 
+            <label> 
+              <input   type="file"  (change)="handleFileInput($event)" name="profile" placeholder="">
+            
+            </label>    
+            
+            
+            <img *ngIf="!isedit "
+            src="../../assets/libraryImage/logo.png"
+            class="cssui-usercard__avatar"
+            alt="Avatar"
+          />  
+            <img *ngIf="!image && isedit"
+            src="../../assets/libraryImage/logo.png"
+            class="cssui-usercard__avatar"
+            alt="Avatar"
+          />  
+            <img *ngIf="image!='' && image && isedit"
+         
+            src="{{url}}{{image}}"
+            class="cssui-usercard__avatar"
+            alt="Avatar"
+          />        
+        </div>
+          <div class="col-lg-4 col-md-6 col-sm-12 col-12 mt-3">
+            <span>Full Name <span style="color: red">(*)</span></span>
+            <input
+              required
+              class="form-control"
+              formControlName="name"
+              [class]="
+                staffDetail.controls['name'].invalid &&
+                (staffDetail.controls['name'].touched ||
+                  staffDetail.controls['name'].dirty)
+                  ? 'is-invalid'
+                  : ''
+              "
+              type="text"
+              id="staffDetail.name"
+              placeholder="Full Name (*)"
+            />
+            <small
+              *ngIf="
+                staffDetail.controls['name'].invalid &&
+                (staffDetail.controls['name'].touched ||
+                  staffDetail.controls['name'].dirty)
+              "
+              class="p-error"
+              ><strong>Name is Required !</strong></small
+            >
+          </div>
+          <div class="col-lg-4 col-md-6 col-sm-12 col-12 mt-3">
+            <span>Father Name </span>
+            <input
+              class="form-control"
+              formControlName="fatherName"
+              [class]="
+                staffDetail.controls['fatherName'].invalid &&
+                (staffDetail.controls['fatherName'].touched ||
+                  staffDetail.controls['fatherName'].dirty)
+                  ? 'is-invalid'
+                  : ''
+              "
+              type="text"
+              id="staffDetail.fatherName"
+              placeholder="Father Name"
+            />
+            <small
+              *ngIf="
+                staffDetail.controls['fatherName'].invalid &&
+                (staffDetail.controls['fatherName'].touched ||
+                  staffDetail.controls['fatherName'].dirty)
+              "
+              class="p-error"
+              ><strong>Father Name is Required !</strong></small
+            >
+          </div>
+          <div class="col-lg-4 col-md-6 col-sm-12 col-12 mt-3">
+            <span>Email <span style="color: red">(*)</span></span>
+            <input
+              required
+              class="form-control"
+              formControlName="email"
+              [class]="
+                staffDetail.controls['email'].invalid &&
+                (staffDetail.controls['email'].touched ||
+                  staffDetail.controls['email'].dirty)
+                  ? 'is-invalid'
+                  : ''
+              "
+               
+              pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+              type="text"
+              id="staffDetail.email"
+              placeholder="Email (*)"
+            />
+            <small
+              *ngIf="
+                staffDetail.controls['email'].invalid &&
+                (staffDetail.controls['email'].touched ||
+                  staffDetail.controls['email'].dirty)
+              "
+              class="p-error"
+              ><strong><b>Email is Required or Invalid !</b></strong></small
+            >
+          </div>
+          <div class="col-lg-4 col-md-6 col-sm-12 col-12 mt-3">
+            <span>Address</span>
+
+            <input
+              class="form-control"
+              formControlName="address"
+              type="text"
+              id="staffDetail.address"
+              placeholder="Address"
+            />
+            <small
+              *ngIf="
+                staffDetail.controls['address'].invalid &&
+                (staffDetail.controls['address'].touched ||
+                  staffDetail.controls['address'].dirty)
+              "
+              class="p-error"
+              ><strong>Address is Required !</strong></small
+            >
+          </div>
+          <div class="col-lg-4 col-md-6 col-sm-12 col-12 mt-3">
+            <span>Phone Number <span style="color: red">(*)</span></span>
+
+            <input
+              class="form-control"
+              onkeydown="return event.keyCode!==69"
+              onkeypress="if(this.value.length==10)return false"
+              formControlName="phone"
+              [class]="
+                staffDetail.controls['phone'].invalid &&
+                (staffDetail.controls['phone'].touched ||
+                  staffDetail.controls['phone'].dirty)
+                  ? 'is-invalid'
+                  : ''
+              "
+              required
+              minlength="10"
+              type="number"
+              placeholder="Enter Phone Number (*)"
+            />
+            <small
+              *ngIf="
+                staffDetail.controls['phone'].invalid &&
+                (staffDetail.controls['phone'].touched ||
+                  staffDetail.controls['phone'].dirty)
+              "
+              class="p-error"
+              ><strong
+                >Phone No. is Required or Length must be 10</strong
+              ></small
+            >
+          </div>
+          <div class="col-lg-4 col-md-6 col-sm-12 col-12 mt-3">
+            <span>Aadhar Number </span>
+
+            <input
+              class="form-control"
+              onkeydown="return event.keyCode!==69"
+              onkeypress="if(this.value.length==12)return false"
+              formControlName="aadharNo"
+              [class]="
+                staffDetail.controls['aadharNo'].invalid &&
+                (staffDetail.controls['aadharNo'].touched ||
+                  staffDetail.controls['aadharNo'].dirty)
+                  ? 'is-invalid'
+                  : ''
+              "
+              minlength="10"
+              type="number"
+              placeholder="Enter Aadhar Number"
+            />
+            <small
+              *ngIf="
+                staffDetail.controls['aadharNo'].invalid &&
+                (staffDetail.controls['aadharNo'].touched ||
+                  staffDetail.controls['aadharNo'].dirty)
+              "
+              class="p-error"
+              ><strong
+                >Aadhar No. is Required or Length must be 12</strong
+              ></small
+            >
+          </div>
+          <div class="col-lg-4 col-md-6 col-sm-12 col-12 mt-3">
+            <span>DOB <span style="color: red">(*)</span></span>
+
+            <input
+              class="form-control"
+              formControlName="dob"
+              [class]="
+                staffDetail.controls['dob'].invalid &&
+                (staffDetail.controls['dob'].touched ||
+                  staffDetail.controls['dob'].dirty)
+                  ? 'is-invalid'
+                  : ''
+              "
+              required
+              type="date"
+              placeholder="(*)"
+            />
+
+            <small
+              *ngIf="
+                staffDetail.controls['dob'].invalid &&
+                (staffDetail.controls['dob'].touched ||
+                  staffDetail.controls['dob'].dirty)
+              "
+              class="p-error"
+              ><strong>DOB Required !</strong></small
+            >
+          </div>
+          <div class="col-lg-4 col-md-6 col-sm-12 col-12 mt-3">
+            <span>Salary</span>
+
+            <input
+              class="form-control"
+              formControlName="salary"
+              type="number"
+              id="staffDetail.salary"
+              placeholder="Salary"
+            />
+            <small
+              *ngIf="
+                staffDetail.controls['salary'].invalid &&
+                (staffDetail.controls['salary'].touched ||
+                  staffDetail.controls['salary'].dirty)
+              "
+              class="p-error"
+              ><strong>Salary is Required !</strong></small
+            >
+          </div>
+          <button
+            (click)="saveProduct()"
+            [disabled]="staffDetail.invalid"
+            class="btn menuBtn mt-3"
+          >
+            Save
+          </button>
+        </div>
+      </form>
+    </ng-template>
+    
+    <ng-template pTemplate="footer">
+        <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+        <!-- <button pButton pRipple label="Save" [disabled]="form.invalid" icon="pi pi-check" class="p-button-text" (click)="saveProduct()"></button> -->
+    </ng-template>
+</p-dialog>
+
+<p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>

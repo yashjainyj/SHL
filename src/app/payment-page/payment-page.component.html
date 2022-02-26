@@ -1,0 +1,413 @@
+<nav class="navbar navbar-expand navbar-dark bg-dark">
+  <ul class="nav navbar-nav">
+    <li class="nav-item active">
+      <button (click)="onBackPress()" class="btn menuBtn">Go Back</button>
+    </li>
+    <!-- <li class="nav-item">
+          <a class="nav-link" href="#">Nav 2</a>
+      </li> -->
+  </ul>
+</nav>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+      <div class="card1">
+        <h5 style="text-align: center;">Collection</h5>
+        <p-chart type="bar" [data]="lineStylesData" [options]="basicOptions"></p-chart>
+      </div>
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+    <div class="row">
+      <div class="col-6">
+        <div class="card ">
+          <div class="card-body">
+            <h5 class="card-title">Total Collection</h5>
+            <h6 class="card-subtitle mb-2 ">{{totalCollection |currency :'INR'}}</h6>
+          </div>
+        </div>
+      </div>
+      <div class="col-6">
+        <div (click)="filter('All')" class="card">
+          <div class="card-body">
+            <h5 class="card-title">OverAll Invoices</h5>
+            <h6 class="card-subtitle mb-2 ">{{overAllInvoiceCount}}</h6>
+          </div>
+        </div>
+      </div>
+      <div class="col-6">
+        <div (click)="filter('Paid')" class="card">
+          <div class="card-body">
+            <h5 class="card-title">Paid Invoice</h5>
+            <h6 class="card-subtitle mb-2 ">{{paidInvoices.length}}</h6>
+          </div>
+        </div>
+      </div>
+      <div class="col-6">
+        <div (click)="filter('Due')" class="card">
+          <div class="card-body">
+            <h5 class="card-title">Due Invoice</h5>
+            <h6 class="card-subtitle mb-2 ">{{dueInvoices.length}}</h6>
+          </div>
+        </div>
+        
+      </div>
+      <!-- <div class="col-6">
+        <div class="card ">
+          <div class="card-body">
+            <h5 class="card-title">Total Collection</h5>
+            <h6 class="card-subtitle mb-2 ">{{totalCollection |currency :'INR'}}</h6>
+          </div>
+        </div>
+      </div>
+      <div class="col-6">
+        <div (click)="filter('All')" class="card">
+          <div class="card-body">
+            <h5 class="card-title">OverAll Invoices</h5>
+            <h6 class="card-subtitle mb-2 ">{{overAllInvoiceCount}}</h6>
+          </div>
+        </div>
+      </div>
+      <div class="col-6">
+        <div (click)="filter('Paid')" class="card">
+          <div class="card-body">
+            <h5 class="card-title">Paid Invoice</h5>
+            <h6 class="card-subtitle mb-2 ">{{paidInvoices.length}}</h6>
+          </div>
+        </div>
+      </div>
+      <div class="col-6">
+        <div (click)="filter('Due')" class="card">
+          <div class="card-body">
+            <h5 class="card-title">Due Invoice</h5>
+            <h6 class="card-subtitle mb-2 ">{{dueInvoices.length}}</h6>
+          </div>
+        </div>
+        
+      </div> -->
+    </div>
+    </div>
+
+  </div>
+  
+</div>
+<!-- <div class="container">
+
+  <div class="  col-6">
+    <div class="col-6">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Total Collection</h5>
+          <h6 class="card-subtitle mb-2 ">{{totalCollection |currency :'INR'}}</h6>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-4 col-sm-6 col-6">
+      <div (click)="filter('All')" class="card">
+        <div class="card-body">
+          <h5 class="card-title">OverAll Invoices</h5>
+          <h6 class="card-subtitle mb-2 ">{{overAllInvoiceCount}}</h6>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-4 col-sm-6 col-6">
+      <div (click)="filter('Paid')" class="card">
+        <div class="card-body">
+          <h5 class="card-title">Paid Invoice</h5>
+          <h6 class="card-subtitle mb-2 ">{{paidInvoices.length}}</h6>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-4 col-sm-6 col-6">
+      <div (click)="filter('Due')" class="card">
+        <div class="card-body">
+          <h5 class="card-title">Due Invoice</h5>
+          <h6 class="card-subtitle mb-2 ">{{dueInvoices.length}}</h6>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
+<!-- <div class="container">
+  <div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+      <div class="card1">
+        <div class="card-header">
+          This Month
+        </div>
+        <div class="card-body">
+           <div class="row" >
+             <div class="col-lg-3 col-md-4 col-sm-6 col-6">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">Month Collection</h5>
+                  <h6 class="card-subtitle mb-2 ">{{monthCollection|currency:'INR'}}</h6>
+                </div>
+              </div>
+             </div>
+             <div class="col-lg-3 col-md-4 col-sm-6 col-6">
+              <div (click)="filter('monthAll')" class="card">
+                <div class="card-body">
+                  <h5 class="card-title">Month Invoice</h5>
+                  <h6 class="card-subtitle mb-2 ">{{monthInvoices.length}}</h6>
+                </div>
+              </div>
+             </div> 
+             <div class="col-lg-3 col-md-4 col-sm-6 col-6">
+              <div (click)="filter('monthPaid')" class="card">
+                <div class="card-body">
+                  <h5 class="card-title">Paid Invoice</h5>
+                  <h6 class="card-subtitle mb-2 ">{{monthPaidInvoice.length}}</h6>
+                </div>
+              </div>
+             </div>
+             <div class="col-lg-3 col-md-4 col-sm-6 col-6">
+              <div (click)="filter('MonthDue')" class="card">
+                <div class="card-body">
+                  <h5 class="card-title">Due Invoices</h5>
+                  <h6 class="card-subtitle mb-2 ">{{monthDueInvoice.length}}</h6>
+                </div>
+              </div>
+             </div>
+           
+           </div>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+</div> -->
+<!-- aadharNo: null
+address: "ujjain"
+course: null
+createdAt: "2022-01-19T20:09:08.933Z"
+dob: "2022-01-19"
+email: "jainyash031@gmail.com"
+fatherName: "Antim Kumar Jain"
+name: "Yash Jain"
+password: "$2a$11$QPwOG.hsvLHnnEXwRwL1D.mvxzk8g51sfeuKwaCape5VKsLSDoIVC"
+phone: "9630288239"
+regNo: "1"
+role: "student" -->
+<div class="container-fluid">
+  <p-table   #dt1 [value]="filteredInvoice"  dataKey="regNo" [paginator]="true" [rows]="10" [showCurrentPageReport]="true" 
+  currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[10,25,50]"   responsiveLayout="stack"
+  [globalFilterFields]="['name','regNo','email','phone']">
+  <ng-template pTemplate="caption">
+    <div class="flex">
+        <!-- <button pButton label="Clear" class="p-button-outlined" icon="pi pi-filter-slash" (click)="clear(dt1)"></button> -->
+        <span class="p-input-icon-left ml-auto">
+            <i class="pi pi-search"></i>
+            <input pInputText type="text" (input)="dt1.filterGlobal($event.target.value, 'contains')" placeholder="Search keyword" />
+        </span>
+        <span>{{heading}}</span>
+    </div>
+</ng-template> 
+  <ng-template pTemplate="header">
+        <tr>
+            <th style="width: 3rem"></th>
+            <th pSortableColumn="name">Name <p-sortIcon field="name"></p-sortIcon></th>
+            <th>Image</th>
+            <th pSortableColumn="email">Email <p-sortIcon field="email"></p-sortIcon></th>
+            <th pSortableColumn="phone">Phone <p-sortIcon field="phone"></p-sortIcon></th>
+            <th pSortableColumn="regNo">RegNo <p-sortIcon field="regNo"></p-sortIcon></th>
+            <th pSortableColumn="dob">DOB <p-sortIcon field="dob"></p-sortIcon></th>
+            <th pSortableColumn="address">Address <p-sortIcon field="address"></p-sortIcon></th>
+            <th >
+              <!-- <p-columnFilter field="slots.isActive" matchMode="equals" display="menu">
+              <ng-template pTemplate="filter" let-value let-filter="filterCallback">
+                  <p-dropdown [ngModel]="value" [options]="statuses" (onChange)="filter($event.value)" placeholder="Any">
+                      <ng-template let-option pTemplate="item">
+                          <span [class]="'customer-badge status-' + option.value">{{option.label}}</span>
+                      </ng-template>
+                  </p-dropdown>
+              </ng-template>
+          </p-columnFilter> -->
+          Active</th>
+            <!-- <th pSortableColumn="inventoryStatus">Status <p-sortIcon field="inventoryStatus"></p-sortIcon></th> -->
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-product let-expanded="expanded">
+        <tr>
+            <td>
+                <button type="button" pButton pRipple [pRowToggler]="product" class="p-button-text p-button-rounded p-button-plain" [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></button>
+            </td>
+            <td><span class="p-column-title">Name</span>{{product?.name}}</td>
+            <td><span class="p-column-title">Image</span>
+              <!-- <img [src]="url + product?.image" [alt]="product?.name" width="100" class="shadow-4" /> -->
+              <img *ngIf="!product?.image"
+              src="../../assets/libraryImage/logo.png"
+              [alt]="product?.name"
+              class="cssui-usercard__avatar"
+              alt="Avatar"
+            />
+            <img *ngIf="product?.image"
+            [alt]="product?.name"
+            src="{{url}}{{product?.image}}"
+            class="cssui-usercard__avatar"
+            alt="Avatar"
+          />
+            </td>
+            <td><span class="p-column-title">Email</span>{{product?.email }}</td>
+            <td><span class="p-column-title">Phone No.</span>{{product?.phone}}</td>
+            <td><span class="p-column-title">Reg No.</span>{{product?.regNo}}</td>
+            <td><span class="p-column-title">DOB</span>{{product?.dob |date:'dd/MM/yyyy'}}</td>
+            <td><span class="p-column-title">Address</span>{{product?.address}}</td>
+            <td><span class="p-column-title">Active</span>{{product?.slots[0].isActive}}</td>
+            <!-- <td><p-rating [ngModel]="product?.rating" [readonly]="true" [cancel]="false"></p-rating></td> -->
+            <!-- <td><span [class]="'product-badge status-' + product?.inventoryStatus.toLowerCase()">{{product?.inventoryStatus}}</span></td> -->
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="rowexpansion" let-product>
+        <tr>
+            <td colspan="9">
+                <div class="p-3">
+                    <p-table  [value]="product?.slots"  dataKey="invoiceNo">
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <th  pSortableColumn="invoiceNo">Invoice No <p-sortIcon field="invoiceNo"></p-sortIcon></th>
+                                <th pSortableColumn="invoiceDate">Invoice Date <p-sortIcon field="invoiceDate"></p-sortIcon></th>
+                                <th pSortableColumn="startDate">Start Date <p-sortIcon field="startDate"></p-sortIcon></th>
+                                <th pSortableColumn="endDate">End Date <p-sortIcon field="endDate"></p-sortIcon></th>
+                                <th pSortableColumn="slotTiming">Slot Timing <p-sortIcon field="slotTiming"></p-sortIcon></th>
+                                <th pSortableColumn="amount">Amount <p-sortIcon field="amount"></p-sortIcon></th>
+                                <th pSortableColumn="paidAmount">Paid Amount <p-sortIcon field="paidAmount"></p-sortIcon></th>
+                                <th pSortableColumn="dueAmount">Due Amount <p-sortIcon field="dueAmount"></p-sortIcon></th>
+                                <th pSortableColumn="discount">Discount <p-sortIcon field="discount"></p-sortIcon></th>
+                                <!-- <th pSortableColumn="status">Status <p-sortIcon field="status"></p-sortIcon></th> -->
+                               
+                                <!-- <th style="width: 4rem"></th> -->
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-order>
+                            <tr>
+                                <td style="cursor: pointer;" [routerLink]="['/invoiceDetail',product?._id,order?._id]" routerLinkActive="router-link-active"><span class="p-column-title">Invoice No</span>{{order?.invoiceNo}}</td>
+                                <td><span class="p-column-title">Invoice Date</span>{{order?.invoiceDate|date:'dd/MM/yyyy'}}</td>
+                                <td><span class="p-column-title">start Date</span>{{order?.startDate|date:'dd/MM/yyyy'}}</td>
+                                <td><span class="p-column-title">End Date</span>{{order?.endDate|date:'dd/MM/yyyy'}}</td>
+                                <td><span class="p-column-title">Timing</span>{{order?.slotTiming}}</td>
+                                <td><span class="p-column-title">Amount</span>{{order?.amount | currency:'INR'}}</td>
+                                <td><span class="p-column-title">Paid Amount</span>{{order?.paidAmount | currency:'INR'}}</td>
+                                <td><span class="p-column-title">Due Amount</span>{{order?.dueAmount | currency:'INR'}}</td>
+                                <td><span class="p-column-title">Discount</span>{{order?.discount | currency:'INR'}}</td>
+                                <!-- <td><span [class]="'order-badge order-' + order?.status.toLowerCase()">{{order?.status}}</span></td> -->
+                                <!-- <td><p-button type="button" icon="pi pi-search"></p-button></td> -->
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="emptymessage">
+                            <tr>
+                                <td colspan="6">There are no order for this product yet.</td>
+                            </tr>
+                        </ng-template>
+                    </p-table>
+                </div>
+            </td>
+        </tr>
+    </ng-template>
+</p-table>
+</div>
+<!-- <p-button (click)="showInvoice=true" icon="pi pi-external-link" label="Show"></p-button> -->
+<p-dialog header="Header" [(visible)]="showInvoice" [breakpoints]="{'960px': '75vw'}" [style]="{width: '50vw'}"
+    [draggable]="true"[maximizable]="true" [resizable]="true">
+<div  #invoice  class="bg">
+  <div class="invoice">
+    
+    <table class="table"  class="">
+      <tr>
+      <td style="padding: 0;color: black;" colspan="2"><h1>Study Home Library</h1></td>
+      </tr>
+      <tr>
+        <td colspan="2" style="color: black;">A.B Road Near Aakar IAS Coaching Classes Bhola Ram Gate , Bhavarkua,Indore(M.P.) 452001</td>
+      </tr>
+      <tr>  
+        <td colspan="2"><a href="mailto:studyhomelibrary24@gmail.com">
+          <i class="pi pi-envelope"></i>
+          studyhomelibrary24@gmail.com
+         </a>
+        <a href="tel:+916263653486">
+          <i class="pi pi-phone"></i>
+          +916263653486,</a>
+          <a href="tel:+917314263983">
+        
+           +917314263983</a>  
+        </td>
+         
+      </tr>
+      <tr>
+        <td  style="padding: 0;" colspan="2"><h2>INVOICE: {{studentsDetails.invoiceNo}}</h2></td>
+      </tr>
+    </table>
+    <table class="table table-borderless">
+           <tr>
+            <td  style="text-align: left;padding: 10px;">Name: {{studentsDetails.name}}</td>
+            <td style="text-align: right;padding: 10px;">
+              Date:{{studentsDetails.date | date:'medium'}}
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2" style="text-align: left;padding-left: 10px;">Member ID: {{studentsDetails.regNo}}</td>
+          </tr>
+          <tr>
+            <td colspan="2" style="text-align: left;padding-left: 10px;">Booking Details: {{studentsDetails.details}}</td>
+          </tr>
+    </table>
+      
+        <table class="table" >
+         
+          <thead >
+            <th>Start Date</th>
+            <th>Expiry Date</th>
+            <th>Slot</th>
+            <th style="text-align: right;">Amount</th>
+          
+          </thead>
+          <tbody>
+            <td *ngIf="studentsDetails.rangeDate">{{studentsDetails.rangeDate[0]}}</td>
+            <td *ngIf="studentsDetails.rangeDate">{{studentsDetails.rangeDate[1]}}</td>
+            <!-- <td *ngIf="studentsDetails.slotTime && studentsDetails.extraSlot">{{studentsDetails.slotTime.startTime|convertFrom24To12Format}}-{{studentsDetails.slotTime.endTime|convertFrom24To12Format}},
+              {{studentsDetails.extraSlot.startTime|convertFrom24To12Format}}-{{studentsDetails.extraSlot.endTime|convertFrom24To12Format}}</td> -->
+            <td style="text-align: right;">{{studentsDetails.amount}}</td>   
+          </tbody>
+        </table>
+     <table class="table">
+      <tr>
+        <td  style="text-align: right;">
+          Total Amount
+        </td>
+        <td class="table-info" style="text-align: right;">{{studentsDetails.amount}}</td>
+      </tr>
+      <tr>
+        <td  style="text-align: right;">
+         Paid
+        </td>
+        <td class="table-success" style="text-align: right;">{{studentsDetails.paid}}</td>
+      </tr>
+      <tr>
+        <td  style="text-align: right;">
+         Due
+        </td>
+        <td class="table-danger" style="text-align: right;">{{studentsDetails.due}}</td>
+      </tr>
+     <tr>
+       <td colspan="2" style="text-align: left;font-size: 10px;" >
+        * No Refund* *No Extension* *No Transfer* *Cheques would be subjected to realisation*
+       </td>
+     </tr>
+    
+    </table>
+  </div> 
+</div>
+  
+        <ng-template pTemplate="footer">
+        <button (click)="displayResponsive=false" label="No" styleClass="p-button-text"></button>
+        <button (click)="download()" label="Download" styleClass="p-button-text"></button>
+        </ng-template>
+</p-dialog>
+
+
+
+
+
+
+<!-- 31687a754c35323237303433 -->
+<!-- 27.56.195.152 -->
+<!-- wnuVEM0tA0vZyWB0CRMUyBfZFnyTxAhkA3azX4YL -->

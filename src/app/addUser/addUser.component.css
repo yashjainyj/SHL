@@ -1,0 +1,22 @@
+
+.background{
+    background: linear-gradient(to left,#e6acff,rgb(201, 121, 51));
+    /* background: linear-gradient(to right, #999897, sandybrown); */
+    /* // width: 100%; */
+    height: 100%;
+    margin-bottom: 20px;
+    background-size: 100%;
+    
+}
+
+.content{
+    /* position: absolute; */
+}
+::ng-deep .p-panel.p-panel-toggleable .p-panel-header {
+    background: rgba(0,0,0,0.5);
+    color: white;
+}
+::ng-deep .p-panel .p-panel-content{
+    background: rgba(0,0,0,0.5);
+    color: white;
+}

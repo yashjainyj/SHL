@@ -1,0 +1,255 @@
+// #loader{
+//     margin: 0;
+//     padding: 0;
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//     min-height: 100vh;
+//     background: rgba(0, 0, 0, 0.2);
+//     // background: url('../../assets/libraryImage/logo.png') cover no-repeat;
+//     backdrop-filter: blur(5px);
+//     z-index: 10000;
+// }
+// .content_loader{
+//     position: relative;
+//     z-index: 10000;
+
+// }
+// .content_loader h2{
+//     position: absolute;
+//     z-index: 10000;
+
+//     color: #fff;
+//     font-size: 8rem;
+//     font-family: 'Nunito', sans-serif;
+//     transform: translate(-50%,-50%);
+// }
+// .content_loader h2:nth-child(1){
+//     color: transparent;
+//     z-index: 10000;
+
+//     -webkit-text-stroke: 2px #03a9f4;
+// }
+// .content_loader h2:nth-child(2){
+//     z-index: 10000;
+
+//     color: #03a9f4;
+//     animation: animate 4s ease-in-out infinite;
+// }
+// @keyframes animate{
+//     0%,100%{
+//         clip-path: polygon(0% 45%,15% 44%,32% 50%,54% 60%,70% 61%,84% 59%,100% 52%,100% 100%,0% 100%);
+//     }
+    
+//     50%{
+//         clip-path: polygon(0% 60%,16% 65%,34% 66%,51% 62%,67% 50%,84% 45%,100% 46%,100% 100%,0% 100%);
+//     }
+// }
+// .card{
+//     border: 0px;
+// }
+img{
+    border-radius: 50%;
+    border: 4px solid #c0e8fa;
+    box-sizing: border-box;
+    margin-right: 4%;
+    background: white;
+    width: 5rem;
+    height: 5rem;
+    z-index: 5;
+    transition: 1s ease-in-out;
+  }
+  img:hover {
+    transform: scale(245%);
+    z-index: 5;
+  }
+
+// input{
+//     color: black;
+//     background-color: #ebecf0;
+//     text-shadow: 1px 1px 0 #FFF;
+// }
+// ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+//     color: rgb(192, 192, 192);
+//     opacity: 1; /* Firefox */
+//   }
+  
+//   :-ms-input-placeholder { /* Internet Explorer 10-11 */
+//     color: rgb(192, 192, 192);
+//   }
+  
+//   ::-ms-input-placeholder { /* Microsoft Edge */
+//     color: rgb(192, 192, 192);
+//   }
+
+
+  .form p{
+    color:#dc3545;
+    text-shadow: 1px 1px 0 #fff;
+    font-family: 'Nunito', sans-serif;
+
+}
+.form p{
+    text-align: center;
+    // margin-top: 20px;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 800px;
+    font-size:20px ;
+}
+.form{
+     width: 100%;
+    font-family: 'Nunito', sans-serif;
+    height: auto ;
+}
+.form span{
+    color: #753c41;
+    position: relative;
+    font-size: 18px;
+    margin-bottom: 10px;
+    margin-left: 20px;
+}
+.form_title{
+    text-align: center;
+    font-family: 'Nunito', sans-serif;
+    padding: 25px 0;
+    color: #dc3545;
+}
+.form label{
+    font-family: 'Nunito', sans-serif;
+    display: block;
+    margin-bottom: 24px;
+    width: 100%;
+}
+.form label input{
+    font-family: 'Nunito', sans-serif;
+    margin-right: 8px;
+    box-shadow: inset 2px 2px 5px #babecc,inset -5px -5px 10px #fff;
+    width: 100%;
+    transition: all 0.2s ease-in-out;
+    appearance: none;
+    -webkit-appearance: none;
+}
+.form button, .form label input{
+    border: 0;
+    outline: 0;
+    font-size: 16px;border-radius: 320px;
+    padding: 16px;
+    font-family: 'Nunito', sans-serif;
+    background-color: #ebecf0;
+    text-shadow: 1px 1px 0 #FFF;
+}
+
+.form label input:focus{
+    box-shadow: inset 1px 1px 2px #babecc, inset -1px -1px 2px #fff;
+}
+.form button{
+    color: #753c41;
+    font-weight: bold;
+    box-shadow: -5px -5px 20px #fff, 5px 5px 20px #babecc;
+    box-shadow: inset 2px 2px 5px #babecc,inset -5px -5px 10px #fff;
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+    font-weight: 600;
+    margin-top: 26px;
+    width: 100%;
+}
+button:hover{
+    box-shadow: -2px -2px 5px #fff, 2px 2px 5px #babecc;
+
+}
+button:active{
+    box-shadow: inset 1px 1px 2px #babecc, inset -1px -1px 2px #fff;
+    
+
+}
+.body ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: #ffffff;
+    opacity: 1; /* Firefox */
+  }
+  
+.body :-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: #ffffff;
+  }
+  
+.body ::-ms-input-placeholder { /* Microsoft Edge */
+    color: #ffffff;
+  }
+// .body ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+//     color: #753c41;
+//     opacity: 1; /* Firefox */
+//   }
+  
+// .body :-ms-input-placeholder { /* Internet Explorer 10-11 */
+//     color: #753c41;
+//   }
+  
+// .body ::-ms-input-placeholder { /* Microsoft Edge */
+//     color: #753c41;
+//   }
+//   input::-webkit-outer-spin-button,
+// input::-webkit-inner-spin-button {
+//   -webkit-appearance: none;
+//   margin: 0;
+// }
+.form button[type="submit"]:disabled{
+    border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
+}
+// .action_button .edit:hover,
+// .action_button .renew:hover{
+//     background-color:#5891a7;
+// }
+
+::ng-deep .p-datatable .p-datatable-tbody > tr{
+    color: white !important;
+    }
+    ::ng-deep .p-datatable .p-datatable-tbody > tr {
+      background: rgba(0, 0, 0, 0.5) !important;
+      color: white!important;
+    }
+    ::ng-deep .p-datatable .p-datatable-header{
+      background: rgba(0, 0, 0, 0.5)!important;
+      color: white!important;
+    
+    }
+    ::ng-deep .p-datatable .p-datatable-thead > tr > th{
+      background: rgba(0, 0, 0, 0.5)!important;
+      color: white!important;
+    
+    }
+    ::ng-deep .p-paginator{
+      background: rgba(0, 0, 0, 0.5)!important;
+      color: white!important;
+    
+    
+    }
+    span{color: white !important;}
+    ::ng-deep .p-paginator .p-paginator-current {
+      color: white!important;
+    }
+    ::ng-deep .p-paginator .p-paginator-first{ color:white !important}
+    ::ng-deep .p-paginator .p-paginator-prev{ color:white !important}
+    ::ng-deep .p-paginator .p-paginator-next{ color:white !important}
+    ::ng-deep .p-paginator .p-paginator-last{ color:white !important}
+    ::ng-deep .p-datatable .p-sortable-column .p-sortable-column-icon{color:white !important}
+    ::ng-deep .p-button.p-button-text.p-button-plain{color:white !important}
+    ::ng-deep .p-inputtext {
+      font-family: "Nunito", sans-serif;
+      margin-right: 8px;
+      box-shadow: none;
+      width: 100%;
+      transition: all 0.2s ease-in-out;
+      appearance: none;
+      -webkit-appearance: none;
+      border: 0;
+      outline: 0;
+      font-size: 16px;
+      border-radius: 0;
+      // padding: 16px;
+      font-family: "Nunito", sans-serif;
+      color: white;
+      background-color: rgba(0, 0, 0, 0.2)  ;
+      text-shadow: none !important;
+    }
+   ::ng-deep .p-paginator .p-dropdown .p-dropdown-label{color:black}
