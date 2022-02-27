@@ -100,7 +100,7 @@ export class EditUserComponent implements OnInit {
     // console.log(this.userId);
    
     let data = {
-      role:'staff',
+      // role:'staff',
       // regNo:res['regNo']+1,
       id:this.userId,
       name:this.editUser.get('name')?.value,
