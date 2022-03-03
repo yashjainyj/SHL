@@ -2,15 +2,15 @@
 
 <div class="wrapper">
   <!-- Sidebar  -->
-  <nav id="sidebar" class="active">
+  <nav id="sidebar" class="">
     <div class="sidebar-header">
-      <h3>Study Home Library</h3>
+      <h3>SHL</h3>
       <strong>SHL</strong>
     </div>
 
     <ul class="list-unstyled components">
       <li>
-        <a href="#">
+        <a [routerLink]="['/dashboard']" routerLinkActive="router-link-active">
           <i class="fa fa-home"></i>
           Dashboard
         </a>
@@ -49,7 +49,7 @@
   </nav>
 
   <!-- Page Content  -->
-  <div id="content" class="">
+  <div id="content" class="active">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container-fluid">
         <button
