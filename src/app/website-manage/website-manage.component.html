@@ -43,7 +43,7 @@
 
    <p-tabView  (onChange)="tabChange($event)" >
     <p-tabPanel header="Facilities">
-        <p-table  responsiveLayout="scroll" [value]="Facilities" dataKey="id" >
+        <p-table  responsiveLayout="scroll" [value]="Facilities" editMode="row" dataKey="_id" >
             <ng-template pTemplate="header">
             <tr>
                 <th>Icon code</th>
@@ -88,7 +88,7 @@
                     </p-cellEditor>
                 </td>
                 <td style="text-align:center">
-                    <button title="Edit" style="background: white;"*ngIf="!editing" pButton pRipple type="button" pInitEditableRow icon="pi pi-pencil" (click)="onRowEditInit(product)" class="p-button-rounded p-button-text"></button>
+                    <button title="Edit" style="background: white;"*ngIf="!editing" pButton pRipple type="button" pInitEditableRow icon="pi pi-pencil" (click)="onRowEditInit(product,'facility')" class="p-button-rounded p-button-text"></button>
                     <button title="save"style="background: white;" *ngIf="editing" pButton pRipple type="button" pSaveEditableRow icon="pi pi-check" (click)="onRowEditSave(product,'edit')" class="p-button-rounded p-button-text p-button-success p-mr-2"></button>
                     <button title="cancel"style="background: white;" *ngIf="editing" pButton pRipple type="button" pCancelEditableRow icon="pi pi-times" (click)="onRowEditCancel(product, ri)" class="p-button-rounded p-button-text p-button-danger"></button>
                     <button title="Delete"style="background: white;" pButton pRipple type="button" pCancelEditableRow icon="pi pi-trash" (click)="confirm(product, ri)" class="p-button-rounded p-button-text p-button-danger"></button>
@@ -103,7 +103,7 @@
                 {{item.text}}
                 <!-- <input pButton type="text"> -->
                 <br>
-                <button *ngIf="!last" style="background: white;"title="Edit"  pButton pRipple type="button"  icon="pi pi-pencil" (click)="onRowEditInit(item)" class="p-button-rounded p-button-text"></button>
+                <button *ngIf="!last" style="background: white;"title="Edit"  pButton pRipple type="button"  icon="pi pi-pencil" (click)="onRowEditInit(item,'about')" class="p-button-rounded p-button-text"></button>
                 <button *ngIf="!last" style="background: white;"title="Delete" pButton pRipple type="button"  icon="pi pi-trash" (click)="confirmDeleteAbout(item)" class="p-button-rounded p-button-text p-button-danger"></button>               
             </p-tabPanel>
         </p-tabView>

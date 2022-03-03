@@ -85,7 +85,20 @@ getInvoice(userid,slotid){
 getFacilities(){
   return this.http.get(this.url+'facilities')
 }
+updateFacilities(data){
+  return this.http.post(this.url+'facilities/update',data)  
 
+  
+}
+addFacilities(data){
+  return this.http.post(this.url+'facilities/add',data)  
+
+}
+deleteFacilities(data){
+  return this.http.post(this.url+'facilities/remove',data)  
+
+}
+// pi pi-clock	Open 24*7
 getAbout(){
   return this.http.get(this.url+'about')
 }

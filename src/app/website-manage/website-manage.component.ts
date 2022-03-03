@@ -173,10 +173,10 @@ onUpload(event){
         message: 'Are you sure that you want to perform this action?',
         accept: () => {
             
-        //     this.dataService.deleteFacilities(product).subscribe(res=>{
-        // this.messageService.add({severity:'success', summary: 'Deleted', detail:'Deleted Successfully!'});
+            this.dataService.deleteFacilities(product).subscribe(res=>{
+        this.messageService.add({severity:'success', summary: 'Deleted', detail:'Deleted Successfully!'});
 
-        //     })
+            })
         }
     });
   }
@@ -212,10 +212,18 @@ onUpload(event){
         }
     });
   }
-  onRowEditInit(product: any) {
-    this.showEditAboutDialog=true
-    this.about=product
-    this.editAbout=true
+  // clonedProducts
+  onRowEditInit(product: any,purpose:any) {
+    if(purpose=='facility'){
+      // this.showEditAboutDialog=true
+      // this.about=product
+      // this.editAbout=true
+    }else{
+      this.showEditAboutDialog=true
+      this.about=product
+      this.editAbout=true
+    }
+ 
     // this.clonedProducts[product.id] = {...product};
 }
 onRowEditSave(product: any,purpose) {
@@ -223,11 +231,19 @@ onRowEditSave(product: any,purpose) {
         // this.dataService.setFacilities(this.facility).subscribe(res=>{
         //   this.messageService.add({severity:'success', summary: 'Success', detail:'Facilities is added'});
         // })
+        // console.log(this.facility);
+        this.dataService.addFacilities(this.facility).subscribe(res=>{
+          this.messageService.add({severity:'success', summary: 'Success', detail:'Facilities is Added'});
+        })
     }  
     else {
       // this.dataService.updateFacilities(product).subscribe(res=>{
       //   this.messageService.add({severity:'success', summary: 'Success', detail:'Facilities is Updated'});
       // })
+      this.dataService.updateFacilities(product).subscribe(res=>{
+        this.messageService.add({severity:'success', summary: 'Success', detail:'Facilities is Updated'});
+      })
+      // console.log(product);
     }
 }
 onRowEditCancel(product: any, index: number) {
