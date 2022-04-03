@@ -42,6 +42,10 @@
    <!-- <hr> -->
 
    <p-tabView  (onChange)="tabChange($event)" >
+    <p-tabPanel header='Upload Data'>
+        <input type="file"  accept=".xlsx, .xls, .csv" (change)="onFileChange($event)" />
+
+    </p-tabPanel>
     <p-tabPanel header="Facilities">
         <p-table  responsiveLayout="scroll" [value]="Facilities" editMode="row" dataKey="_id" >
             <ng-template pTemplate="header">

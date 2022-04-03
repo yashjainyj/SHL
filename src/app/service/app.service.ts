@@ -98,6 +98,10 @@ deleteFacilities(data){
   return this.http.post(this.url+'facilities/remove',data)  
 
 }
+bulkAdd(data){
+  return this.http.post(this.url+'user/bulkAdd',data)  
+
+}
 // pi pi-clock	Open 24*7
 getAbout(){
   return this.http.get(this.url+'about')

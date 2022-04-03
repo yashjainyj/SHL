@@ -24,6 +24,11 @@
        </div>
     </div>
   </div>
+  <div *ngIf="userDetails.role=='admin'||userDetails.role=='staff'" [routerLink]="['/dashboard']" routerLinkActive="router-link-active"  class="card__content1">
+    <div class="card-body">
+      Dashboard
+    </div>
+  </div>
   <div  (click)="click('home')" class="card__content1">
     <div class="card-body">
       Home

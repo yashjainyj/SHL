@@ -60,13 +60,24 @@ export class DashboardComponent implements OnInit {
 
           element1.slots.forEach((ele,i) => {
           let timing = [];
-
+            
             ele.slotTiming.forEach((element) => {
+
               let startTime = new Date(element.split('-')[0]);
               let endTime = new Date(element.split('-')[1]);
-              timing.push(
-                this.formatAMPM(startTime) + '-' + this.formatAMPM(endTime)
-              );
+              
+              if(!element.includes('AM')&&!element.includes('PM')){
+               
+                timing.push(
+                  this.formatAMPM(startTime) + '-' + this.formatAMPM(endTime)
+                );
+              }
+              else{
+                timing.push(
+                element
+                );
+              }
+              
             });
           this.studentsData['docs'][index].slots[i].slotTiming = timing;
 

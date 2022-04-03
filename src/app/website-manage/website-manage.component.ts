@@ -5,6 +5,8 @@ import { finalize } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { AppService } from '../service/app.service';
 import { Location } from '@angular/common';
+import * as XLSX from 'xlsx';
+import * as moment from 'moment'; 
 
 
 @Component({
@@ -343,6 +345,120 @@ responsiveOptions:any[] = [
 
 displayBasic2: boolean;
 
+onFileChange(ev) {
+  this.loading=true
+  let workBook = null;
+  let jsonData = null;
+  const reader = new FileReader();
+  const file = ev.target.files[0];
+  reader.onload = (event) => {
+    const data = reader.result;
+    workBook = XLSX.read(data, { type: 'binary' });
+    jsonData = workBook.SheetNames.reduce((initial, name) => {
+      const sheet = workBook.Sheets[name];
+      initial[name] = XLSX.utils.sheet_to_json(sheet);
+      return initial;
+    }, {});
+    const dataString = JSON.stringify(jsonData);
+    // console.log(jsonData['MASTER SHEET1']);
+    let d = jsonData['MASTER SHEET1']
+    let formatedData = []
+    d.forEach((element,index) => {
+// console.log(new Date(element['Valid Upto']));
 
+      let obj ={
+        name: element['NAME'],
+          role: 'student',
+          regNo: element['Reg. No'],
+          password: element['Mob. No.'],
+          phone: element['Mob. No.'],
+          
+          slots:{
+           endDate:moment(element['Valid Upto'],'DD/MM/YYYY'),
+           amount:element['Amount'],
+           slotTiming:element['Time Slot'],
+           invoiceNo:element['Recepit No.'],
+        }
+      }
+      if(moment(element['Valid Upto'],'DD/MM/YYYY')<moment(new Date(),'DD/MM/YYYY')){
+        obj['isActive']='IN-ACTIVE'
+      }else
+      obj['isActive']='ACTIVE'
+
+      // console.log(obj);
+      
+      this.dataService.bulkAdd(obj).subscribe(res=>{
+        if(index==d.length.length-1){
+          this.loading=false
+        this.messageService.add({severity:'success', summary: res['message'], detail:'Uploaded Successfully!'});
+  
+        }
+      })
+      // formatedData.push(obj)
+    });
+    // console.log(formatedData);
+    // var chunks=this.splitArrayIntoChunksOfLen(formatedData,100); 
+    // console.log(chunks);
+    // chunks.forEach((element,index) => {
+    //   let obj ={
+    //     data:element
+    //   }
+   
+    // });
+    // let start =0 
+    // let end = 500 
+    // for (let index = start; index < end; index++) {
+    //   // const element = array[index];
+    //   // console.log(index);
+
+    //   if(index==end-1)
+    //   {
+        
+    //     start= end +1
+    //     end = end +500
+    //     if(end>formatedData.length){
+    //       end = formatedData.length
+    //     }
+    //     // console.log(start);
+    //     // console.log(end);
+
+    //   }
+    // }
+   
+    // document.getElementById('output').innerHTML = dataString.slice(0, 300).concat("...");
+    // this.setDownload(dataString);
+  }
+  reader.readAsBinaryString(file);
+}
+splitArrayIntoChunksOfLen(arr, len) {
+  var chunks = [], i = 0, n = arr.length;
+  while (i < n) {
+    chunks.push(arr.slice(i, i += len));
+  }
+  return chunks;
+}
 
 }
+// {
+//   "Reg. No": 1,
+//   "NAME": "KESHAV TAMRAKAR",
+//   "Time Slot ": "12PM-6PM",
+//   "Valid Upto ": "25/07/2018",
+//   "Amount ": 1000,
+//   "Hours": "6 hr.",
+//   "Recepit No.": 1,
+//   "Mob. No.": 9827080693
+// }
+// let obj = new userModel({
+//   name: element.name,
+//   role: element.role,
+//   regNo: element.regNo,
+//   password: hashedPass,
+//   phone: element.phone,
+//   slots:{
+//    endDate:''
+//    amount:''
+//    slotTiming:''
+//    invoiceNo:''
+// }
+// });
