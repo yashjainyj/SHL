@@ -85,11 +85,9 @@
                 >
               </div>
               <div class="col-lg-4 col-md-6 col-sm-12 col-12 mt-3">
-                <span>Email <span style="color: red;">(*)</span></span>
-                <input
-                  required
-                  class="form-control"
-                  formControlName="email"
+                <span>Email 
+                  <!-- <span style="color: red;">(*)</span>
+                  
                   [class]="
                     addUser.controls['email'].invalid &&
                     (addUser.controls['email'].touched ||
@@ -97,20 +95,27 @@
                       ? 'is-invalid'
                       : ''
                   "
+                  -->
+                </span>
+                <input
+                  
+                  class="form-control"
+                  formControlName="email"
+                  
                   pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
                   type="text"
                   id="addUser.email"
                   placeholder="Email (*)"
                 />
-                <small
+                <!-- <small
                   *ngIf="
                     addUser.controls['email'].invalid &&
                     (addUser.controls['email'].touched ||
                       addUser.controls['email'].dirty)
                   "
                   class="p-error"
-                  ><strong><b>Email is Required or Invalid !</b></strong></small
-                >
+                  ><strong><b>Email is Required or Invalid !</b></strong></small 
+                >-->
               </div>
               <div class="col-lg-4 col-md-6 col-sm-12 col-12 mt-3">
                 <span>Address</span>

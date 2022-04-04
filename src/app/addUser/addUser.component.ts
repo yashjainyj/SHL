@@ -23,7 +23,7 @@ export class AddUserComponent implements OnInit {
     this.addUser = new FormGroup({
       image:new FormControl(null),
       name:new FormControl(null,Validators.required),
-      email:new FormControl(null,Validators.required),
+      email:new FormControl(null),
       fatherName:new FormControl(null),
       address:new FormControl(null),
       course:new FormControl(null),
