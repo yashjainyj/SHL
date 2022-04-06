@@ -54,7 +54,7 @@ export class RenewUpdateSlotComponent implements OnInit {
       paymentMode:new FormControl(null),
       description:new FormControl(null),
       // invoiceNo:new FormControl(null,Validators.required),
-      // invoiceDate:new FormControl(null,Validators.required),
+      invoiceDate:new FormControl(null,Validators.required),
       dueAmount: new FormControl(null, Validators.required),
       enrollmentAmount: new FormControl(0, Validators.required),
       discount: new FormControl(0, Validators.required),
@@ -146,7 +146,7 @@ export class RenewUpdateSlotComponent implements OnInit {
             id:this.userId,
             slots:{
               invoiceNo:res['invoiceNo']+1,
-              invoiceDate:new Date().toISOString(),
+              invoiceDate:this.slots.get('invoiceDate')?.value,
               startDate: this.slots.get('startDate')?.value,
               dueDate:this.slots.get('dueDate')?.value,
               paymentMode:this.slots.get('paymentMode')?.value,
@@ -161,12 +161,23 @@ export class RenewUpdateSlotComponent implements OnInit {
               isActive:'ACTIVE'
             }
           }
+          var  currentDate = new Date()   
+          var startDate = new Date(data.slots.startDate)
+          var endDate = new Date(data.slots.endDate)
+          if(startDate < currentDate && endDate > currentDate){
+            data.slots.isActive='ACTIVE'
+          
+            
+          }
+          else{
+            data.slots.isActive='IN-ACTIVE'
+          }
           this.app.addSlot(data).subscribe((res11)=>{
             if(res11['message']=='Updated Successfully'){
               this.messageService.add({
                 severity: 'success',
                 summary: 'Successfully Updated',
-                detail: 'Invoice No. :'+  res['invoiceNo']+1,
+                detail: 'Invoice No. :'+  data.slots.invoiceNo,
               });
               setTimeout(() => {
               this.onBackPress()

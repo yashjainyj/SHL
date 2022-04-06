@@ -116,7 +116,7 @@ export class AddUserComponent implements OnInit {
         phone:this.addUser.get('phone')?.value,
         slots:{
           invoiceNo:this.invoiceandRegNo['invoiceNo']+1,
-          // invoiceDate:new Date().toISOString(),
+          invoiceDate:this.slots.get('invoiceDate')?.value,
           startDate: this.slots.get('startDate')?.value,
           amount: this.slots.get('amount')?.value,
           dueDate:this.slots.get('dueDate')?.value,

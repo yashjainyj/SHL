@@ -11,6 +11,33 @@
       <p-panel header="Slot Details">
         <form [formGroup]="slots">
           <div class="row">
+            <div class="col-lg-4 col-md-6 col-sm-12 col-12 mt-3">
+              <span>Invoice Date <span style="color: red;">(*)</span></span>
+              <input
+                required
+                class="form-control"
+                formControlName="invoiceDate"
+                [class]="
+                  slots.controls['invoiceDate'].invalid &&
+                  (slots.controls['invoiceDate'].touched ||
+                    slots.controls['invoiceDate'].dirty)
+                    ? 'is-invalid'
+                    : ''
+                "
+                type="date"
+                id="slots.invoiceDate"
+                placeholder="Full Name (*)"
+              />
+              <small
+                *ngIf="
+                  slots.controls['invoiceDate'].invalid &&
+                  (slots.controls['invoiceDate'].touched ||
+                    slots.controls['invoiceDate'].dirty)
+                "
+                class="p-error"
+                ><strong>Invoice Date is Required !</strong></small
+              >
+            </div>
             <div class="col-lg-2 col-md-6 col-sm-12 col-12 mt-3">
               <span
                 >Select Number of Slot <span style="color: red">(*)</span></span
