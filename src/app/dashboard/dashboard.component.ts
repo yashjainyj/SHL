@@ -123,24 +123,38 @@ export class DashboardComponent implements OnInit {
         this.selectedIndexBorder(5, this.studentsData?.totalDocs);
       });
     } else if (purpose == 'dueAmount') {
-      this.app.getDueUser(page, this.limit).subscribe((res) => {
-        this.studentsData = res['user'];
+      this.app.getDueUser(page, this.limit).subscribe((res:any) => {
+        // this.studentsData = res['user'];
+        this.studentsData=res['user']
+        let docs=[]
+        let count =0
+        // this.studentsData['docs']=[]
         console.log(res);
-        this.studentsData['docs'].forEach((element1, index) => {
-          element1.slots.forEach((ele,i) => {
-            let timing = [];
-  
-              ele.slotTiming.forEach((element) => {
-                let startTime = new Date(element.split('-')[0]);
-                let endTime = new Date(element.split('-')[1]);
-                timing.push(
-                  this.formatAMPM(startTime) + '-' + this.formatAMPM(endTime)
-                );
+        res['user'].docs.forEach((element1, index) => {
+        
+            element1.slots.forEach((ele,i) => {
+              let timing = [];
+    
+                ele.slotTiming.forEach((element) => {
+                  let startTime = new Date(element.split('-')[0]);
+                  let endTime = new Date(element.split('-')[1]);
+                  if(element1.slots[0].dueAmount!=0 && i==0 && index==0){
+                    docs.push(element1)
+                    count++
+                  }
+                  timing.push(
+                    this.formatAMPM(startTime) + '-' + this.formatAMPM(endTime)
+                  
+                  );
+                });
+              this.studentsData['docs'][index].slots[i].slotTiming = timing;
+    
               });
-            this.studentsData['docs'][index].slots[i].slotTiming = timing;
-  
-            });
+          
+        
         });
+        this.studentsData['docs']=docs
+        this.studentsData['totalDocs']=count
 
         this.selectedIndexBorder(4, this.studentsData?.totalDocs);
       });
@@ -212,6 +226,17 @@ export class DashboardComponent implements OnInit {
       // });
     }
   }
+  paginate(event) {
+    //event.first = Index of the first record
+    //event.rows = Number of rows to display in new page limit 
+    //event.page = Index of the new page
+    //event.pageCount = Total number of pages
+    console.log(event);
+    this.getAllstudent(this.studentsData?.nextPage, 'all');
+    
+    // this.getAllstudent(event.first, 'all');
+
+}
   nextPage() {
     this.getAllstudent(this.studentsData?.nextPage, 'all');
   }

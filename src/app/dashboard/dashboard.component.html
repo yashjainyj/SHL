@@ -1,8 +1,7 @@
 <p-toast position="top-right" [breakpoints]="{'920px': {width: '100%', right: '0', left: '0'}}"></p-toast>
 
 <div class="wrapper">
-  <!-- Sidebar  -->
-  <nav id="sidebar" class="">
+  <!-- <nav id="sidebar" class="">
     <div class="sidebar-header">
       <h3>SHL</h3>
       <strong>SHL</strong>
@@ -25,7 +24,6 @@
           Website Config
         </a>
         <a [routerLink]="['/payment']" routerLinkActive="router-link-active" >
-          <!-- <i class="fa fa-rupe"></i> -->
           <i class="fa fa-dollar"></i>
           Payment
         </a>
@@ -33,32 +31,25 @@
           <i class="bx bx-log-out"  id="logout"></i>
           Logout
         </a>
-        <!-- <ul class="collapse list-unstyled" id="pageSubmenu">
-                  <li>
-                      <a href="#">Send Sms</a>
-                  </li>
-                  <li>
-                      <a href="#">Create Group</a>
-                  </li>
-                  <li>
-                      <a href="#">Create Single Contact</a>
-                  </li>
-              </ul> -->
+      
       </li>
     </ul>
-  </nav>
+  </nav> -->
 
   <!-- Page Content  -->
   <div id="content" class="active">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <div class="container-fluid">
-        <button
+    <nav class=" navbar navbar-expand-lg navbar-light bg-light">
+      <div  class="container-fluid justify-content-between d-flex">
+        <!-- <button
           type="button"
           id="sidebarCollapse"
           class="btn menuBtn d-lg-none"
         >
           <i class="fa fa-align-left"></i>
-          <!-- <span>Menu</span> -->
+          
+        </button> -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
         </button>
         <button
           title="Add Student"
@@ -68,6 +59,43 @@
         >
           <i class="pi pi-user-plus"></i>
         </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarTogglerDemo01">
+          <ul class="navbar-nav">
+            <li class="nav-item active">
+              <a class="nav-link" [routerLink]="['/dashboard']" routerLinkActive="router-link-active">
+                <i class="fa fa-home"></i>
+                Dashboard
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" [routerLink]="['/staffDetail']" routerLinkActive="router-link-active" >
+                <i class="fa fa-user"></i>
+                Manage Staff
+              </a>
+            </li>
+            <li class="nav-item">
+              <a  class="nav-link"[routerLink]="['/manageWebsite']" routerLinkActive="router-link-active">
+                <i class="fa fa-copy"></i>
+                Website Config
+              </a>
+            </li>
+            <li class="nav-item">
+              <a  class="nav-link"[routerLink]="['/payment']" routerLinkActive="router-link-active" >
+                <i class="fa fa-dollar"></i>
+                Payment
+              </a>
+            </li>
+            <li class="nav-item">
+              <a style="cursor: pointer;" class="nav-link" (click)="logout()">
+                <i class="bx bx-log-out"  id="logout"></i>
+                Logout
+              </a>
+            
+            </li>
+          </ul>
+      
+        </div>
+     
         <!-- <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                   <i class="fas fa-align-justify"></i>
               </button> -->
@@ -106,7 +134,6 @@
               [ngStyle]="{ border: item.selected ? '2px solid #11101d' : '' }"
               class="card text-center"
             >
-              <!-- <img class="card-img-top" src="holder.js/100px180/" alt=""> -->
               <div class="card-body">
                 <h4 class="card-title">{{ item.title }}</h4>
                 <p class="card-text">{{ item.count }}</p>
@@ -117,10 +144,10 @@
       </div>
       <div class="container-fluid">
         <div class="row">
-          <div class="mx-3">
+          <!-- <div class="mx-3">
             <input type="search" placeholder="Search" [(ngModel)]="search">
-          </div>
-          <div
+          </div> -->
+          <!-- <div
             *ngFor="let student of studentsData['docs']|filter:search"
             class="col-lg-4 col-md-6 col-sm-12 col-12"
           >
@@ -269,10 +296,7 @@
                                 <h5><strong>See All Slots</strong></h5>
                                 <button (click)='selectUser(student?.slots,student?._id)' class="btn menuBtn">Click Here</button>
                               </div>
-                              <!-- <div *ngIf="item=='Slots Detials'" class="col-6">
-                                <h5> <strong>End Date</strong> </h5>
-                                <h6>05/01/2022</h6>
-                              </div> -->
+                          
                               <div
                                 *ngIf="item == 'Payment Details'"
                                 class="col-6"
@@ -322,7 +346,6 @@
                   title="Edit Profile"
                   class="cssui-social cssui-usercard__social"
                 >
-                  <!-- <i class="cssui-icon fa fa-edit "></i> -->
                   <i class="cssui-icon pi pi-user-edit"></i>
                 </a>
                 <a
@@ -369,7 +392,195 @@
                 </a>
               </footer>
             </article>
-          </div>
+          </div> -->
+
+
+
+          <p-table  (onPage)="paginate($event)" styleClass="p-datatable-sm p-datatable-striped" [scrollable]="true"  scrollDirection="both" #dt1 [value]="studentsData['docs']"  dataKey="regNo" [paginator]="false" [rows]="1" [showCurrentPageReport]="true" 
+          currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[1,25,50]"   responsiveLayout="scroll"
+          [globalFilterFields]="['name','regNo','email','phone']">
+          <ng-template pTemplate="caption">
+            <div class="flex">
+                <!-- <button pButton label="Clear" class="p-button-outlined" icon="pi pi-filter-slash" (click)="clear(dt1)"></button> -->
+                <span class="p-input-icon-left ml-auto">
+                    <i class="pi pi-search"></i>
+                    <input pInputText type="text" (input)="dt1.filterGlobal($event.target.value, 'contains')" placeholder="Search keyword" />
+                </span>
+                <!-- <span>{{heading}}</span> -->
+            </div>
+        </ng-template> 
+          <ng-template pTemplate="header">
+                <tr>
+                    <th    pFrozenColumn style="width: 4rem ;background: sandybrown !important;color: black !important;"></th>
+                    <th    pFrozenColumn style="width: 5rem;flex-wrap:wrap;background: sandybrown !important;color: black !important;" pSortableColumn="regNo">RegNo <p-sortIcon field="regNo"></p-sortIcon></th>
+
+                    <th style="background: sandybrown !important;color: black !important;"  pFrozenColumn pSortableColumn="name">Name <p-sortIcon field="name"></p-sortIcon></th>
+                    <th>Image</th>
+                    <!-- <th pSortableColumn="email">Email <p-sortIcon field="email"></p-sortIcon></th> -->
+                    <th pSortableColumn="phone">Phone <p-sortIcon field="phone"></p-sortIcon></th>
+                    <th >Start Date </th>
+                    <th >End Date </th>
+                    <th >Slot Timing </th>
+                    <th >Amount </th>
+                    <th >Paid Amount </th>
+                    <th >Due Amount </th>
+                    <th >Discount</th>
+                    <th >
+                      <!-- <p-columnFilter field="slots.isActive" matchMode="equals" display="menu">
+                      <ng-template pTemplate="filter" let-value let-filter="filterCallback">
+                          <p-dropdown [ngModel]="value" [options]="statuses" (onChange)="filter($event.value)" placeholder="Any">
+                              <ng-template let-option pTemplate="item">
+                                  <span [class]="'customer-badge status-' + option.value">{{option.label}}</span>
+                              </ng-template>
+                          </p-dropdown>
+                      </ng-template>
+                  </p-columnFilter> -->
+                  Active</th>
+                  <th style="background: sandybrown !important;color: black !important;" alignFrozen="right"  pFrozenColumn class="">Action</th>
+                    <!-- <th pSortableColumn="inventoryStatus">Status <p-sortIcon field="inventoryStatus"></p-sortIcon></th> -->
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-product let-expanded="expanded">
+                <tr>
+                    <td style="background: sandybrown !important;color: black !important;"  pFrozenColumn style="width: 4rem">
+                        <button  style="color: black;" type="button" pButton pRipple [pRowToggler]="product" class="p-button-text p-button-rounded p-button-plain" [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></button>
+                    </td>
+                    <td  style="background: sandybrown !important;color: black !important;"  pFrozenColumn style="width: 5rem"><span class="p-column-title">Reg No.</span>{{product?.regNo}}</td>
+
+                    <td pFrozenColumn><span class="p-column-title">Name</span>{{product?.name}}</td>
+                    <td><span class="p-column-title">Image</span>
+                      <!-- <img [src]="url + product?.image" [alt]="product?.name" width="100" class="shadow-4" /> -->
+                      <img *ngIf="!product?.image"
+                      src="../../assets/libraryImage/logo.png"
+                      [alt]="product?.name"
+                      class="cssui-usercard__avatar"
+                      alt="Avatar"
+                    />
+                    <img *ngIf="product?.image"
+                    [alt]="product?.name"
+                    src="{{url}}{{product?.image}}"
+                    class="cssui-usercard__avatar"
+                    alt="Avatar"
+                  />
+                    </td>
+                    <!-- <td><span class="p-column-title">Email</span>{{product?.email }}</td> -->
+                    <td><span class="p-column-title">Phone No.</span>{{product?.phone}}</td>
+                    <td><span class="p-column-title">Start Date</span>{{product?.slots[0]?.startDate|date:'dd/MM/yyyy'}}</td>
+                    <td><span class="p-column-title">End Date</span>{{product?.slots[0]?.endDate|date:'dd/MM/yyyy'}}</td>
+                    <td><span class="p-column-title">Slot Timing</span>{{product?.slots[0]?.slotTiming}}</td>
+                    <td><span class="p-column-title">Amount</span>{{product?.slots[0]?.amount | currency:'INR'}}</td>
+                    <td><span class="p-column-title">Paid Amount</span>{{product?.slots[0]?.paidAmount | currency:'INR'}}</td>
+                    <td><span class="p-column-title">Due Amount</span>{{product?.slots[0]?.dueAmount | currency:'INR'}}</td>
+                    <td><span class="p-column-title">Discount</span>{{product?.slots[0]?.discount | currency:'INR'}}</td>
+                    <td><span class="p-column-title">Active</span>{{product?.slots[0]?.isActive}}</td>
+                    <td alignFrozen="right"  pFrozenColumn  class="">
+
+                      <a
+                      [routerLink]="['/editUser', product?._id]"
+                      routerLinkActive="router-link-active"
+                      title="Edit Profile"
+                      class="cssui-social cssui-usercard__social"
+                    >
+                      <i style="color:black" class="cssui-icon pi pi-user-edit"></i>
+                    </a>
+                    <a
+                      [routerLink]="['/editslot', 'renew', '',product?._id]"
+                      routerLinkActive="router-link-active"
+                      *ngIf="product?.slots[0].isActive != 'ACTIVE'"
+                      href=""
+                      title="Renew Slot"
+                      class="cssui-social cssui-usercard__social"
+                    >
+                      <svg
+                        class="cssui-icon"
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="25"
+                        height="25"
+                        fill="#000"
+                        class="bi bi-arrow-repeat"
+                        viewBox="0 0 16 16"
+                      >
+                        <path
+                          d="M11.534 7h3.932a.25.25 0 0 1 .192.41l-1.966 2.36a.25.25 0 0 1-.384 0l-1.966-2.36a.25.25 0 0 1 .192-.41zm-11 2h3.932a.25.25 0 0 0 .192-.41L2.692 6.23a.25.25 0 0 0-.384 0L.342 8.59A.25.25 0 0 0 .534 9z"
+                        />
+                        <path
+                          fill-rule="evenodd"
+                          d="M8 3c-1.552 0-2.94.707-3.857 1.818a.5.5 0 1 1-.771-.636A6.002 6.002 0 0 1 13.917 7H12.9A5.002 5.002 0 0 0 8 3zM3.1 9a5.002 5.002 0 0 0 8.757 2.182.5.5 0 1 1 .771.636A6.002 6.002 0 0 1 2.083 9H3.1z"
+                        />
+                      </svg>
+                    </a>
+                    <a
+                      *ngIf="product?.slots[0].isActive == 'ACTIVE'"
+                      [routerLink]="['/editslot', 'edit', product?.slots[0]._id,product._id]"
+                      routerLinkActive="router-link-active"
+                      title="Upgrade Slot"
+                      class="cssui-social cssui-usercard__social"
+                    >
+                      <i style="color: black;" class="cssui-icon fa fa-edit"></i>
+                    </a>
+                    <a
+                      href="#0"
+                      title="Add Bill"
+                      class="cssui-social cssui-usercard__social"
+                    >
+                      <i style="color: black;" class="cssui-icon fa fa-plus"></i>
+                    </a>
+                    </td>
+                    <!-- <td><p-rating [ngModel]="product?.rating" [readonly]="true" [cancel]="false"></p-rating></td> -->
+                    <!-- <td><span [class]="'product-badge status-' + product?.inventoryStatus.toLowerCase()">{{product?.inventoryStatus}}</span></td> -->
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="rowexpansion" let-product>
+                <tr>
+                    <td colspan="12">
+                        <div class="p-3">
+                            <p-table  [value]="product?.slots"  dataKey="invoiceNo">
+                                <ng-template pTemplate="header">
+                                    <tr>
+                                        <th  pSortableColumn="invoiceNo">Invoice No <p-sortIcon field="invoiceNo"></p-sortIcon></th>
+                                        <th pSortableColumn="invoiceDate">Invoice Date <p-sortIcon field="invoiceDate"></p-sortIcon></th>
+                                        <th pSortableColumn="startDate">Start Date <p-sortIcon field="startDate"></p-sortIcon></th>
+                                        <th pSortableColumn="endDate">End Date <p-sortIcon field="endDate"></p-sortIcon></th>
+                                        <th pSortableColumn="slotTiming">Slot Timing <p-sortIcon field="slotTiming"></p-sortIcon></th>
+                                        <th pSortableColumn="amount">Amount <p-sortIcon field="amount"></p-sortIcon></th>
+                                        <th pSortableColumn="paidAmount">Paid Amount <p-sortIcon field="paidAmount"></p-sortIcon></th>
+                                        <th pSortableColumn="dueAmount">Due Amount <p-sortIcon field="dueAmount"></p-sortIcon></th>
+                                        <th pSortableColumn="discount">Discount <p-sortIcon field="discount"></p-sortIcon></th>
+                                        <th pSortableColumn="description">Description <p-sortIcon field="description"></p-sortIcon></th>
+                                        <!-- <th pSortableColumn="status">Status <p-sortIcon field="status"></p-sortIcon></th> -->
+                                       
+                                        <!-- <th style="width: 4rem"></th> -->
+                                    </tr>
+                                </ng-template>
+                                <ng-template pTemplate="body" let-order>
+                                    <tr>
+                                        <td style="cursor: pointer;" [routerLink]="['/invoiceDetail',product?._id,order?._id]" routerLinkActive="router-link-active"><span class="p-column-title">Invoice No</span>{{order?.invoiceNo}}</td>
+                                        <td><span class="p-column-title">Invoice Date</span>{{order?.invoiceDate|date:'dd/MM/yyyy'}}</td>
+                                        <td><span class="p-column-title">start Date</span>{{order?.startDate|date:'dd/MM/yyyy'}}</td>
+                                        <td><span class="p-column-title">End Date</span>{{order?.endDate|date:'dd/MM/yyyy'}}</td>
+                                        <td><span class="p-column-title">Timing</span>{{order?.slotTiming}}</td>
+                                        <td><span class="p-column-title">Amount</span>{{order?.amount | currency:'INR'}}</td>
+                                        <td><span class="p-column-title">Paid Amount</span>{{order?.paidAmount | currency:'INR'}}</td>
+                                        <td><span class="p-column-title">Due Amount</span>{{order?.dueAmount | currency:'INR'}}</td>
+                                        <td><span class="p-column-title">Discount</span>{{order?.discount | currency:'INR'}}</td>
+                                        <td><span class="p-column-title">Description</span>{{order?.description }}</td>
+                                        <!-- <td><span [class]="'order-badge order-' + order?.status.toLowerCase()">{{order?.status}}</span></td> -->
+                                        <!-- <td><p-button type="button" icon="pi pi-search"></p-button></td> -->
+                                    </tr>
+                                </ng-template>
+                                <ng-template pTemplate="emptymessage">
+                                    <tr>
+                                        <td colspan="6">There are no order for this product yet.</td>
+                                    </tr>
+                                </ng-template>
+                            </p-table>
+                        </div>
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+
+
 
           <div class="row card">
             <div

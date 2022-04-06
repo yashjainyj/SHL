@@ -13,7 +13,7 @@ constructor(private http:HttpClient) {
 getAllStudents(page,limit){
   return this.http.get(this.url+`user?page=${page}&limit=${limit}`)
 }
-getAll(){
+getAll(page,limit){
   return this.http.get(this.url+`user`)
 }
 getStaff(){

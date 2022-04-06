@@ -85,7 +85,7 @@ onBackPress(){
       this.studentsData['docs'].forEach((element1, index) => {
         element1.slots.forEach((ele,i) => {
           let timing = [];
-
+           
             ele.slotTiming.forEach((element) => {
               let startTime = new Date(element.split('-')[0]);
               let endTime = new Date(element.split('-')[1]);
@@ -103,9 +103,13 @@ onBackPress(){
                         endDate.setSeconds(+endTime.getSeconds());
           
                         if(startDate < currentDate && endDate > currentDate){
+                          
+                        if(ele.isActive=='ACTIVE'){
                           this.count++
-                        this.studentsDetail.push(element1)
-                          console.log('hi');
+                          this.studentsDetail.push(element1)
+                            console.log('hi');
+                        }
+                        
                           
                         }
 
@@ -116,7 +120,7 @@ onBackPress(){
               );
             });
           this.studentsData['docs'][index].slots[i].slotTiming = timing;
-
+        
           });
       });
      

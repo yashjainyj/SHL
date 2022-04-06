@@ -51,7 +51,7 @@ formatAMPM = (date) => {
   ngOnInit() {
  
     // this.loading=false
-    this.dataService.getAll().subscribe((res:any)=>{
+    this.dataService.getAll('','').subscribe((res:any)=>{
 
 
       this.loading=false

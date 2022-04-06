@@ -37,7 +37,7 @@ export class EditUserComponent implements OnInit {
   
     this.editUser = new FormGroup({
       name:new FormControl(null,Validators.required),
-      email:new FormControl(null,Validators.required),
+      email:new FormControl(null),
       fatherName:new FormControl(null),
       address:new FormControl(null),
       image:new FormControl(null),

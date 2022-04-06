@@ -379,7 +379,7 @@ h6 {
   background: white;
   width: 5rem;
   height: 5rem;
-  z-index: 5;
+  z-index: 2;
   transition: 1s ease-in-out;
 }
 .cssui-usercard__avatar:hover {
@@ -615,21 +615,21 @@ a {
   color: white !important;
   }
   ::ng-deep .p-datatable .p-datatable-tbody > tr {
-    background: rgba(0, 0, 0, 0.5) !important;
+    background: rgba(0, 0, 0, 0.7) !important;
     color: white!important;
   }
   ::ng-deep .p-datatable .p-datatable-header{
-    background: rgba(0, 0, 0, 0.5)!important;
+    background: rgba(0, 0, 0, 0.7)!important;
     color: white!important;
   
   }
   ::ng-deep .p-datatable .p-datatable-thead > tr > th{
-    background: rgba(0, 0, 0, 0.5)!important;
+    background: rgba(0, 0, 0, 0.7)!important;
     color: white!important;
   
   }
   ::ng-deep .p-paginator{
-    background: rgba(0, 0, 0, 0.5)!important;
+    background: rgba(53, 33, 33, 0.5)!important;
     color: white!important;
   
   
@@ -662,3 +662,53 @@ a {
     background-color: rgba(0, 0, 0, 0.2)  ;
     text-shadow: none !important;
   }
+  th{
+    width:120px;
+    
+  }
+  td{
+    width:120px;
+}
+::ng-deep .p-datatable-scrollable .p-frozen-column {
+  position: sticky;
+  background: inherit;
+  background: sandybrown !important;
+  color: black;
+  z-index: 4;
+}
+.freeze{
+  width: 70px;
+  right: 0;
+  position: sticky;
+  background:sandybrown !important;
+  color: black !important;
+  flex-wrap: wrap;
+
+}
+ul li:hover a{
+  color: sandybrown !important;
+}
+/* 
+td:last-child{
+  right: 0;
+  width: 70px;
+  flex-wrap: wrap;
+  position: sticky;
+  background:sandybrown;
+  color: black;
+} */
+
+
+::-webkit-scrollbar {
+  height: 4px !important; 
+  width: 4px !important; 
+  background: gray;
+}
+::-webkit-scrollbar-thumb:horizontal {
+  background: sandybrown !important;
+  border-radius: 10px !important;
+}
+
+::ng-deep .p-dropdown .p-dropdown-label{
+  color: black !important;
+}

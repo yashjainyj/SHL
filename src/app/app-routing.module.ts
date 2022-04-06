@@ -32,7 +32,7 @@ const routes: Routes = [
     // canActivate:[AuthGuard]
   },
   {  path: 'invoiceDetail/:userid/:slotid', component:InvoiceDetailsComponent, },
-  { path: 'editslot/:purpose/:id', component: RenewUpdateSlotComponent },
+  { path: 'editslot/:purpose/:id/:userid', component: RenewUpdateSlotComponent },
 ];
 
 @NgModule({

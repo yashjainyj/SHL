@@ -18,6 +18,7 @@ export class RenewUpdateSlotComponent implements OnInit {
   endTime: Date[] = [];
   slotId = '';
   purpose = '';
+  userId=''
   constructor(
     private route: ActivatedRoute,
     public app: AppService,
@@ -28,7 +29,7 @@ export class RenewUpdateSlotComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe((res) => {
       // console.log(res.id);
-
+      this.userId = res['userid']
       this.slotId = res['id'];
       this.purpose = res['purpose'];
       // console.log(this.userId);
@@ -75,6 +76,7 @@ export class RenewUpdateSlotComponent implements OnInit {
       enrollmentAmount: data?.enrollmentAmount,
       discount: data?.discount,
       paidAmount: data?.paidAmount,
+      isActive:data?.isActive
       // dob:data?.dob,
     });
   }
@@ -96,64 +98,67 @@ export class RenewUpdateSlotComponent implements OnInit {
   }
   onSubmit() {
     // console.log(new Date());
-    if (this.purpose == 'edit') {
-    this.change();
+    // if (this.purpose == 'edit') {
+    // this.change();
 
-      let data = {
-        id: this.slotId,
-        slots: {
-          // invoiceNo:res['invoiceNo']+1,
-          // invoiceDate:new Date().toISOString(),
-          startDate: this.slots.get('startDate')?.value,
-          dueDate:this.slots.get('dueDate')?.value,
-          paymentMode:this.slots.get('paymentMode')?.value,
-          description:this.slots.get('description')?.value,
-          amount: this.slots.get('amount')?.value,
-          paidAmount: this.slots.get('paidAmount')?.value,
-          dueAmount: this.slots.get('dueAmount')?.value,
-          discount: this.slots.get('discount')?.value,
-          enrollmentAmount: this.slots.get('enrollmentAmount')?.value,
-          endDate: this.slots.get('endDate')?.value,
-          slotTiming: this.slotArray,
-        },
-      };
-      this.app.updateSlot(data).subscribe((res11) => {
-        if (res11['message'] == 'Updated Successfully') {
-          this.messageService.add({
-            severity: 'success',
-            summary: 'Successfully Updated',
-            // detail: 'Reg No. :'+  res['regNo']+1,
-          });
-          setTimeout(() => {
-            this.onBackPress();
-          }, 2000);
-        } else {
-          this.messageService.add({
-            severity: 'error',
-            summary: 'Error',
-            detail: res11['message'],
-          });
-        }
-      });
-    } else {
+    //   let data = {
+    //     id: this.slotId,
+    //     slots: {
+    //       // invoiceNo:res['invoiceNo']+1,
+    //       // invoiceDate:new Date().toISOString(),
+    //       startDate: this.slots.get('startDate')?.value,
+    //       dueDate:this.slots.get('dueDate')?.value,
+    //       paymentMode:this.slots.get('paymentMode')?.value,
+    //       description:this.slots.get('description')?.value,
+    //       amount: this.slots.get('amount')?.value,
+    //       paidAmount: this.slots.get('paidAmount')?.value,
+    //       dueAmount: this.slots.get('dueAmount')?.value,
+    //       discount: this.slots.get('discount')?.value,
+    //       enrollmentAmount: this.slots.get('enrollmentAmount')?.value,
+    //       endDate: this.slots.get('endDate')?.value,
+    //       slotTiming: this.slotArray,
+    //     },
+    //   };
+    //   this.app.updateSlot(data).subscribe((res11) => {
+    //     if (res11['message'] == 'Updated Successfully') {
+    //       this.messageService.add({
+    //         severity: 'success',
+    //         summary: 'Successfully Updated',
+    //       });
+    //       setTimeout(() => {
+    //         this.onBackPress();
+    //       }, 2000);
+    //     } else {
+    //       this.messageService.add({
+    //         severity: 'error',
+    //         summary: 'Error',
+    //         detail: res11['message'],
+    //       });
+    //     }
+    //   });
+    // } else {
       this.app.getInvoiceAndReg().subscribe((res)=>{
         this.change()
         // console.log(new Date());
         
           let data = {
            
-            id:this.slotId,
+            id:this.userId,
             slots:{
               invoiceNo:res['invoiceNo']+1,
               invoiceDate:new Date().toISOString(),
               startDate: this.slots.get('startDate')?.value,
+              dueDate:this.slots.get('dueDate')?.value,
+              paymentMode:this.slots.get('paymentMode')?.value,
+              description:this.slots.get('description')?.value,
               amount: this.slots.get('amount')?.value,
               paidAmount: this.slots.get('paidAmount')?.value,
               dueAmount: this.slots.get('dueAmount')?.value,
               discount: this.slots.get('discount')?.value,
               enrollmentAmount: this.slots.get('enrollmentAmount')?.value,
               endDate: this.slots.get('endDate')?.value,
-              slotTiming:this.slotArray
+              slotTiming:this.slotArray,
+              isActive:'ACTIVE'
             }
           }
           this.app.addSlot(data).subscribe((res11)=>{
@@ -177,6 +182,6 @@ export class RenewUpdateSlotComponent implements OnInit {
          
           })
         })
-    }
+    // }
   }
 }

@@ -20,9 +20,42 @@
   <div class="content container-fluid mt-4">
     <div class="row">
       <div class="col-12">
+        <p-panel header='Detail'  [toggleable]="true">
+          <form [formGroup]="slots">
+            <div class="col-lg-4 col-md-6 col-sm-12 col-12 mt-3">
+              <span>Invoice Date <span style="color: red;">(*)</span></span>
+              <input
+                required
+                class="form-control"
+                formControlName="invoiceDate"
+                [class]="
+                  slots.controls['invoiceDate'].invalid &&
+                  (slots.controls['invoiceDate'].touched ||
+                    slots.controls['invoiceDate'].dirty)
+                    ? 'is-invalid'
+                    : ''
+                "
+                type="date"
+                id="slots.invoiceDate"
+                placeholder="Full Name (*)"
+              />
+              <small
+                *ngIf="
+                  slots.controls['invoiceDate'].invalid &&
+                  (slots.controls['invoiceDate'].touched ||
+                    slots.controls['invoiceDate'].dirty)
+                "
+                class="p-error"
+                ><strong>Invoice Date is Required !</strong></small
+              >
+            </div>
+          </form>
+
+        </p-panel>
         <p-panel header="Personal Details" [toggleable]="true">
           <form [formGroup]="addUser">
             <div class="row">
+            
               <div class="col-lg-4 col-md-6 col-sm-12 col-12">
                 <span for="name" class="form__lable">Profile Pic</span>
      
@@ -30,6 +63,33 @@
                   <input   type="file"  (change)="handleFileInput($event)" name="profile" placeholder="">
                 
                 </label>              
+            </div>
+
+            <div class="col-lg-4 col-md-6 col-sm-12 col-12 mt-3">
+              <span>Reg No </span>
+              <input
+                class="form-control"
+                formControlName="regNo"
+                [class]="
+                  addUser.controls['regNo'].invalid &&
+                  (addUser.controls['regNo'].touched ||
+                    addUser.controls['regNo'].dirty)
+                    ? 'is-invalid'
+                    : ''
+                "
+                type="text"
+                id="addUser.regNo"
+                placeholder="regNo"
+              />
+              <small
+                *ngIf="
+                  addUser.controls['regNo'].invalid &&
+                  (addUser.controls['regNo'].touched ||
+                    addUser.controls['regNo'].dirty)
+                "
+                class="p-error"
+                ><strong>Reg No is Required !</strong></small
+              >
             </div>
               <div class="col-lg-4 col-md-6 col-sm-12 col-12 mt-3">
                 <span>Full Name <span style="color: red;">(*)</span></span>

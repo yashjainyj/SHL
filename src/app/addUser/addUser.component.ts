@@ -18,9 +18,12 @@ export class AddUserComponent implements OnInit {
   fileToUpload: File | null = null;
 
   constructor(public app:AppService,private location: Location,private messageService:MessageService) { }
-
+  invoiceandRegNo:any={}
   ngOnInit() {
+   
+
     this.addUser = new FormGroup({
+      regNo:new FormControl(null,Validators.required),
       image:new FormControl(null),
       name:new FormControl(null,Validators.required),
       email:new FormControl(null),
@@ -32,6 +35,7 @@ export class AddUserComponent implements OnInit {
       dob:new FormControl(null,Validators.required),
       
     })
+   
     this.slots = new FormGroup({
       startDate:new FormControl(null,Validators.required),
       endDate:new FormControl(null,Validators.required),
@@ -40,12 +44,18 @@ export class AddUserComponent implements OnInit {
       description:new FormControl(null),
       amount:new FormControl(null,Validators.required),
       // invoiceNo:new FormControl(null,Validators.required),
-      // invoiceDate:new FormControl(null,Validators.required),
+      invoiceDate:new FormControl(null,Validators.required),
       dueAmount:new FormControl(null,Validators.required),
       enrollmentAmount:new FormControl(0,Validators.required),
       discount:new FormControl(0,Validators.required),
       paidAmount:new FormControl(null,Validators.required),
       isActive:new FormControl("ACTIVE")     
+    })
+     this.app.getInvoiceAndReg().subscribe((res)=>{
+      this.invoiceandRegNo=res
+      this.addUser.patchValue({
+        regNo: +this.invoiceandRegNo['regNo'] +1
+      })
     })
   }
   uploadedPath=''
@@ -86,13 +96,14 @@ export class AddUserComponent implements OnInit {
   }
 
   onSubmit(){
-    this.app.getInvoiceAndReg().subscribe((res)=>{
+    // this.app.getInvoiceAndReg().subscribe((res)=>{
     this.change()
     // console.log(new Date());
     
       let data = {
         role:'student',
-        regNo:res['regNo']+1,
+        // regNo:res['regNo']+1,
+        regNo:this.addUser.get('regNo')?.value,
         image:this.uploadedPath,
         name:this.addUser.get('name')?.value,
         password:(this.addUser.get('phone')?.value).toString(),
@@ -104,7 +115,7 @@ export class AddUserComponent implements OnInit {
         fatherName:this.addUser.get('fatherName')?.value,
         phone:this.addUser.get('phone')?.value,
         slots:{
-          invoiceNo:res['invoiceNo']+1,
+          invoiceNo:this.invoiceandRegNo['invoiceNo']+1,
           // invoiceDate:new Date().toISOString(),
           startDate: this.slots.get('startDate')?.value,
           amount: this.slots.get('amount')?.value,
@@ -126,7 +137,7 @@ export class AddUserComponent implements OnInit {
           this.messageService.add({
             severity: 'success',
             summary: 'Successfully Added',
-            detail: 'Reg No. :'+  res['regNo']+1,
+            detail: 'Reg No. :'+  this.addUser.get('regNo')?.value,
           });
           this.onBackPress()
         }
@@ -134,12 +145,12 @@ export class AddUserComponent implements OnInit {
           this.messageService.add({
             severity: 'error',
             summary: 'Error',
-            detail: res['message'],
+            detail: res11['message'],
           });
         }
      
       })
-    })
+    // })
   
   }
 }
