@@ -45,6 +45,7 @@ import { StaffManageComponent } from './staff-manage/staff-manage.component';
 import { PaymentPageComponent } from './payment-page/payment-page.component';
 import { WebsiteManageComponent } from './website-manage/website-manage.component';
 import { SearchPipe } from './pipe/Search.pipe';
+import { RouterModule } from '@angular/router';
 @NgModule({
   declarations: [						
     AppComponent,
@@ -65,6 +66,7 @@ import { SearchPipe } from './pipe/Search.pipe';
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
+    // RouterModule.forRoot(AppRoutingModule, {useHash: true}),
     PanelModule,
     PaginatorModule,
     GalleriaModule,

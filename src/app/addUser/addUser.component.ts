@@ -45,7 +45,7 @@ export class AddUserComponent implements OnInit {
       amount:new FormControl(null,Validators.required),
       // invoiceNo:new FormControl(null,Validators.required),
       invoiceDate:new FormControl(null,Validators.required),
-      dueAmount:new FormControl(null,Validators.required),
+      dueAmount:new FormControl(0,Validators.required),
       enrollmentAmount:new FormControl(0,Validators.required),
       discount:new FormControl(0,Validators.required),
       paidAmount:new FormControl(null,Validators.required),

@@ -78,7 +78,7 @@ onBackPress(){
     this.count=0
     this.studentsDetail=[]
     this.minDate = new Date();
-    this.app.getActive(1, 160 ).subscribe((res) => {
+    this.app.getActive(1, 200 ).subscribe((res) => {
       this.studentsData = res['user'];
       console.log(this.studentsData);
       
@@ -128,7 +128,7 @@ onBackPress(){
        this.seat[index].isbooked=true
       }
     });
-      for (let index = 1; index <= 160; index++) {
+      for (let index = 1; index <= 200; index++) {
       let d={
         seat_number:index,
         isbooked:false,
