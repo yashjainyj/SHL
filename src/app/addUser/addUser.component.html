@@ -69,6 +69,7 @@
               <span>Reg No </span>
               <input
                 class="form-control"
+                (change)="checkRegNoIsExist($event)"
                 formControlName="regNo"
                 [class]="
                   addUser.controls['regNo'].invalid &&

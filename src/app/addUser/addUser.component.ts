@@ -76,6 +76,24 @@ export class AddUserComponent implements OnInit {
  
     
 }
+checkRegNoIsExist(event:any){
+  console.log(event.target.value);
+  let data ={
+    regNo:event.target.value
+  }
+  this.app.checkRegNoIsExist(data).subscribe((res:any)=>{
+    if(res.message==true){
+      this.messageService.add({
+        severity: 'error',
+        summary: 'Error',
+        detail: ' Registration No. '+ event.target.value  +' is Already Registered',
+      });
+      this.addUser.patchValue({
+        regNo:+this.invoiceandRegNo['regNo']+1
+      })
+    }
+  })
+}
   slotArray=[]
   change(){
     this.slotArray=[]

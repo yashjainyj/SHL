@@ -48,6 +48,9 @@ editUser(data){
 updateSlot(data){
   return this.http.post(this.url+'user/updateslot',data)
 }
+checkRegNoIsExist(data){
+  return this.http.post(this.url+'user/checkRegNoIsExist',data)
+}
 updateStaff(data){
   return this.http.post(this.url+'user/updateStaff',data)
 }
