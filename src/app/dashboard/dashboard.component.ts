@@ -261,6 +261,13 @@ export class DashboardComponent implements OnInit {
     this.list[index].selected = true;
     this.list[index].count = count;
     this.loading = false;
+
+    this.studentsData['docs'].forEach((element,index) => {
+        this.studentsData['docs'][index]['regNo'] = parseInt(  this.studentsData['docs'][index]['regNo'] )
+        // console.log(  this.studentsData['docs'][index]['regNo'] );
+        
+    });
+    
   }
   filter(index) {
     var name = this.list[index].title;

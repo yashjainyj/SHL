@@ -398,6 +398,7 @@
 
           <p-table  (onPage)="paginate($event)" styleClass="p-datatable-sm p-datatable-striped" [scrollable]="true"  scrollDirection="both" #dt1 [value]="studentsData['docs']"  dataKey="regNo" [paginator]="false" [rows]="1" [showCurrentPageReport]="true" 
           currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[1,25,50]"   responsiveLayout="scroll"
+          [multiSortMeta]="[{field: 'regNo', order: -1}]"sortMode="multiple" 
           [globalFilterFields]="['name','regNo','email','phone']">
           <ng-template pTemplate="caption">
             <div class="flex">
@@ -414,10 +415,10 @@
                     <th    pFrozenColumn style="width: 4rem ;background: sandybrown !important;color: black !important;"></th>
                     <th    pFrozenColumn style="width: 5rem;flex-wrap:wrap;background: sandybrown !important;color: black !important;" pSortableColumn="regNo">RegNo <p-sortIcon field="regNo"></p-sortIcon></th>
 
-                    <th style="background: sandybrown !important;color: black !important;"  pFrozenColumn pSortableColumn="name">Name <p-sortIcon field="name"></p-sortIcon></th>
+                    <th style="background: sandybrown !important;color: black !important;"  pFrozenColumn >Name </th>
                     <th>Image</th>
                     <!-- <th pSortableColumn="email">Email <p-sortIcon field="email"></p-sortIcon></th> -->
-                    <th pSortableColumn="phone">Phone <p-sortIcon field="phone"></p-sortIcon></th>
+                    <th >Phone </th>
                     <th >Start Date </th>
                     <th >End Date </th>
                     <th >Slot Timing </th>
