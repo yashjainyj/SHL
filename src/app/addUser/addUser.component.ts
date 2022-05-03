@@ -42,6 +42,8 @@ export class AddUserComponent implements OnInit {
       dueDate:new FormControl(null),
       paymentMode:new FormControl(null),
       description:new FormControl(null),
+      shiftAmount:new FormControl(null,Validators.required),
+
       amount:new FormControl(null,Validators.required),
       // invoiceNo:new FormControl(null,Validators.required),
       invoiceDate:new FormControl(null,Validators.required),
@@ -178,4 +180,23 @@ this.loading=false
     // })
   
   }
+  dueAmountCalculation(){
+    this.slots.patchValue({
+      dueAmount: +this.slots.get('amount')?.value - +this.slots.get('paidAmount')?.value
+    })
+  }
+  amountCalculation(){
+    if(this.slots.get('enrollmentAmount')?.value!=0||this.slots.get('discount')?.value!=0){
+      this.slots.patchValue({
+         amount: +this.slots.get('shiftAmount')?.value +this.slots.get('enrollmentAmount')?.value - +this.slots.get('discount')?.value,
+      })
+    }
+    else{
+      this.slots.patchValue({
+        amount: this.slots.get('shiftAmount')?.value,
+     })
+    }
+    this.dueAmountCalculation()
+  }
+
 }

@@ -351,7 +351,7 @@
                 </div>
               <div></div>
                 <!-- <button (click)="change()">check</button> -->
-              <div class="col-lg-4 col-md-6 col-sm-12 col-12 mt-3">
+              <div class="col-lg-2 col-md-6 col-sm-12 col-12 mt-3">
                 <span>Start Date <span style="color: red;">(*)</span></span>
                 <input
                   required
@@ -378,7 +378,7 @@
                   ><strong>Start Date is Required !</strong></small
                 >
               </div>
-              <div class="col-lg-4 col-md-6 col-sm-12 col-12 mt-3">
+              <div class="col-lg-2 col-md-6 col-sm-12 col-12 mt-3">
                 <span>End Date <span style="color: red;">(*)</span></span>
 
                 <input
@@ -407,14 +407,103 @@
                   ><strong>End Date is Required !</strong></small
                 >
               </div>
-          
-              <div class="col-lg-4 col-md-6 col-sm-12 col-12 mt-3">
-                <span>Amount <span style="color: red;">(*)</span></span>
+              <div class="col-lg-2 col-md-6 col-sm-12 col-12 mt-3">
+                <span>Shift Amount <span style="color: red;">(*)</span></span>
+
+                <input
+                  required
+                  class="form-control"
+                  formControlName="shiftAmount"
+                  (change)="amountCalculation()"
+                  [class]="
+                    slots.controls['shiftAmount'].invalid &&
+                    (slots.controls['shiftAmount'].touched ||
+                      slots.controls['shiftAmount'].dirty)
+                      ? 'is-invalid'
+                      : ''
+                  "
+                  onkeydown="return event.keyCode!==69"
+                  type="number"
+                  id="slots.shiftAmount"
+                  placeholder="Enter shift Amount (*)"
+                />
+                <small
+                  *ngIf="
+                    slots.controls['shiftAmount'].invalid &&
+                    (slots.controls['shiftAmount'].touched ||
+                      slots.controls['shiftAmount'].dirty)
+                  "
+                  class="p-error"
+                  ><strong><b>Shift Amount is Required !</b></strong></small
+                >
+              </div>
+
+              <div class="col-lg-2 col-md-6 col-sm-12 col-12 mt-3">
+                <span>Enrollment Amount <span style="color: red;">(*)</span></span>
+
+                <input
+                  class="form-control"
+                  formControlName="enrollmentAmount"
+                  type="number"
+                  (change)="amountCalculation()"
+                  [class]="
+                  slots.controls['enrollmentAmount'].invalid &&
+                  (slots.controls['enrollmentAmount'].touched ||
+                    slots.controls['enrollmentAmount'].dirty)
+                    ? 'is-invalid'
+                    : ''
+                "
+                  onkeydown="return event.keyCode!==69"
+                  id="slots.enrollmentAmount"
+                  placeholder="Enrollment Amount"
+                />
+                <small
+                  *ngIf="
+                    slots.controls['enrollmentAmount'].invalid &&
+                    (slots.controls['enrollmentAmount'].touched ||
+                      slots.controls['enrollmentAmount'].dirty)
+                  "
+                  class="p-error"
+                  ><strong>Enrollment Amount is Required !</strong></small
+                >
+              </div>
+              <div class="col-lg-2 col-md-6 col-sm-12 col-12 mt-3">
+                <span>Discount <span style="color: red;">(*)</span></span>
+
+                <input
+                  class="form-control"
+                  formControlName="discount"
+                  (change)="amountCalculation()"
+                  type="number"
+                  [class]="
+                  slots.controls['discount'].invalid &&
+                  (slots.controls['discount'].touched ||
+                    slots.controls['discount'].dirty)
+                    ? 'is-invalid'
+                    : ''
+                "
+                  onkeydown="return event.keyCode!==69"
+                  id="slots.discount"
+                  placeholder="Discount"
+                />
+                <small
+                  *ngIf="
+                    slots.controls['discount'].invalid &&
+                    (slots.controls['discount'].touched ||
+                      slots.controls['discount'].dirty)
+                  "
+                  class="p-error"
+                  ><strong>Discount is Required !</strong></small
+                >
+              </div>
+              <div class="col-lg-2 col-md-6 col-sm-12 col-12 mt-3">
+                <span>Total Amount <span style="color: red;">(*)</span></span>
 
                 <input
                   required
                   class="form-control"
                   formControlName="amount"
+                  (change)="dueAmountCalculation()"
                   [class]="
                     slots.controls['amount'].invalid &&
                     (slots.controls['amount'].touched ||
@@ -437,7 +526,38 @@
                   ><strong><b>Amount is Required !</b></strong></small
                 >
               </div>
-              <div class="col-lg-4 col-md-6 col-sm-12 col-12 mt-3">
+
+              <div class="col-lg-2 col-md-6 col-sm-12 col-12 mt-3">
+                <span>Paid Amount <span style="color: red;">(*)</span></span>
+
+                <input
+                  class="form-control"
+                  formControlName="paidAmount"
+                  (change)="dueAmountCalculation()"
+                  type="number"
+                  [class]="
+                  slots.controls['paidAmount'].invalid &&
+                  (slots.controls['paidAmount'].touched ||
+                    slots.controls['paidAmount'].dirty)
+                    ? 'is-invalid'
+                    : ''
+                "
+                  onkeydown="return event.keyCode!==69"
+                  id="slots.dueAmount"
+                  placeholder="Paid Amount"
+                />
+                <small
+                  *ngIf="
+                    slots.controls['paidAmount'].invalid &&
+                    (slots.controls['paidAmount'].touched ||
+                      slots.controls['paidAmount'].dirty)
+                  "
+                  class="p-error"
+                  ><strong>Paid Amount is Required !</strong></small
+                >
+              </div>
+           
+              <div class="col-lg-2 col-md-6 col-sm-12 col-12 mt-3">
                 <span>Due Amount <span style="color: red;">(*)</span></span>
 
                 <input
@@ -465,7 +585,7 @@
                   ><strong>Due Amount is Required !</strong></small
                 >
               </div>
-              <div class="col-lg-4 col-md-6 col-sm-12 col-12 mt-3">
+              <div class="col-lg-2 col-md-6 col-sm-12 col-12 mt-3">
                 <span>Due Date <span style="color: red;">(*)</span></span>
 
                 <input
@@ -494,90 +614,8 @@
                   ><strong>Due Date is Required !</strong></small
                 >
               </div>
-              <div class="col-lg-4 col-md-6 col-sm-12 col-12 mt-3">
-                <span>Paid Amount <span style="color: red;">(*)</span></span>
-
-                <input
-                  class="form-control"
-                  formControlName="paidAmount"
-                  type="number"
-                  [class]="
-                  slots.controls['paidAmount'].invalid &&
-                  (slots.controls['paidAmount'].touched ||
-                    slots.controls['paidAmount'].dirty)
-                    ? 'is-invalid'
-                    : ''
-                "
-                  onkeydown="return event.keyCode!==69"
-                  id="slots.dueAmount"
-                  placeholder="Paid Amount"
-                />
-                <small
-                  *ngIf="
-                    slots.controls['paidAmount'].invalid &&
-                    (slots.controls['paidAmount'].touched ||
-                      slots.controls['paidAmount'].dirty)
-                  "
-                  class="p-error"
-                  ><strong>Paid Amount is Required !</strong></small
-                >
-              </div>
-              <div class="col-lg-2 col-md-6 col-sm-12 col-12 mt-3">
-                <span>Discount <span style="color: red;">(*)</span></span>
-
-                <input
-                  class="form-control"
-                  formControlName="discount"
-                  type="number"
-                  [class]="
-                  slots.controls['discount'].invalid &&
-                  (slots.controls['discount'].touched ||
-                    slots.controls['discount'].dirty)
-                    ? 'is-invalid'
-                    : ''
-                "
-                  onkeydown="return event.keyCode!==69"
-                  id="slots.discount"
-                  placeholder="Discount"
-                />
-                <small
-                  *ngIf="
-                    slots.controls['discount'].invalid &&
-                    (slots.controls['discount'].touched ||
-                      slots.controls['discount'].dirty)
-                  "
-                  class="p-error"
-                  ><strong>Discount is Required !</strong></small
-                >
-              </div>
-              <div class="col-lg-2 col-md-6 col-sm-12 col-12 mt-3">
-                <span>Enrollment Amount <span style="color: red;">(*)</span></span>
-
-                <input
-                  class="form-control"
-                  formControlName="enrollmentAmount"
-                  type="number"
-                  [class]="
-                  slots.controls['enrollmentAmount'].invalid &&
-                  (slots.controls['enrollmentAmount'].touched ||
-                    slots.controls['enrollmentAmount'].dirty)
-                    ? 'is-invalid'
-                    : ''
-                "
-                  onkeydown="return event.keyCode!==69"
-                  id="slots.enrollmentAmount"
-                  placeholder="Enrollment Amount"
-                />
-                <small
-                  *ngIf="
-                    slots.controls['enrollmentAmount'].invalid &&
-                    (slots.controls['enrollmentAmount'].touched ||
-                      slots.controls['enrollmentAmount'].dirty)
-                  "
-                  class="p-error"
-                  ><strong>Enrollment Amount is Required !</strong></small
-                >
-              </div>
+              
+            
               <div class="col-lg-2 col-md-6 col-sm-12 col-12 mt-3">
                 <span>Select Payment Mode <span style="color: red;">(*)</span></span>                           
                 <select  formControlName='paymentMode'  class="custom-select">
