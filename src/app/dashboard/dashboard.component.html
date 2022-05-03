@@ -460,6 +460,7 @@
                     />
                     <img *ngIf="product?.image"
                     [alt]="product?.name"
+                    onerror="this.src='../../assets/libraryImage/secondHomeLibrary.jpeg';" 
                     src="{{url}}{{product?.image}}"
                     class="cssui-usercard__avatar"
                     alt="Avatar"
