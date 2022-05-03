@@ -534,21 +534,21 @@
             </ng-template>
             <ng-template pTemplate="rowexpansion" let-product>
                 <tr  >
-                    <td  style="width:100%">
+                    <td style="width:100%" colspan="10">
                         <div  class="p-2">
                             <p-table  [value]="product?.slots"  dataKey="invoiceNo">
                                 <ng-template pTemplate="header">
                                     <tr>
-                                        <th  pSortableColumn="invoiceNo">Invoice No <p-sortIcon field="invoiceNo"></p-sortIcon></th>
-                                        <th pSortableColumn="invoiceDate">Invoice Date <p-sortIcon field="invoiceDate"></p-sortIcon></th>
-                                        <th pSortableColumn="startDate">Start Date <p-sortIcon field="startDate"></p-sortIcon></th>
-                                        <th pSortableColumn="endDate">End Date <p-sortIcon field="endDate"></p-sortIcon></th>
-                                        <th pSortableColumn="slotTiming">Slot Timing <p-sortIcon field="slotTiming"></p-sortIcon></th>
-                                        <th pSortableColumn="amount">Amount <p-sortIcon field="amount"></p-sortIcon></th>
-                                        <th pSortableColumn="paidAmount">Paid Amount <p-sortIcon field="paidAmount"></p-sortIcon></th>
-                                        <th pSortableColumn="dueAmount">Due Amount <p-sortIcon field="dueAmount"></p-sortIcon></th>
-                                        <th pSortableColumn="discount">Discount <p-sortIcon field="discount"></p-sortIcon></th>
-                                        <th >Description </th>
+                                        <th style="width: 7rem;"   pSortableColumn="invoiceNo">Invoice No <p-sortIcon field="invoiceNo"></p-sortIcon></th>
+                                        <th style="width: 7rem;"  pSortableColumn="invoiceDate">Invoice Date <p-sortIcon field="invoiceDate"></p-sortIcon></th>
+                                        <th style="width: 7rem;"  pSortableColumn="startDate">Start Date <p-sortIcon field="startDate"></p-sortIcon></th>
+                                        <th style="width: 7rem;"  pSortableColumn="endDate">End Date <p-sortIcon field="endDate"></p-sortIcon></th>
+                                        <th style="width: 7rem;"  pSortableColumn="slotTiming">Slot Timing <p-sortIcon field="slotTiming"></p-sortIcon></th>
+                                        <th style="width: 7rem;"  pSortableColumn="amount">Amount <p-sortIcon field="amount"></p-sortIcon></th>
+                                        <th style="width: 7rem;"  pSortableColumn="paidAmount">Paid Amount <p-sortIcon field="paidAmount"></p-sortIcon></th>
+                                        <th style="width: 7rem;"  pSortableColumn="dueAmount">Due Amount <p-sortIcon field="dueAmount"></p-sortIcon></th>
+                                        <th style="width: 7rem;"  pSortableColumn="discount">Discount <p-sortIcon field="discount"></p-sortIcon></th>
+                                        <th style="width: 7rem;"  >Description </th>
                                         <!-- <th pSortableColumn="status">Status <p-sortIcon field="status"></p-sortIcon></th> -->
                                        
                                         <!-- <th style="width: 4rem"></th> -->
@@ -556,16 +556,16 @@
                                 </ng-template>
                                 <ng-template pTemplate="body" let-order>
                                     <tr>
-                                        <td style="cursor: pointer;" [routerLink]="['/invoiceDetail',product?._id,order?._id]" routerLinkActive="router-link-active"><span class="p-column-title">Invoice No</span>{{order?.invoiceNo}}</td>
-                                        <td><span class="p-column-title">Invoice Date</span>{{order?.invoiceDate|date:'dd/MM/yyyy'}}</td>
-                                        <td><span class="p-column-title">start Date</span>{{order?.startDate|date:'dd/MM/yyyy'}}</td>
-                                        <td><span class="p-column-title">End Date</span>{{order?.endDate|date:'dd/MM/yyyy'}}</td>
-                                        <td><span class="p-column-title">Timing</span>{{order?.slotTiming}}</td>
-                                        <td><span class="p-column-title">Amount</span>{{order?.amount | currency:'INR'}}</td>
-                                        <td><span class="p-column-title">Paid Amount</span>{{order?.paidAmount | currency:'INR'}}</td>
-                                        <td><span class="p-column-title">Due Amount</span>{{order?.dueAmount | currency:'INR'}}</td>
-                                        <td><span class="p-column-title">Discount</span>{{order?.discount | currency:'INR'}}</td>
-                                        <td><span class="p-column-title">Description</span>{{order?.description }}</td>
+                                        <td style="width: 7rem;cursor: pointer;"  [routerLink]="['/invoiceDetail',product?._id,order?._id]" routerLinkActive="router-link-active"><span class="p-column-title">Invoice No</span>{{order?.invoiceNo}}</td>
+                                        <td style="width: 7rem;" ><span class="p-column-title">Invoice Date</span>{{order?.invoiceDate|date:'dd/MM/yyyy'}}</td>
+                                        <td style="width: 7rem;" ><span class="p-column-title">start Date</span>{{order?.startDate|date:'dd/MM/yyyy'}}</td>
+                                        <td style="width: 7rem;" ><span class="p-column-title">End Date</span>{{order?.endDate|date:'dd/MM/yyyy'}}</td>
+                                        <td style="width: 7rem;" ><span class="p-column-title">Timing</span>{{order?.slotTiming}}</td>
+                                        <td style="width: 7rem;" ><span class="p-column-title">Amount</span>{{order?.amount | currency:'INR'}}</td>
+                                        <td style="width: 7rem;" ><span class="p-column-title">Paid Amount</span>{{order?.paidAmount | currency:'INR'}}</td>
+                                        <td style="width: 7rem;" ><span class="p-column-title">Due Amount</span>{{order?.dueAmount | currency:'INR'}}</td>
+                                        <td style="width: 7rem;" ><span class="p-column-title">Discount</span>{{order?.discount | currency:'INR'}}</td>
+                                        <td style="width: 7rem;" ><span class="p-column-title">Description</span>{{order?.description }}</td>
                                         <!-- <td><span [class]="'order-badge order-' + order?.status.toLowerCase()">{{order?.status}}</span></td> -->
                                         <!-- <td><p-button type="button" icon="pi pi-search"></p-button></td> -->
                                     </tr>
