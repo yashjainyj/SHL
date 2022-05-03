@@ -189,7 +189,7 @@ phone: "9630288239"
 regNo: "1"
 role: "student" -->
 <div class="container-fluid">
-  <p-table   #dt1 [value]="filteredInvoice"  dataKey="regNo" [paginator]="true" [rows]="10" [showCurrentPageReport]="true" 
+  <p-table   styleClass="p-datatable-sm p-datatable-striped" #dt1 [value]="filteredInvoice"  dataKey="regNo" [paginator]="true" [rows]="10" [showCurrentPageReport]="true" 
   currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[10,25,50]"   responsiveLayout="stack"
   [globalFilterFields]="['name','regNo','email','phone']">
   <ng-template pTemplate="caption">
@@ -207,11 +207,11 @@ role: "student" -->
             <th style="width: 3rem"></th>
             <th pSortableColumn="name">Name <p-sortIcon field="name"></p-sortIcon></th>
             <th>Image</th>
-            <th pSortableColumn="email">Email <p-sortIcon field="email"></p-sortIcon></th>
+            <!-- <th pSortableColumn="email">Email <p-sortIcon field="email"></p-sortIcon></th> -->
             <th pSortableColumn="phone">Phone <p-sortIcon field="phone"></p-sortIcon></th>
             <th pSortableColumn="regNo">RegNo <p-sortIcon field="regNo"></p-sortIcon></th>
             <th pSortableColumn="dob">DOB <p-sortIcon field="dob"></p-sortIcon></th>
-            <th pSortableColumn="address">Address <p-sortIcon field="address"></p-sortIcon></th>
+            <!-- <th pSortableColumn="address">Address <p-sortIcon field="address"></p-sortIcon></th> -->
             <th >
               <!-- <p-columnFilter field="slots.isActive" matchMode="equals" display="menu">
               <ng-template pTemplate="filter" let-value let-filter="filterCallback">
@@ -247,11 +247,11 @@ role: "student" -->
             alt="Avatar"
           />
             </td>
-            <td><span class="p-column-title">Email</span>{{product?.email }}</td>
+            <!-- <td><span class="p-column-title">Email</span>{{product?.email }}</td> -->
             <td><span class="p-column-title">Phone No.</span>{{product?.phone}}</td>
             <td><span class="p-column-title">Reg No.</span>{{product?.regNo}}</td>
             <td><span class="p-column-title">DOB</span>{{product?.dob |date:'dd/MM/yyyy'}}</td>
-            <td><span class="p-column-title">Address</span>{{product?.address}}</td>
+            <!-- <td><span class="p-column-title">Address</span>{{product?.address}}</td> -->
             <td><span class="p-column-title">Active</span>{{product?.slots[0].isActive}}</td>
             <!-- <td><p-rating [ngModel]="product?.rating" [readonly]="true" [cancel]="false"></p-rating></td> -->
             <!-- <td><span [class]="'product-badge status-' + product?.inventoryStatus.toLowerCase()">{{product?.inventoryStatus}}</span></td> -->

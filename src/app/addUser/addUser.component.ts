@@ -112,8 +112,9 @@ checkRegNoIsExist(event:any){
   onBackPress(){
     this.location.back();
   }
-
+  loading=false
   onSubmit(){
+this.loading=true
     // this.app.getInvoiceAndReg().subscribe((res)=>{
     this.change()
     // console.log(new Date());
@@ -152,14 +153,20 @@ checkRegNoIsExist(event:any){
       
       this.app.addUser(data).subscribe((res11)=>{
         if(res11['message']=='Added Successfully'){
+this.loading=false
+
           this.messageService.add({
             severity: 'success',
             summary: 'Successfully Added',
             detail: 'Reg No. :'+  this.addUser.get('regNo')?.value,
           });
+         setTimeout(() => {
           this.onBackPress()
+         }, 2000);
         }
         else{
+this.loading=false
+
           this.messageService.add({
             severity: 'error',
             summary: 'Error',

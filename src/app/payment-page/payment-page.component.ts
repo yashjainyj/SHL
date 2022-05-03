@@ -63,10 +63,10 @@ formatAMPM = (date) => {
       this.monthDueInvoice=[]
       this.monthPaidInvoice=[]
       this.monthInvoices=[]
-      this.totalFilterAmount=0
-      this.overAllInvoiceCount=0
-      this.totalpaidFilterAmount=0
-      this.totaldueFilterAmount=0
+      this.totalFilterAmount=1
+      this.overAllInvoiceCount=1
+      this.totalpaidFilterAmount=1
+      this.totaldueFilterAmount=1
       let date  = new Date();
       this.filteredInvoice = res.user
       this.invoices = res.user

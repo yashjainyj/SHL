@@ -413,7 +413,7 @@
           <ng-template pTemplate="header">
                 <tr>
                     <th    pFrozenColumn style="width: 4rem ;background: sandybrown !important;color: black !important;"></th>
-                    <th    pFrozenColumn style="width: 5rem;flex-wrap:wrap;background: sandybrown !important;color: black !important;" pSortableColumn="regNo">RegNo <p-sortIcon field="regNo"></p-sortIcon></th>
+                    <th    pFrozenColumn style="width: 4rem;flex-wrap:wrap;background: sandybrown !important;color: black !important;" pSortableColumn="regNo">RegNo <p-sortIcon field="regNo"></p-sortIcon></th>
 
                     <th style="background: sandybrown !important;color: black !important;"  pFrozenColumn >Name </th>
                     <th>Image</th>
@@ -446,14 +446,15 @@
                     <td style="background: sandybrown !important;color: black !important;"  pFrozenColumn style="width: 4rem">
                         <button  style="color: black;" type="button" pButton pRipple [pRowToggler]="product" class="p-button-text p-button-rounded p-button-plain" [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></button>
                     </td>
-                    <td  style="background: sandybrown !important;color: black !important;"  pFrozenColumn style="width: 5rem"><span class="p-column-title">Reg No.</span>{{product?.regNo}}</td>
+                    <td  style="background: sandybrown !important;color: black !important;"  pFrozenColumn style="width: 4rem"><span class="p-column-title">Reg No.</span>{{product?.regNo}}</td>
 
                     <td pFrozenColumn><span class="p-column-title">Name</span>{{product?.name}}</td>
                     <td><span class="p-column-title">Image</span>
                       <!-- <img [src]="url + product?.image" [alt]="product?.name" width="100" class="shadow-4" /> -->
                       <img *ngIf="!product?.image"
-                      src="../../assets/libraryImage/logo.png"
+                      src="../../assets/libraryImage/secondHomeLibrary.jpeg"
                       [alt]="product?.name"
+
                       class="cssui-usercard__avatar"
                       alt="Avatar"
                     />
@@ -532,9 +533,9 @@
                 </tr>
             </ng-template>
             <ng-template pTemplate="rowexpansion" let-product>
-                <tr>
-                    <td colspan="12">
-                        <div class="p-3">
+                <tr  >
+                    <td  style="width:100%">
+                        <div  class="p-2">
                             <p-table  [value]="product?.slots"  dataKey="invoiceNo">
                                 <ng-template pTemplate="header">
                                     <tr>
@@ -547,7 +548,7 @@
                                         <th pSortableColumn="paidAmount">Paid Amount <p-sortIcon field="paidAmount"></p-sortIcon></th>
                                         <th pSortableColumn="dueAmount">Due Amount <p-sortIcon field="dueAmount"></p-sortIcon></th>
                                         <th pSortableColumn="discount">Discount <p-sortIcon field="discount"></p-sortIcon></th>
-                                        <th pSortableColumn="description">Description <p-sortIcon field="description"></p-sortIcon></th>
+                                        <th >Description </th>
                                         <!-- <th pSortableColumn="status">Status <p-sortIcon field="status"></p-sortIcon></th> -->
                                        
                                         <!-- <th style="width: 4rem"></th> -->

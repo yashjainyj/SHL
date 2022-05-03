@@ -377,8 +377,8 @@ h6 {
   box-sizing: border-box;
   margin-right: 4%;
   background: white;
-  width: 5rem;
-  height: 5rem;
+  width: 4rem;
+  height: 4rem;
   z-index: 2;
   transition: 1s ease-in-out;
 }
@@ -663,11 +663,11 @@ a {
     text-shadow: none !important;
   }
   th{
-    width:120px;
+    width:7.6%;
     
   }
   td{
-    width:120px;
+    width:7.6%;
 }
 ::ng-deep .p-datatable-scrollable .p-frozen-column {
   position: sticky;

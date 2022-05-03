@@ -1,4 +1,10 @@
-<section #background class="background">
+<section *ngIf="loading" id="loader">
+  <div class="content_loader">
+    <h2>SHL</h2>
+    <h2>SHL</h2>
+  </div>
+</section>
+<section *ngIf="!loading" #background class="background">
   <ul class="box_area">
     <li></li>
     <li></li>
