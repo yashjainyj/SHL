@@ -396,7 +396,7 @@
 
 
 
-          <p-table  (onPage)="paginate($event)" styleClass="p-datatable-sm p-datatable-striped" [scrollable]="true"  scrollDirection="both" #dt1 [value]="studentsData['docs']"  dataKey="regNo" [paginator]="false" [rows]="1" [showCurrentPageReport]="true" 
+          <p-table  styleClass="p-datatable-sm p-datatable-striped" [scrollable]="true"  scrollDirection="both" #dt1 [value]="studentsData['docs']"  dataKey="regNo" [paginator]="false" [rows]="1" [showCurrentPageReport]="true" 
           currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[1,25,50]"   responsiveLayout="scroll"
           [multiSortMeta]="[{field: 'regNo', order: -1}]"sortMode="multiple" 
           [globalFilterFields]="['name','regNo','email','phone']">
@@ -611,7 +611,7 @@
                 <option value="100">100</option>
               </select>
               <button
-                [disabled]="!studentsData?.hasNextPage"
+              [disabled]="!studentsData?.hasNextPage"
                 (click)="nextPage()"
                 class="btn menuBtn"
               >

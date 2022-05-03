@@ -87,16 +87,16 @@ export class DashboardComponent implements OnInit {
 
         // console.log(this.studentsData);
         this.list = [
-          { icon: '', title: 'Total Members', count: '', selected: true },
+          { icon: '', title: 'Total Members', count: '', selected: true,text:'all' },
           { icon: '', title: 'Live Members', count: 2, selected: false },
-          { icon: '', title: 'Expire Members', count: 3, selected: false },
-          { icon: '', title: 'Expiring(1-3)', count: 4, selected: false },
+          { icon: '', title: 'Expire Members', count: 3, selected: false,text:'getExpire' },
+          { icon: '', title: 'Expiring(1-3)', count: 4, selected: false ,text:'ExpireIn3Days' },
           // {icon:'',title:'Expiring(4-7)',count:'2'},
           // {icon:'',title:'Expiring(8-15)',count:'3'},
           // {icon:'',title:'Total Collection',count:this.totalAmount},
           // {icon:'',title:'Total Expense',count:'10'},
-          { icon: '', title: 'Due Amount', count: 4, selected: false },
-          { icon: '', title: 'Birthday', count: 6, selected: false },
+          { icon: '', title: 'Due Amount', count: 4, selected: false,text:'dueAmount' },
+          { icon: '', title: 'Birthday', count: 6, selected: false,text:'birthday' },
         ];
         this.selectedIndexBorder(0, this.studentsData?.totalDocs);
       });
@@ -231,21 +231,27 @@ export class DashboardComponent implements OnInit {
     //event.rows = Number of rows to display in new page limit 
     //event.page = Index of the new page
     //event.pageCount = Total number of pages
-    console.log(event);
-    this.getAllstudent(this.studentsData?.nextPage, 'all');
+    // console.log(event);
+    // this.getAllstudent(this.studentsData?.nextPage, 'all');
     
     // this.getAllstudent(event.first, 'all');
 
 }
   nextPage() {
-    this.getAllstudent(this.studentsData?.nextPage, 'all');
+   let index = this.list.findIndex(x => x.selected ===true)
+   
+    this.getAllstudent(this.studentsData?.nextPage, this.list[index].text);
   }
   previousPage() {
-    this.getAllstudent(this.studentsData?.prevPage, 'all');
+   let index = this.list.findIndex(x => x.selected ===true)
+
+    this.getAllstudent(this.studentsData?.prevPage,  this.list[index].text);
   }
   limitChange() {
     // console.log(this.limit);
-    this.getAllstudent(1, 'all');
+   let index = this.list.findIndex(x => x.selected ===true)
+
+    this.getAllstudent(1, this.list[index].text);
   }
   logout() {
     localStorage.clear();
