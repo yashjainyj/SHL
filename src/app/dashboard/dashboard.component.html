@@ -396,8 +396,8 @@
 
 
 
-          <p-table  styleClass="p-datatable-sm p-datatable-striped" [scrollable]="true"  scrollDirection="both" #dt1 [value]="studentsData['docs']"  dataKey="regNo" [paginator]="false" [rows]="1" [showCurrentPageReport]="true" 
-          currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[1,25,50]"   responsiveLayout="scroll"
+          <p-table  styleClass="p-datatable-sm p-datatable-striped"  #dt1 [value]="studentsData['docs']"  dataKey="regNo" [paginator]="false" [rows]="1" [showCurrentPageReport]="true" 
+          currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[1,25,50]"  responsiveLayout="stack"
           [multiSortMeta]="[{field: 'regNo', order: -1}]"sortMode="multiple" 
           [globalFilterFields]="['name','regNo','email','phone']">
           <ng-template pTemplate="caption">
@@ -412,10 +412,10 @@
         </ng-template> 
           <ng-template pTemplate="header">
                 <tr>
-                    <th    pFrozenColumn style="width: 4rem ;background: sandybrown !important;color: black !important;"></th>
-                    <th    pFrozenColumn style="width: 4rem;flex-wrap:wrap;background: sandybrown !important;color: black !important;" pSortableColumn="regNo">RegNo <p-sortIcon field="regNo"></p-sortIcon></th>
+                    <th    pFrozenColumn style="width: 4rem "></th>
+                    <th    pFrozenColumn style="width: 4rem;flex-wrap:wrap" pSortableColumn="regNo">RegNo <p-sortIcon field="regNo"></p-sortIcon></th>
 
-                    <th style="background: sandybrown !important;color: black !important;"  pFrozenColumn >Name </th>
+                    <th style="width: 9%;"  pFrozenColumn >Name </th>
                     <th>Image</th>
                     <!-- <th pSortableColumn="email">Email <p-sortIcon field="email"></p-sortIcon></th> -->
                     <th >Phone </th>
@@ -437,7 +437,7 @@
                       </ng-template>
                   </p-columnFilter> -->
                   Active</th>
-                  <th style="background: sandybrown !important;color: black !important;" alignFrozen="right"  pFrozenColumn class="">Action</th>
+                  <th  alignFrozen="right"  pFrozenColumn class="">Action</th>
                     <!-- <th pSortableColumn="inventoryStatus">Status <p-sortIcon field="inventoryStatus"></p-sortIcon></th> -->
                 </tr>
             </ng-template>
@@ -448,7 +448,7 @@
                     </td>
                     <td  style="background: sandybrown !important;color: black !important;"  pFrozenColumn style="width: 4rem"><span class="p-column-title">Reg No.</span>{{product?.regNo}}</td>
 
-                    <td pFrozenColumn><span class="p-column-title">Name</span>{{product?.name}}</td>
+                    <td style="width: 9%;" pFrozenColumn><span class="p-column-title">Name</span>{{product?.name}}</td>
                     <td><span class="p-column-title">Image</span>
                       <!-- <img [src]="url + product?.image" [alt]="product?.name" width="100" class="shadow-4" /> -->
                       <img *ngIf="!product?.image"
@@ -474,7 +474,7 @@
                     <td><span class="p-column-title">Paid Amount</span>{{product?.slots[0]?.paidAmount | currency:'INR'}}</td>
                     <td><span class="p-column-title">Due Amount</span>{{product?.slots[0]?.dueAmount | currency:'INR'}}</td>
                     <td><span class="p-column-title">Discount</span>{{product?.slots[0]?.discount | currency:'INR'}}</td>
-                    <td><span class="p-column-title">Active</span>{{product?.slots[0]?.isActive}}</td>
+                    <td><span class="p-column-title">Active</span> <span *ngIf="product?.slots[0]?.isActive=='ACTIVE'" class="badge badge-success">{{product?.slots[0]?.isActive}}</span><span *ngIf="product?.slots[0]?.isActive=='IN-ACTIVE'" class="badge badge-danger">{{product?.slots[0]?.isActive}}</span> </td>
                     <td alignFrozen="right"  pFrozenColumn  class="">
 
                       <a
@@ -483,7 +483,7 @@
                       title="Edit Profile"
                       class="cssui-social cssui-usercard__social"
                     >
-                      <i style="color:black" class="cssui-icon pi pi-user-edit"></i>
+                      <i style="color:sandybrown" class="cssui-icon pi pi-user-edit"></i>
                     </a>
                     <a
                       [routerLink]="['/editslot', 'renew', '',product?._id]"
@@ -498,7 +498,7 @@
                         xmlns="http://www.w3.org/2000/svg"
                         width="25"
                         height="25"
-                        fill="#000"
+                        fill="#f4a460"
                         class="bi bi-arrow-repeat"
                         viewBox="0 0 16 16"
                       >
@@ -518,7 +518,7 @@
                       title="Upgrade Slot"
                       class="cssui-social cssui-usercard__social"
                     >
-                      <i style="color: black;" class="cssui-icon fa fa-edit"></i>
+                      <i style="color: sandybrown;" class="cssui-icon fa fa-edit"></i>
                     </a>
                     <!-- <a
                       href="#0"
