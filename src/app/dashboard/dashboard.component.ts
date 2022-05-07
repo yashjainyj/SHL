@@ -183,7 +183,7 @@ export class DashboardComponent implements OnInit {
                 ele.slotTiming.forEach((element) => {
                   let startTime = new Date(element.split('-')[0]);
                   let endTime = new Date(element.split('-')[1]);
-                  if(element1.slots[0].dueAmount!=0 && i==0 && index==0){
+                  if(element1.slots[0].dueAmount!=0 && i==0 ){
                     docs.push(element1)
                     count++
                   }
