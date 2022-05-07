@@ -64,9 +64,9 @@ formatAMPM = (date) => {
       this.monthPaidInvoice=[]
       this.monthInvoices=[]
       this.totalFilterAmount=1
-      this.overAllInvoiceCount=1
+      this.overAllInvoiceCount=0
       this.totalpaidFilterAmount=1
-      this.totaldueFilterAmount=1
+      this.totaldueFilterAmount=0
       let date  = new Date();
       this.filteredInvoice = res.user
       this.invoices = res.user
@@ -77,7 +77,7 @@ formatAMPM = (date) => {
         let timing = [];
         // console.log(ele.invoiceDate);
         let invoiceDate  = new Date(ele.invoiceDate);
-          this.monthcollectionamount[invoiceDate.getMonth()] = this.monthcollectionamount[invoiceDate.getMonth()] + +ele['amount']
+          this.monthcollectionamount[invoiceDate.getMonth()] = this.monthcollectionamount[invoiceDate.getMonth()] + +ele['paidAmount']
           // console.log(this.monthcollectionamount);
           this.overAllInvoiceCount = this.overAllInvoiceCount + 1
           if(ele['dueAmount']=='0' || ele['dueAmount']==0){
@@ -85,11 +85,14 @@ formatAMPM = (date) => {
         
                 }
                 else{
+                  console.log(element1);
+                  if(element1.slots[0].dueAmount!=0 && i==0 && index==0){
+          
                   this.dueInvoices.push(element1)
                   this.totaldueFilterAmount= this.totaldueFilterAmount + +ele['dueAmount']
-        
+                  }
                 }
-                this.totalCollection = this.totalCollection + +ele['amount']
+                this.totalCollection = this.totalCollection + +ele['paidAmount']
           ele.slotTiming.forEach((element) => {
             let startTime = new Date(element.split('-')[0]);
             let endTime = new Date(element.split('-')[1]);
@@ -228,7 +231,11 @@ formatAMPM = (date) => {
         case 'Paid': this.filteredInvoice = this.paidInvoices
         this.heading = "Paid Invoices"
         break
-        case 'Due' : this.filteredInvoice = this.dueInvoices
+        case 'Due' : 
+        
+        
+        
+        this.filteredInvoice = this.dueInvoices
         this.heading = "Due Invoices"
 
         break;

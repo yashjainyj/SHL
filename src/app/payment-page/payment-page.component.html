@@ -237,12 +237,15 @@ role: "student" -->
               <img *ngIf="!product?.image"
               src="../../assets/libraryImage/logo.png"
               [alt]="product?.name"
+              onerror="this.src='../../assets/libraryImage/secondHomeLibrary.jpeg';" 
               class="cssui-usercard__avatar"
               alt="Avatar"
             />
             <img *ngIf="product?.image"
             [alt]="product?.name"
             src="{{url}}{{product?.image}}"
+            onerror="this.src='../../assets/libraryImage/secondHomeLibrary.jpeg';" 
+
             class="cssui-usercard__avatar"
             alt="Avatar"
           />

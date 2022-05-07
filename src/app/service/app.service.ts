@@ -66,6 +66,11 @@ updateImage(data){
 getInvoiceAndReg(){
   return this.http.get(this.url+'user/getInvoiceAndReg')
 }
+search(data){
+  return this.http.post(this.url+'user/search',data)
+
+ 
+}
 getsingleSlot(id){
   let data = {
     id : id

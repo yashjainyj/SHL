@@ -54,7 +54,8 @@
                 <td>
                   <!-- <img (load)="dosomething()" [src]="product.picurl" [alt]="product.name" width="100" class="p-shadow-4"  /> -->
                   <img *ngIf="loading1" width="100" src="../../assets/loading.gif" alt="loading" />
-                  <img [hidden]="loading1" width="100" [alt]="product.name" (load)="dosomething()" src="{{url}}{{ product.image }}" class="p-shadow-4" />
+                    
+                    <img onerror="this.src='../../assets/libraryImage/secondHomeLibrary.jpeg';"  [hidden]="loading1" width="100" [alt]="product.name" (load)="dosomething()" src="{{url}}{{ product.image }}" class="p-shadow-4" />
                 </td>
                 <td>{{product.salary | currency:'INR'}}</td>
                 <td>{{product.email}}</td>
@@ -92,15 +93,17 @@
             <img *ngIf="!isedit "
             src="../../assets/libraryImage/logo.png"
             class="cssui-usercard__avatar"
+            onerror="this.src='../../assets/libraryImage/secondHomeLibrary.jpeg';" 
             alt="Avatar"
           />  
             <img *ngIf="!image && isedit"
             src="../../assets/libraryImage/logo.png"
             class="cssui-usercard__avatar"
+            onerror="this.src='../../assets/libraryImage/secondHomeLibrary.jpeg';" 
             alt="Avatar"
           />  
             <img *ngIf="image!='' && image && isedit"
-         
+            onerror="this.src='../../assets/libraryImage/secondHomeLibrary.jpeg';" 
             src="{{url}}{{image}}"
             class="cssui-usercard__avatar"
             alt="Avatar"

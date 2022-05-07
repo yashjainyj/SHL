@@ -50,6 +50,51 @@ export class DashboardComponent implements OnInit {
 
     this.selectedSlots = student
   }
+  searchData(event:any){
+    // console.log(event.target.value);
+    if(event.target.value){
+      let data ={
+        search :event.target.value
+      }
+      this.app.search(data).subscribe(res=>{
+        this.studentsData = res['user']
+        console.log(this.studentsData);
+        
+        this.studentsData['docs'].forEach((element1, index) => {
+  
+          element1.slots.forEach((ele,i) => {
+          let timing = [];
+            
+            ele.slotTiming.forEach((element) => {
+  
+              let startTime = new Date(element.split('-')[0]);
+              let endTime = new Date(element.split('-')[1]);
+              
+              if(!element.includes('AM')&&!element.includes('PM')){
+               
+                timing.push(
+                  this.formatAMPM(startTime) + '-' + this.formatAMPM(endTime)
+                );
+              }
+              else{
+                timing.push(
+                element
+                );
+              }
+              
+            });
+          this.studentsData['docs'][index].slots[i].slotTiming = timing;
+  
+          });
+       
+        });
+      })
+    }
+    else{
+      this.getAllstudent(1,'all')
+    }
+    
+  }
   getAllstudent(page, purpose) {
     this.loading = true;
     if (purpose == 'all') {
@@ -129,7 +174,7 @@ export class DashboardComponent implements OnInit {
         let docs=[]
         let count =0
         // this.studentsData['docs']=[]
-        console.log(res);
+        // console.log(res);
         res['user'].docs.forEach((element1, index) => {
         
             element1.slots.forEach((ele,i) => {
@@ -161,7 +206,7 @@ export class DashboardComponent implements OnInit {
     } else if (purpose == 'ExpireIn3Days') {
       this.app.getExpireIn3Days(page, this.limit).subscribe((res) => {
         this.studentsData = res['user'];
-        console.log(res);
+        // console.log(res);
         this.studentsData['docs'].forEach((element1, index) => {
           element1.slots.forEach((ele,i) => {
             let timing = [];
@@ -183,7 +228,7 @@ export class DashboardComponent implements OnInit {
     } else if (purpose == 'getExpire') {
       this.app.getExpire(page, this.limit).subscribe((res) => {
         this.studentsData = res['user'];
-        console.log(res);
+        // console.log(res);
         this.studentsData['docs'].forEach((element1, index) => {
           element1.slots.forEach((ele,i) => {
             let timing = [];

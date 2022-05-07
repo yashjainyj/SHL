@@ -43,7 +43,8 @@
         <!-- <button
           type="button"
           id="sidebarCollapse"
-          class="btn menuBtn d-lg-none"
+          class="btn menuBtn d-lg-none navbar-toggler"
+          data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation"
         >
           <i class="fa fa-align-left"></i>
           
@@ -405,7 +406,7 @@
                 <!-- <button pButton label="Clear" class="p-button-outlined" icon="pi pi-filter-slash" (click)="clear(dt1)"></button> -->
                 <span class="p-input-icon-left ml-auto">
                     <i class="pi pi-search"></i>
-                    <input pInputText type="text" (input)="dt1.filterGlobal($event.target.value, 'contains')" placeholder="Search keyword" />
+                    <input pInputText type="text" (input)="searchData($event)" placeholder="Search keyword" />
                 </span>
                 <!-- <span>{{heading}}</span> -->
             </div>
@@ -460,7 +461,7 @@
                     />
                     <img *ngIf="product?.image"
                     [alt]="product?.name"
-                    onerror="this.src='../../assets/libraryImage/secondHomeLibrary.jpeg';" 
+                  onerror="this.src='../../assets/libraryImage/secondHomeLibrary.jpeg';" 
                     src="{{url}}{{product?.image}}"
                     class="cssui-usercard__avatar"
                     alt="Avatar"
@@ -513,7 +514,7 @@
                       </svg>
                     </a>
                     <a
-                      *ngIf="product?.slots[0].isActive == 'ACTIVE'"
+                      
                       [routerLink]="['/editslot', 'edit', product?.slots[0]._id,product._id]"
                       routerLinkActive="router-link-active"
                       title="Upgrade Slot"
