@@ -137,7 +137,8 @@
                           class="col-6"
                         >
                           <h5><strong>Phone</strong></h5>
-                          <h6>{{ selecteditem?.phone }}</h6>
+                          <h6 *ngIf="userDetails.role=='admin'">{{ selecteditem?.phone }}</h6>
+                          <h6 *ngIf="userDetails.role=='staff'">******{{ selecteditem?.phone%10000 }}</h6>
                         </div>
                       </div>
                       <div class="row mt-4">

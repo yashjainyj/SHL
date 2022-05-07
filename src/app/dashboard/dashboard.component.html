@@ -66,21 +66,21 @@
               <a class="nav-link" [routerLink]="['/dashboard']" routerLinkActive="router-link-active">
                 <i class="fa fa-home"></i>
                 Dashboard
-              </a>
+            </a>
             </li>
-            <li class="nav-item">
+            <li *ngIf="userDetails.role=='admin'" class="nav-item">
               <a class="nav-link" [routerLink]="['/staffDetail']" routerLinkActive="router-link-active" >
                 <i class="fa fa-user"></i>
                 Manage Staff
               </a>
             </li>
-            <li class="nav-item">
+            <li *ngIf="userDetails.role=='admin'" class="nav-item">
               <a  class="nav-link"[routerLink]="['/manageWebsite']" routerLinkActive="router-link-active">
                 <i class="fa fa-copy"></i>
                 Website Config
               </a>
             </li>
-            <li class="nav-item">
+            <li  *ngIf="userDetails.role=='admin'"class="nav-item">
               <a  class="nav-link"[routerLink]="['/payment']" routerLinkActive="router-link-active" >
                 <i class="fa fa-dollar"></i>
                 Payment
@@ -468,7 +468,9 @@
                   />
                     </td>
                     <!-- <td><span class="p-column-title">Email</span>{{product?.email }}</td> -->
-                    <td><span class="p-column-title">Phone No.</span>{{product?.phone}}</td>
+                    <td *ngIf="userDetails.role=='admin'"><span class="p-column-title">Phone No.</span>{{product?.phone}}</td>
+                    <td *ngIf="userDetails.role=='staff'"><span class="p-column-title">Phone No.</span> ****** {{ product.phone% 10000 }}</td>
+                    <!-- ****** {{ item.contactNo% 10000 }} -->
                     <td><span class="p-column-title">Start Date</span>{{product?.slots[0]?.startDate|date:'dd/MM/yyyy'}}</td>
                     <td><span class="p-column-title">End Date</span>{{product?.slots[0]?.endDate|date:'dd/MM/yyyy'}}</td>
                     <td><span class="p-column-title">Slot Timing</span>{{product?.slots[0]?.slotTiming}}</td>

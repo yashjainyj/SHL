@@ -18,15 +18,25 @@ export class LiveSeatComponent implements OnInit {
   studentsDetail=[]
   displayDetails=false
   activeStudents=[]
+  userDetails:any={}
   loading1;
   selecteditem:any={}
   studentsData
   sliderArray
   constructor(private app:AppService,private location:Location) {
     this.sliderArray = ['Slots Detials', 'Payment Details', 'Personal Details'];
-    
+    if(localStorage.getItem('id')){
+      this.getUser()
+    }
     this.role = localStorage.getItem('role')
    }
+   getUser(){
+    this.app.getuserDetail(localStorage.getItem('id')).subscribe(res=>{
+      this.userDetails = res
+      // console.log(this.userDetails);
+      
+    })
+  } 
    formatAMPM = (date) => {
     let hours = date.getHours();
     let minutes = date.getMinutes();

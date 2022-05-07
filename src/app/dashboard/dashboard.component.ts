@@ -16,10 +16,22 @@ export class DashboardComponent implements OnInit {
   loading = false;
   detailsVisibile=false
   selectedSlots=[]
+  userDetails:any={}
   search=''
   url=environment.url
   studentsData: any = [];
-  constructor(private app: AppService,private router:Router,private messageService:MessageService) {}
+  constructor(private app: AppService,private router:Router,private messageService:MessageService) {
+    if(localStorage.getItem('id')){
+      this.getUser()
+    }
+  }
+  getUser(){
+    this.app.getuserDetail(localStorage.getItem('id')).subscribe(res=>{
+      this.userDetails = res
+      console.log(this.userDetails);
+      
+    })
+  } 
   sliderArray = new Array(3);
   formatAMPM = (date) => {
     let hours = date.getHours();
