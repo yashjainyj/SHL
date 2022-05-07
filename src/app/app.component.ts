@@ -1,4 +1,5 @@
 import { Component, HostListener } from '@angular/core';
+import { AppService } from './service/app.service';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +10,20 @@ export class AppComponent {
   title = 'studyhome';
   isShow: boolean;
   topPosToStartShowing = 100;
+  userDetails:any={}
 
+  constructor(private app:AppService){
+    if(localStorage.getItem('id')){
+      this.getUser()
+    }
+  }
+  getUser(){
+    this.app.getuserDetail(localStorage.getItem('id')).subscribe(res=>{
+      this.userDetails = res
+      // console.log(this.userDetails);
+      
+    })
+  } 
   @HostListener('window:scroll')
   checkScroll() {
       
@@ -21,8 +35,11 @@ export class AppComponent {
    
     if (scrollPosition >= this.topPosToStartShowing) {
       this.isShow = true;
+      this.getUser()
     } else {
       this.isShow = false;
+      this.getUser()
+
     }
   }
   whatsappurl: string = "https://wa.me/916263653486";

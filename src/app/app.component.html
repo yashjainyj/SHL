@@ -1,5 +1,5 @@
 <router-outlet></router-outlet>
 
-<a href="{{whatsappurl}}" target="_blank"> <img class="open-button" style="width: 80px;height: 80px;" src="../assets/icon/whatsapp.svg"></a>
+<a [hidden]="userDetails.role=='admin' || userDetails.role=='staff'" href="{{whatsappurl}}" target="_blank"> <img class="open-button" style="width: 80px;height: 80px;" src="../assets/icon/whatsapp.svg"></a>
 <button *ngIf="isShow" class="open-button" style="bottom: 0px;right: 10px;" (click)="gotoTop()"><i class="pi pi-arrow-circle-up"></i></button>
 <!-- <button class="open-button" style="bottom: 30px;right: 10px;" (click)="gotoTop()"><i class="pi pi-whatsapp"></i></button> -->
