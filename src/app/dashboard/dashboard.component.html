@@ -492,7 +492,7 @@
                     <a
                       [routerLink]="['/editslot', 'renew', '',product?._id]"
                       routerLinkActive="router-link-active"
-                      *ngIf="product?.slots[0].isActive != 'ACTIVE'"
+                      *ngIf="product?.slots[0]?.isActive != 'ACTIVE'"
                       href=""
                       title="Renew Slot"
                       class="cssui-social cssui-usercard__social"
@@ -517,7 +517,7 @@
                     </a>
                     <a
                       
-                      [routerLink]="['/editslot', 'edit', product?.slots[0]._id,product._id]"
+                      [routerLink]="['/editslot', 'edit', product?.slots[0]?._id,product?._id]"
                       routerLinkActive="router-link-active"
                       title="Upgrade Slot"
                       class="cssui-social cssui-usercard__social"

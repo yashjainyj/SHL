@@ -55,6 +55,7 @@ export class AddUserComponent implements OnInit {
     })
      this.app.getInvoiceAndReg().subscribe((res)=>{
       this.invoiceandRegNo=res
+      this.checkRegNoIsExist(this.invoiceandRegNo['regNo'] +1,'initial')
       this.addUser.patchValue({
         regNo: +this.invoiceandRegNo['regNo'] +1
       })
@@ -78,22 +79,36 @@ export class AddUserComponent implements OnInit {
  
     
 }
-checkRegNoIsExist(event:any){
-  console.log(event.target.value);
+checkRegNoIsExist(event:any,purpose:any){
+  // console.log(event.target.value);
+  let regNo:any=0
+  if(purpose=='initial'){
+    regNo=event
+  }
+  else
+  regNo=event.target.value
+
   let data ={
-    regNo:event.target.value
+    regNo:regNo
   }
   this.app.checkRegNoIsExist(data).subscribe((res:any)=>{
     if(res.message==true){
       this.messageService.add({
         severity: 'error',
         summary: 'Error',
-        detail: ' Registration No. '+ event.target.value  +' is Already Registered',
+        detail: ' Registration No. '+ regNo  +' is Already Registered',
       });
-      this.addUser.patchValue({
-        regNo:+this.invoiceandRegNo['regNo']+1
+      regNo = +regNo+1
+      this.checkRegNoIsExist(regNo,'initial')
+       this.addUser.patchValue({
+        regNo:regNo
       })
     }
+    // else{
+    //   this.addUser.patchValue({
+    //     regNo:+regNo+1
+    //   })
+    // }
   })
 }
   slotArray=[]
