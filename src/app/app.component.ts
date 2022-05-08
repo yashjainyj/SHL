@@ -35,10 +35,10 @@ export class AppComponent {
    
     if (scrollPosition >= this.topPosToStartShowing) {
       this.isShow = true;
-      this.getUser()
+      // this.getUser()
     } else {
       this.isShow = false;
-      this.getUser()
+      // this.getUser()
 
     }
   }
