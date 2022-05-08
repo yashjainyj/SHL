@@ -79,6 +79,7 @@ export class AddUserComponent implements OnInit {
  
     
 }
+RegNoIsExist=false
 checkRegNoIsExist(event:any,purpose:any){
   // console.log(event.target.value);
   let regNo:any=0
@@ -93,22 +94,22 @@ checkRegNoIsExist(event:any,purpose:any){
   }
   this.app.checkRegNoIsExist(data).subscribe((res:any)=>{
     if(res.message==true){
-      this.messageService.add({
-        severity: 'error',
-        summary: 'Error',
-        detail: ' Registration No. '+ regNo  +' is Already Registered',
-      });
-      regNo = +regNo+1
-      this.checkRegNoIsExist(regNo,'initial')
-       this.addUser.patchValue({
-        regNo:regNo
-      })
+this.RegNoIsExist=true
+
+      // this.messageService.add({
+      //   severity: 'error',
+      //   summary: 'Error',
+      //   detail: ' Registration No. '+ regNo  +' is Already Registered',
+      // });
+      // regNo = +regNo+1
+      // this.checkRegNoIsExist(regNo,'initial')
+      //  this.addUser.patchValue({
+      //   regNo:regNo
+      // })
     }
-    // else{
-    //   this.addUser.patchValue({
-    //     regNo:+regNo+1
-    //   })
-    // }
+    else{
+      this.RegNoIsExist = false
+    }
   })
 }
   slotArray=[]

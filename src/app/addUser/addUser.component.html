@@ -97,6 +97,11 @@
                 class="p-error"
                 ><strong>Reg No is Required !</strong></small
               >
+              <small
+              *ngIf="RegNoIsExist"
+              class="p-error"
+              ><strong>Reg No is already registered</strong></small
+            >
             </div>
               <div class="col-lg-4 col-md-6 col-sm-12 col-12 mt-3">
                 <span>Full Name <span style="color: red;">(*)</span></span>
@@ -654,7 +659,7 @@
                   ><strong>Discount is Required !</strong></small
                 >
               </div>
-              <button (click)='onSubmit()' [disabled]="addUser.invalid || slots.invalid || noOfSlot==0 || startTime.length!=noOfSlot || endTime.length!=noOfSlot" class="btn menuBtn mt-3">Save</button>
+              <button (click)='onSubmit()' [disabled]="addUser.invalid || slots.invalid || noOfSlot==0 || startTime.length!=noOfSlot || endTime.length!=noOfSlot || RegNoIsExist" class="btn menuBtn mt-3">Save</button>
     
          
              
